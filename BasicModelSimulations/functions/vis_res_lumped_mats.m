@@ -35,6 +35,7 @@ function [outputres] = vis_res_lumped_mats(res_path, amp_dist_name)
 
                 ind = find(NT_GS_JV_TF(1,:)==G_SNr(G_ind) & ...
                            abs(NT_GS_JV_TF(2,:)-corr_val(B))<1e-6);
+                       
                 ALL_REB(G_ind,B) = mean(all_reb_spk(ind,:));
                 REB_SPK(G_ind,B) = mean(rebound_spk(ind,:));
                 OVR_temp = (rebound_spk(ind,:))./(rebound_spk(ind,:)+all_reb_spk(ind,:));
@@ -55,7 +56,9 @@ function [outputres] = vis_res_lumped_mats(res_path, amp_dist_name)
     temp_ax = colorbar();
     temp_ax.Box = 'off';
     temp_ax.TickDirection = 'out';
+    temp_ax.Label.String = 'Transmission Quality, TQ';
     temp_ax.FontSize = 12;
+
     % box off
 
     xlabel('Correlation Coefficient')
@@ -66,33 +69,16 @@ function [outputres] = vis_res_lumped_mats(res_path, amp_dist_name)
 
     if show_samples
 
-        figure;
-        colormap('jet')
-        imagesc(corr_val,G_SNr,OVR)
-        set(gca,'FontSize',14)
-        box off
-        set(gca,'TickDir','out')
-        temp_ax = colorbar();
-        temp_ax.Box = 'off';
-        temp_ax.TickDirection = 'out';
-        temp_ax.FontSize = 12;
-        % box off
-
-        xlabel('Correlation Coefficient')
-        ylabel('G_S_N_r_t_o_T_C (nS/\mum^2)')
-        
-        fig_print(gcf,'Colorplot-corr')
-
         %% Visualizing the membrane potential traces
 
         figure;
 
-        all_tr_dir = [pwd,'/'];
+        all_tr_dir = [pwd,'\'];
         num_inps = 30;
-        tr_dir = [all_tr_dir,'/voltage-traces-and-inputs/'];
+        tr_dir = [all_tr_dir,'RESULTS-MIP\voltage-traces-and-inputs\'];
 
-        all_G = 0.3;
-        trial_num = randperm(100,1)%15;
+        all_G = 0.7;
+        trial_num = randperm(10,1)%15;
 
         % Specific variables 1st
         G = all_G;
@@ -105,8 +91,11 @@ function [outputres] = vis_res_lumped_mats(res_path, amp_dist_name)
         spk_times = mem_v_traces(trial_num).spike_times;
         mov_onset = mem_v_traces(trial_num).mov_onset;
 
-        vth = TC_model_SNr_inps(G,spk_times);
+        vth = TC_model_SNr_inps(G,spk_times); %THIS .M IS MISSING
 
+        
+        
+        
         % figure;
         subplot(2,3,1)
         plot(vth.time-mov_onset,vth.signals.values,'Color',col,'LineWidth',2)
@@ -163,6 +152,9 @@ function [outputres] = vis_res_lumped_mats(res_path, amp_dist_name)
         vth = TC_model_SNr_inps(G,spk_times);
         set(gca,'FontSize',14)
 
+        
+        
+        
         % figure;
         subplot(2,3,2)
         plot(vth.time-mov_onset,vth.signals.values,'Color',col,'LineWidth',2)

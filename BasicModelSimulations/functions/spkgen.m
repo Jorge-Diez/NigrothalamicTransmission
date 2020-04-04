@@ -9,7 +9,6 @@ function Spk = spkgen(t, N, r, alpha)
 % N = 100;      % number of spkie trains
 % r = 50        % firing rate (Hz)
 % alpha = 0.5;  % correlation
-
 t = t./1000; % to use the correct units!
 dt = t(2)-t(1);
 T = zeros(1, N);

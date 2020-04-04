@@ -24,7 +24,7 @@ function [MOV_REB,ALL_REB] = ...
                                           T,...
                                           mov_onset,...
                                           deg_of_jit,...
-                                          num_trials,dir_name_trace,S)
+                                          num_trials,dir_name_trace,S,FG_SNR)
 
 %% Global variables
 
@@ -65,7 +65,7 @@ simtime = T(end);
 
 %% TC parameters
 
-
+%seen in simulink model
 asg = 200;
 bsg = 0.4;
 itc = 6;
@@ -132,18 +132,36 @@ MOV_REB = zeros(1,num_trials);
 ALL_REB = zeros(1,num_trials);
 R2_vec = zeros(1,num_trials);
 
+
+%start of simulation of model neuron for each trial
 for tr_ind = 1:num_trials
     
     disp('!!!')
     
     disp(['S = ',num2str(S)])
 
-    [jit_spk_times,spike_times] = MIP_imp_v4_beta(deg_of_jit,N_SNr,F_SNr,...
+    %specify random generator
+    rng(tr_ind) %constrain random number generator of matlab to give a certain spike train for each trial
+    % results will be consistent
+    jit_spk_times = [];
+    %spiketrain is generated
+    %binary representation of spiketimes
+    for i = 1:length(FG_SNR)
+        [spike_times] = MIP_imp_v4_beta(deg_of_jit,FG_SNR(i),F_SNr(i),...
                                                     T(T<=mov_onset));
-
+                                                
+         jit_spk_times = vertcat( jit_spk_times, (reshape(spike_times,numel(spike_times),1)));
+    end
+                                                
+    %maybe try a function to modify this input (spike times, jitter spike times, 
+    % currently 30 spike trains are generated, maybe generate one by one
+    % and manipulate each
+    
+    % try to add or remove spikes from what is obtained from here
+    
     %% Showing the results
-    simopt = simset('SrcWorkspace','current');
-    sim('TC_RT2004_pois_CX_SNr',[],simopt)
+    simopt = simset('SrcWorkspace','current');  %
+    sim('TC_RT2004_pois_CX_SNr',[],simopt) %running the simulink (similar to run)
 
     % dir_name = [pwd '/' num2str(N_SNr) '/ACTIVITY'];
     % 
@@ -156,16 +174,18 @@ for tr_ind = 1:num_trials
     %     '-',num2str(round(deg_of_jit*100)),...
     %     '-',num2str(round(g_snr*100))],...
     %    'I_SNrtoTH','Ica','vth','mov_onset')
-        mem_v_traces(tr_ind).mov_onset = mov_onset;
+    
+    %structure to save important outputs
+        mem_v_traces(tr_ind).mov_onset = mov_onset; %movement onset happend
         mem_v_traces(tr_ind).spike_times = spike_times;
-        mem_v_traces(tr_ind).des_corr = deg_of_jit;
+        mem_v_traces(tr_ind).des_corr = deg_of_jit; %correlation
 %         mem_v_traces(tr_ind).exp_num = exp_num;
 
 
     % save([pwd '/' dir_name '/ACTIVITY/' num2str(round(corr_SNr*100)) '-' num2str(round(g_snr*100))],...
     %    'I_SNrtoTH','Ica','vth','mov_onset')
 
-    close(gcf)
+    %close(gcf) 
 
     %% Rebound spike detection
 
@@ -202,11 +222,12 @@ for tr_ind = 1:num_trials
 %         end
 %     end
 
-    %% The simplere algorithm for spike detection
+    %% The simpler algorithm for spike detection
     all_rebound_spk = length(findpeaks(vth.signals.values(vth.time<mov_onset),... 
-                            'MINPEAKHEIGHT',-40));
+                            'MINPEAKHEIGHT',-40)); %count how many spikes before movement onset
+                        
     mov_rebound_spk = length(findpeaks(vth.signals.values(vth.time>=mov_onset),... 
-                            'MINPEAKHEIGHT',-40));
+                            'MINPEAKHEIGHT',-40)); % count how many spikes after movement onset
     
     MOV_REB(tr_ind) = mov_rebound_spk;
     ALL_REB(tr_ind) = all_rebound_spk;

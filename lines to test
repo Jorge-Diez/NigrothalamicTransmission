@@ -1,0 +1,31 @@
+addpath('functions')
+
+S = 1; % number of trial
+g_snr = 0.85;
+num_trials = 10;
+dir_name_trace = 'C:\Users\Jaymann\Desktop\CCN\PSY6431 RESEARCH PROJECT\new_code_JD_additions\BasicModelSimulations\Results-MIP/voltage-traces-and-inputs/';
+corr_snr = 0;
+
+
+deg_of_jit = 0; %increments of 0.1
+N_SNr = 30;
+n_snr = N_SNr;
+F_SNr = 50;
+f_snr = F_SNr;
+mov_onset = 1000;
+dt = 0.01;  
+simtime = 1500; %(ms)
+T = 0:dt:simtime;
+
+[jit_spk_times,spike_times] = MIP_imp_v4_beta(deg_of_jit,N_SNr,F_SNr,...
+                                                    T(T<=mov_onset));
+
+
+
+
+each column is one spike train and each column has 50 spikes, we havce 50 spikes because we want 50 hertz spiketrain and it is 1 second that is why we have 1 second
+
+the long vector is used as the input to the neuron that is why its reshaped
+
+
+res_dir_mip = 'D:\My Documents\CCN\PSY6431 RESEARCH PROJECT\new_code_JD_additions\BasicModelSimulations\Results-MIP'

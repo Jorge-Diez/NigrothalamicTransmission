@@ -13,10 +13,10 @@
 %% almost same rate and same distribution. It also initialize important para-
 %% meters for running on clusters.
 
-% The contents of the function mentioned here is to use spike tarins
+% The contents of the function mentioned here is to use spike trains
 % based on the MIP mode of spike trains. . To have a
-% better results and enough inputs the total simulation time is 2000 ms and
-% the movement event occurs at 1500th ms.
+% better results and enough inputs the total simulation time is 1500 ms and
+% the movement event occurs at 1000 ms.
 
 % The inputs to this function is job_id and num_jobs which split the
 % G_SNr parameter to num_jobs smaller one, so it can be distributed along
@@ -26,7 +26,8 @@
 % job_id = 1;
 % num_jobs = 1;
 
-function [dir_name] = TCmodel_func_bwfor(job_id,num_jobs)
+function [dir_name] = TCmodel_func_bwfor(job_id, num_jobs, mov_onset, N_CX, N_SNr, F_CX,...
+    F_SNr, G_SNr_all, num_trials, corr_vals,FG_SNR)
 
 
 % The goal of this m-file is to plot the results as Robert wants for his
@@ -49,43 +50,47 @@ function [dir_name] = TCmodel_func_bwfor(job_id,num_jobs)
 
 
     %% Ranges of variations for both CX and SNr
-    dt = 0.01;
-    simtime = 1500;
+    dt = 0.01;  
+    simtime = 1500; %(ms)
     T = 0:dt:simtime;
 
-    mov_onset = 1000;
+    %mov_onset = 1000; %decrease in firing rate at t = this
 
-    N_CX = 200;
-    N_SNr = 30;
-    F_CX = 1:0.5:10;
-    F_SNr = 50;
+    %N_CX = 200; %number of exc inputs
+    %N_SNr = 30; %number of nigral inputs
+    
+    %F_CX = 1:0.5:10; %firing rate of exc inputs
+    %F_SNr = 50; %firing rate of nigral inputs
 
     n_trials_var = length(N_CX);
 
     % F_CX = 10*ones(size(T));
     % F_SNr = 80*sigmf(T,[-0.1 mov_onset]);
 
-    corr_CX = 0;
-    corr_SNr = 0;
-    G_SNr_all = 0.05:0.05:1.0;  %GS
+    corr_CX = 0;  %correlation of exc inputs
+    corr_SNr = 0; % correlation of nigral inputs
+    
+    %G_SNr_all = 0.70;  %GS (conductances) %CHANGED
     G_SNr = G_SNr_all;
-    num_trials = 100;   %NT
+    %num_trials = 10;   %NT  THIS IS CHANGED FROM 100 TO 10, SHOULD CHANGE TO 100 FOR GOOD RESULTS (LONG!)
 
 
     %% Loading data
 
-    corr_vals = 0:0.05:1.0;   %JV
+    %corr_vals = 0:0.1:1;   %values of correlation among inhibitory inputs
 
-    NT_GS_JV_TF_all = combvec(G_SNr,corr_vals);
-    NT_GS_JV_TF = NT_GS_JV_TF_all(:,job_id:num_jobs:end);
-
-    rebound_spk = zeros(size(NT_GS_JV_TF,2),num_trials);
-    all_reb_spk = zeros(size(NT_GS_JV_TF,2),num_trials);
-    R2 = zeros(size(NT_GS_JV_TF,2),num_trials);
+    NT_GS_JV_TF_all = combvec(G_SNr,corr_vals); %matrix of all possible combinations of conductances and corr values
+    NT_GS_JV_TF = NT_GS_JV_TF_all(:,job_id:num_jobs:end); %run it in paralell, split parameter vectors in number of jobs
+    %use number of threads available as MAX
+    
+    rebound_spk = zeros(size(NT_GS_JV_TF,2),num_trials); %Result vector, rebound spikes after decrease
+    all_reb_spk = zeros(size(NT_GS_JV_TF,2),num_trials); %Result vector, (check how its done may be the whole simuation)
+    
+    R2 = zeros(size(NT_GS_JV_TF,2),num_trials); %used to store the correlation values
 
     % comb_trial_num = NT_GS_JV_TF(1,:);
-    comb_G_SNr = NT_GS_JV_TF(1,:);
-    comb_jit_val = NT_GS_JV_TF(2,:);
+    comb_G_SNr = NT_GS_JV_TF(1,:); %extract the vector that contains all conductance values
+    comb_jit_val = NT_GS_JV_TF(2,:); %extract the vector that contains all correlation values
     % comb_exp_trial = NT_GS_JV_TF(4,:);
 
     SPK = [];
@@ -121,6 +126,10 @@ function [dir_name] = TCmodel_func_bwfor(job_id,num_jobs)
         mkdir(dir_name_trace)
     end
 
+    
+    %save all the outputs (taking into account parallel computing, hence
+    %the parfor. outputs are the number of rebound spikes (mentioned before
+    
     parfor S = 1:size(NT_GS_JV_TF,2)    % Loop over experimental trials
         disp(['jobnum = ',num2str(job_id), ', S = ',num2str(S)])
 
@@ -128,7 +137,7 @@ function [dir_name] = TCmodel_func_bwfor(job_id,num_jobs)
             TC_model_CX_SNr_cond_changed_parfor_opt(N_SNr,...
                             F_SNr,0,comb_G_SNr(S),...
                             T,mov_onset,comb_jit_val(S),...
-                            num_trials,dir_name_trace,S);
+                            num_trials,dir_name_trace,S,FG_SNR);
     %         end
     %         toc
     %     end

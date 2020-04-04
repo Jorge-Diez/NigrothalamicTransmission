@@ -68,9 +68,9 @@ function [dir_name] = TCmodel_func_bwfor_modEXPgen(job_id,num_jobs)
 
     corr_CX = 0;
     corr_SNr = 0;
-    G_SNr_all = 0.05:0.05:1;  %GS
+    G_SNr_all = 0.70;  %GS
     G_SNr = G_SNr_all;
-    num_trials = 100;   %NT
+    num_trials = 10;   %NT
     num_trials_vec = 1:num_trials;     %NT
 
     % rebound_spk = zeros(length(corr_SNr),length(N_SNr)*length(F_SNr));
@@ -80,7 +80,7 @@ function [dir_name] = TCmodel_func_bwfor_modEXPgen(job_id,num_jobs)
 
     % jit_percents = [1:20 50]/100;
     % corr_vals = 0:0.05:1;   %JV
-    corr_res = 0.05;
+    corr_res = 0.10;
     [corr_vals,tau_vec] = proper_tau_find(N_SNr,corr_res);
 
 

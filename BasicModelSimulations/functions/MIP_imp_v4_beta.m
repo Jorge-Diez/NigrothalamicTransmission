@@ -1,4 +1,4 @@
-function [spike_times_vec,spike_times] = ...
+function [spike_times] = ...
     MIP_imp_v4_beta(des_corr,N,F,t_vec)
 
 %% This function has been written to generate Poissonian spike train with the
@@ -19,7 +19,7 @@ function [spike_times_vec,spike_times] = ...
 % N = 100 ; % number of inputs
 % F = 50; % Frequency
     if des_corr == 0
-        moth_fr = F*N*20;
+        moth_fr = F*N*20; %moth = mother
     else
         moth_fr = F/des_corr;
     end
@@ -32,12 +32,15 @@ function [spike_times_vec,spike_times] = ...
 %             mother_spk_train = spkgen(t_vec,1,moth_fr,0);
 %         end
 %     else
+    % frequency in poisson can be different from the one thatr youy want
+    % in each spike train it has the exact number of spikes 
     if des_corr ~= 0
         while sum(mother_spk_train)/max(t_vec)*1000 < floor(moth_fr) || ...
                 sum(mother_spk_train)/max(t_vec)*1000 > ceil(moth_fr)
             mother_spk_train = spkgen(t_vec,1,moth_fr,0);
         end
     end
+    
 %     end
     
 %     while des_corr == 1 && sum(mother_spk_train)~=F
@@ -47,15 +50,28 @@ function [spike_times_vec,spike_times] = ...
     F = F * max(t_vec)/1000;
     moth_spk_times = t_vec(mother_spk_train > .5); 
     ind_of_corr = zeros(F,N);
+    
 %     disp(F)
 %     disp(N)
 %     disp(length(moth_spk_times))
 %     disp(des_corr)
+
+    % randomnly choose unmber of spike times from mother spike train, and
+    % put is as spike time in given spike train
+    
+    %ind of corr ar the indices of the spiketimes
     for ind_int = 1:N
         ind_of_corr(:,ind_int) = randperm(length(moth_spk_times),F);
     end
+    
+    
+
+    % each column is one spike train and each column has 50 spikes, we havce 50 spikes 
+    %because we want 50 hertz spiketrain and it is 1 second that is why we have 1 second
 
     spike_times = moth_spk_times(ind_of_corr);
+    
+    %the long vector is used as the input to the neuron that is why its reshaped
     spike_times = spike_times';
 %     spike_trains = zeros(length(t_vec),N);
 %     for ind_trains = 1:size(spike_times,2);
@@ -63,7 +79,7 @@ function [spike_times_vec,spike_times] = ...
 % %     spike_trains(2:end,ind_trains) = hist_temp.Values;
 %     end
 %    R2 = R2_measure(spike_times);
-    spike_times_vec = reshape(spike_times,numel(spike_times),1);
+    %spike_times_vec = reshape(spike_times,numel(spike_times),1);
 %     corr_coef_mat = corrcoef(spike_trains);
 %     mean_corr_val = mean2(corr_coef_mat(logical(tril(ones(size(corr_coef_mat))))...
 %                             &~isnan(corr_coef_mat)));
