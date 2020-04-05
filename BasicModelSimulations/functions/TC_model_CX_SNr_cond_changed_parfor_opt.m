@@ -136,7 +136,6 @@ R2_vec = zeros(1,num_trials);
 %start of simulation of model neuron for each trial
 for tr_ind = 1:num_trials
     
-    disp('!!!')
     
     disp(['S = ',num2str(S)])
 
@@ -223,6 +222,7 @@ for tr_ind = 1:num_trials
 %     end
 
     %% The simpler algorithm for spike detection
+    warning off
     all_rebound_spk = length(findpeaks(vth.signals.values(vth.time<mov_onset),... 
                             'MINPEAKHEIGHT',-40)); %count how many spikes before movement onset
                         
@@ -237,7 +237,6 @@ for tr_ind = 1:num_trials
     mem_v_traces(tr_ind).all_reb = all_rebound_spk;
     mem_v_traces(tr_ind).g_snr = g_snr;
     
-    disp('###')
 end
 
 save([dir_name_trace,num2str(round(deg_of_jit*100)),'-',...

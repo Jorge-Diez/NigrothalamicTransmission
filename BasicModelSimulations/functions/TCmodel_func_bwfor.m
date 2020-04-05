@@ -29,7 +29,6 @@
 function [dir_name] = TCmodel_func_bwfor(job_id, num_jobs, mov_onset, N_CX, N_SNr, F_CX,...
     F_SNr, G_SNr_all, num_trials, corr_vals,FG_SNR)
 
-
 % The goal of this m-file is to plot the results as Robert wants for his
 % reports. In these simulations, there is no cortical inputs and the goal
 % is to understand how correlation and conductance of SNr inputs affect
@@ -38,6 +37,8 @@ function [dir_name] = TCmodel_func_bwfor(job_id, num_jobs, mov_onset, N_CX, N_SN
 % activity is determined
 
 %% Directory creation
+    disp(F_SNr);
+    disp(FG_SNR);
 
     curr_dir = pwd;
     sub_dir_name = strsplit(curr_dir,'/');
@@ -126,23 +127,27 @@ function [dir_name] = TCmodel_func_bwfor(job_id, num_jobs, mov_onset, N_CX, N_SN
         mkdir(dir_name_trace)
     end
 
-    
+    nr_experiments = size(NT_GS_JV_TF,2);
+    disp(['total number of experiments to perform :',num2str(nr_experiments)])
     %save all the outputs (taking into account parallel computing, hence
     %the parfor. outputs are the number of rebound spikes (mentioned before
+    ppm = ParforProgressbar(nr_experiments, 'showWorkerProgress', true, 'progressBarUpdatePeriod', 5.0, ...
+        'title', 'mambo number 5') 
+
     
-    parfor S = 1:size(NT_GS_JV_TF,2)    % Loop over experimental trials
-        disp(['jobnum = ',num2str(job_id), ', S = ',num2str(S)])
+    parfor S = 1:size(NT_GS_JV_TF,2)   % Loop over experimental trials
+        %disp(['jobnum = ',num2str(job_id), ', S = ',num2str(S)])
 
         [rebound_spk(S,:),all_reb_spk(S,:)] = ...
             TC_model_CX_SNr_cond_changed_parfor_opt(N_SNr,...
                             F_SNr,0,comb_G_SNr(S),...
                             T,mov_onset,comb_jit_val(S),...
                             num_trials,dir_name_trace,S,FG_SNR);
-    %         end
-    %         toc
+
+        ppm.increment();
     %     end
     end
-
+    delete(ppm);
     dir_name_cp = [dir_name,'/res-for-colorplot/'];
 
     if exist(dir_name_cp,'dir') ~= 7
@@ -152,5 +157,6 @@ function [dir_name] = TCmodel_func_bwfor(job_id, num_jobs, mov_onset, N_CX, N_SN
     save([dir_name_cp 'MIP-pois-' date '-nSNr-' num2str(N_SNr) '-' num2str(job_id)],...
         'rebound_spk','all_reb_spk','G_SNr',...
         'num_trials','NT_GS_JV_TF')
+    
 end
 % exit
