@@ -27,7 +27,7 @@
 % num_jobs = 1;
 
 function [dir_name] = TCmodel_func_bwfor(job_id, num_jobs, mov_onset, N_CX, N_SNr, F_CX,...
-    F_SNr, G_SNr_all, num_trials, corr_vals,FG_SNR)
+    F_SNr, G_SNr_all, num_trials, corr_vals,FG_SNR,exppath)
 
 % The goal of this m-file is to plot the results as Robert wants for his
 % reports. In these simulations, there is no cortical inputs and the goal
@@ -37,8 +37,6 @@ function [dir_name] = TCmodel_func_bwfor(job_id, num_jobs, mov_onset, N_CX, N_SN
 % activity is determined
 
 %% Directory creation
-    disp(F_SNr);
-    disp(FG_SNR);
 
     curr_dir = pwd;
     sub_dir_name = strsplit(curr_dir,'/');
@@ -46,8 +44,9 @@ function [dir_name] = TCmodel_func_bwfor(job_id, num_jobs, mov_onset, N_CX, N_SN
 
     % ws_dir = '/work/ws/nemo/fr_mm1108-Rebound-0';
     ws_dir = pwd;
+    dir_name = fullfile(pwd, exppath);
     % dir_name = [ws_dir,'/',sub_dir_name];
-    dir_name = fullfile(ws_dir, 'Results-MIP');
+    %dir_name = fullfile(ws_dir, 'Results-MIP');
 
 
     %% Ranges of variations for both CX and SNr
@@ -128,11 +127,10 @@ function [dir_name] = TCmodel_func_bwfor(job_id, num_jobs, mov_onset, N_CX, N_SN
     end
 
     nr_experiments = size(NT_GS_JV_TF,2);
-    disp(['total number of experiments to perform :',num2str(nr_experiments)])
     %save all the outputs (taking into account parallel computing, hence
     %the parfor. outputs are the number of rebound spikes (mentioned before
     ppm = ParforProgressbar(nr_experiments, 'showWorkerProgress', true, 'progressBarUpdatePeriod', 5.0, ...
-        'title', 'mambo number 5') 
+        'title', 'Overall progress of experiment'); 
 
     
     parfor S = 1:size(NT_GS_JV_TF,2)   % Loop over experimental trials
@@ -156,7 +154,7 @@ function [dir_name] = TCmodel_func_bwfor(job_id, num_jobs, mov_onset, N_CX, N_SN
 
     save([dir_name_cp 'MIP-pois-' date '-nSNr-' num2str(N_SNr) '-' num2str(job_id)],...
         'rebound_spk','all_reb_spk','G_SNr',...
-        'num_trials','NT_GS_JV_TF')
+        'num_trials','NT_GS_JV_TF','F_SNr','FG_SNR')
     
 end
 % exit

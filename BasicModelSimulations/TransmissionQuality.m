@@ -21,8 +21,8 @@ F_CX = 1:0.5:10; %Do not contemplate for now
 
 
 G_SNr_all = 0.70; %nigral conductance
-corr_vals = 0:0.05:1; %values of correlation among inhibitory inputs
-num_trials = 1;
+corr_vals = 0.3:0.05:1; %values of correlation among inhibitory inputs
+num_trials = 100;
 
 
 %The following are the parameters for our simulators
@@ -35,7 +35,7 @@ percentage_increases = [min_perc_increase:max_perc_increase] / 100;
 N_SNr = 30;
 
 %number of neurons that will have that increase in percentage
-neurons_with_increase = [1:N_SNr];
+neurons_with_increase = [0:N_SNr];
 
 nr_perc_experiments = length(percentage_increases);
 nr_neuron_experiments = length(neurons_with_increase);
@@ -54,9 +54,23 @@ for per_i = 1:nr_perc_experiments
         
         %obtain parameters
         F_SNr = [50 50 + (percentage_increases(per_i) * 50)]; %Hz
-        F_Group_neurons = [N_SNr - neurons_with_increase(nr_j) nr_j]; %groups of neurons with specific firing rates
+        if (nr_j == 1)
+            F_Group_neurons =  [N_SNr]; %case where all of our neurons are of the same firing rate group
+        else
+            F_Group_neurons = [N_SNr - neurons_with_increase(nr_j) nr_j]; %groups of neurons with specific firing rates
+        end
         
-        res_dir_mip = TCmodel_func_bwfor(1, 1 , mov_onset, N_CX, N_SNr, F_CX, F_SNr, G_SNr_all, num_trials, corr_vals,F_Group_neurons);  %binomial
+        
+        %create directory path to save results from this experiment
+        root_folder = 'BIG_EXPERIMENTS';
+        specific_folder = ['perc_',num2str(percentage_increases(per_i)),'_nr_neurons_',num2str(neurons_with_increase(nr_j))];
+        
+        exp_path = fullfile(root_folder,specific_folder );
+        
+        res_dir_mip = TCmodel_func_bwfor(1, 1 , mov_onset, N_CX, N_SNr, F_CX, F_SNr, G_SNr_all, num_trials, corr_vals,F_Group_neurons,exp_path);  %binomial
+        
+        vis_res_lumped_mats(res_dir_mip, 'MIP')
+
         
         %caculate percentages performed
         frac2 = nr_j / length(neurons_with_increase);
@@ -93,10 +107,7 @@ multiWaitbar( 'CloseAll' );
 
 
 
-warning off;%avoid warnings 
-disp("EXPERIMENTS STARTING")
 
-vis_res_lumped_mats(res_dir_mip, 'MIP')
 
 
 

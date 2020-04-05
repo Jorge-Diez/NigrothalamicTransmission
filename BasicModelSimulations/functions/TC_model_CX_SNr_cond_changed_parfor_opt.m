@@ -137,7 +137,7 @@ R2_vec = zeros(1,num_trials);
 for tr_ind = 1:num_trials
     
     
-    disp(['S = ',num2str(S)])
+    %disp(['S = ',num2str(S)])
 
     %specify random generator
     rng(tr_ind) %constrain random number generator of matlab to give a certain spike train for each trial

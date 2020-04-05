@@ -46,8 +46,8 @@ function [outputres] = vis_res_lumped_mats(res_path, amp_dist_name)
     end
     outputres = fullfile(res_path,['plotting-params-', amp_dist_name]);
     save(outputres, 'OVR', 'G_SNr', 'corr_val')
-
-    figure;
+    
+    fig = figure('visible','off');
     colormap('jet')
     imagesc(corr_val,G_SNr,OVR)
     set(gca,'FontSize',14)
@@ -66,7 +66,7 @@ function [outputres] = vis_res_lumped_mats(res_path, amp_dist_name)
     
     outputfig = fullfile(res_path,['TQ-', amp_dist_name]);
     fig_print(gcf, outputfig)
-
+    close(fig)
     if show_samples
 
         %% Visualizing the membrane potential traces
