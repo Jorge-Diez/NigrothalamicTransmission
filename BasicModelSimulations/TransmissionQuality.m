@@ -21,8 +21,8 @@ F_CX = 1:0.5:10; %Do not contemplate for now
 
 
 G_SNr_all = 0.70; %nigral conductance
-corr_vals = 0.3:0.05:1; %values of correlation among inhibitory inputs
-num_trials = 100;
+corr_vals = 0.3:0.1:1; %values of correlation among inhibitory inputs
+num_trials = 10;
 
 
 %The following are the parameters for our simulators
@@ -30,12 +30,12 @@ num_trials = 100;
 %progress bar
 % the following is the increase in % with respect to base 50 HZ
 min_perc_increase = 20;
-max_perc_increase = 60;
-percentage_increases = [min_perc_increase:max_perc_increase] / 100;
+max_perc_increase = 35;
+percentage_increases = [min_perc_increase:2:max_perc_increase] / 100;
 N_SNr = 30;
 
 %number of neurons that will have that increase in percentage
-neurons_with_increase = [0:N_SNr];
+neurons_with_increase = [1:N_SNr];
 
 nr_perc_experiments = length(percentage_increases);
 nr_neuron_experiments = length(neurons_with_increase);
@@ -54,11 +54,9 @@ for per_i = 1:nr_perc_experiments
         
         %obtain parameters
         F_SNr = [50 50 + (percentage_increases(per_i) * 50)]; %Hz
-        if (nr_j == 1)
-            F_Group_neurons =  [N_SNr]; %case where all of our neurons are of the same firing rate group
-        else
-            F_Group_neurons = [N_SNr - neurons_with_increase(nr_j) nr_j]; %groups of neurons with specific firing rates
-        end
+
+        F_Group_neurons = [N_SNr - neurons_with_increase(nr_j) nr_j]; %groups of neurons with specific firing rates
+
         
         
         %create directory path to save results from this experiment
