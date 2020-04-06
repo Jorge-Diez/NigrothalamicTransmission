@@ -48,8 +48,10 @@ function [outputres] = vis_res_lumped_mats(res_path, amp_dist_name)
     save(outputres, 'OVR', 'G_SNr', 'corr_val')
     
     fig = figure('visible','off');
-    colormap('jet')
+    h = colorbar();
+    colormap('jet');
     imagesc(corr_val,G_SNr,OVR)
+    caxis([0 1]);
     set(gca,'FontSize',14)
     box off
     set(gca,'TickDir','out')

@@ -22,7 +22,7 @@ F_CX = 1:0.5:10; %Do not contemplate for now
 
 G_SNr_all = 0.70; %nigral conductance
 corr_vals = 0.3:0.1:1; %values of correlation among inhibitory inputs
-num_trials = 10;
+num_trials = 1;
 
 
 %The following are the parameters for our simulators
@@ -30,7 +30,7 @@ num_trials = 10;
 %progress bar
 % the following is the increase in % with respect to base 50 HZ
 min_perc_increase = 20;
-max_perc_increase = 35;
+max_perc_increase = 30;
 percentage_increases = [min_perc_increase:2:max_perc_increase] / 100;
 N_SNr = 30;
 
@@ -60,7 +60,13 @@ for per_i = 1:nr_perc_experiments
         
         
         %create directory path to save results from this experiment
-        root_folder = 'BIG_EXPERIMENTS';
+        root_folder = ['BIG_EXPERIMENTS_BASE_50HZ\FREQINCTO_',num2str(50 + (percentage_increases(per_i) * 50))];
+
+        checkflag = fullfile(pwd, root_folder);
+        if exist(checkflag,'dir') ~= 7
+            mkdir(checkflag)
+        end
+
         specific_folder = ['perc_',num2str(percentage_increases(per_i)),'_nr_neurons_',num2str(neurons_with_increase(nr_j))];
         
         exp_path = fullfile(root_folder,specific_folder );
