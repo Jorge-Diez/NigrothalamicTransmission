@@ -22,7 +22,7 @@ F_CX = 1:0.5:10; %Do not contemplate for now
 
 G_SNr_all = 0.70; %nigral conductance
 corr_vals = 0.3:0.1:1; %values of correlation among inhibitory inputs
-num_trials = 1;
+num_trials = 10;
 
 
 %The following are the parameters for our simulators
@@ -30,7 +30,7 @@ num_trials = 1;
 %progress bar
 % the following is the increase in % with respect to base 50 HZ
 min_perc_increase = 20;
-max_perc_increase = 30;
+max_perc_increase = 28;
 percentage_increases = [min_perc_increase:2:max_perc_increase] / 100;
 N_SNr = 30;
 
@@ -52,11 +52,18 @@ last = 0;
 for per_i = 1:nr_perc_experiments
     for nr_j = 1:nr_neuron_experiments
         
+        if (nr_j == N_SNr)
+            F_SNr = [50 + (percentage_increases(per_i) * 50)]; %Hz
+
+            F_Group_neurons = [nr_j]; %groups of neurons with specific firing rates
+            
+        else
+
         %obtain parameters
-        F_SNr = [50 50 + (percentage_increases(per_i) * 50)]; %Hz
+            F_SNr = [50 50 + (percentage_increases(per_i) * 50)]; %Hz
 
-        F_Group_neurons = [N_SNr - neurons_with_increase(nr_j) nr_j]; %groups of neurons with specific firing rates
-
+            F_Group_neurons = [N_SNr - neurons_with_increase(nr_j) nr_j]; %groups of neurons with specific firing rates
+        end
         
         
         %create directory path to save results from this experiment
@@ -94,7 +101,7 @@ for per_i = 1:nr_perc_experiments
         
     end
     %resets number of neuron experiments counter
-    multiWaitbar(['nr of neuron experiments done : ',num2str(30), ' out of ', num2str(nr_neuron_experiments) ], 'Relabel',...
+    multiWaitbar(['nr of neuron experiments done : ',num2str(N_SNr), ' out of ', num2str(nr_neuron_experiments) ], 'Relabel',...
     ['nr of neuron experiments done : ',num2str(0), ' out of ', num2str(nr_neuron_experiments) ]);  
    
 
