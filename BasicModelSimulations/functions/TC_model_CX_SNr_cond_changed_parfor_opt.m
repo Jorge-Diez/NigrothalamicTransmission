@@ -24,7 +24,7 @@ function [MOV_REB,ALL_REB] = ...
                                           T,...
                                           mov_onset,...
                                           deg_of_jit,...
-                                          num_trials,dir_name_trace,S,FG_SNR,ppm)
+                                          num_trials,dir_name_trace,S,FG_SNR)
 
 %% Global variables
 
@@ -236,7 +236,6 @@ for tr_ind = 1:num_trials
     mem_v_traces(tr_ind).mov_reb = mov_rebound_spk;
     mem_v_traces(tr_ind).all_reb = all_rebound_spk;
     mem_v_traces(tr_ind).g_snr = g_snr;
-    ppm.increment();
     
 end
 

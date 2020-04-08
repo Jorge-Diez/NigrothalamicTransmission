@@ -126,11 +126,11 @@ function [dir_name] = TCmodel_func_bwfor(job_id, num_jobs, mov_onset, N_CX, N_SN
         mkdir(dir_name_trace)
     end
 
-    nr_experiments = size(NT_GS_JV_TF,2) * num_trials;
+    %nr_experiments = size(NT_GS_JV_TF,2) * num_trials;
     %save all the outputs (taking into account parallel computing, hence
     %the parfor. outputs are the number of rebound spikes (mentioned before
-    ppm = ParforProgressbar(nr_experiments, 'showWorkerProgress', true, 'progressBarUpdatePeriod', 5.0, ...
-        'title', 'Overall progress of experiment'); 
+    %ppm = ParforProgressbar(nr_experiments, 'showWorkerProgress', true, 'progressBarUpdatePeriod', 5.0, ...
+        %'title', 'Overall progress of experiment'); 
 
     
     parfor S = 1:size(NT_GS_JV_TF,2)   % Loop over experimental trials
@@ -140,12 +140,12 @@ function [dir_name] = TCmodel_func_bwfor(job_id, num_jobs, mov_onset, N_CX, N_SN
             TC_model_CX_SNr_cond_changed_parfor_opt(N_SNr,...
                             F_SNr,0,comb_G_SNr(S),...
                             T,mov_onset,comb_jit_val(S),...
-                            num_trials,dir_name_trace,S,FG_SNR,ppm);
+                            num_trials,dir_name_trace,S,FG_SNR);
 
         %ppm.increment();
     %     end
     end
-    delete(ppm);
+    %delete(ppm);
     dir_name_cp = [dir_name,'/res-for-colorplot/'];
 
     if exist(dir_name_cp,'dir') ~= 7
