@@ -29,8 +29,8 @@ num_trials = 10;
 %We will use 2 for loops in order for us to be able to use the double
 %progress bar
 % the following is the increase in % with respect to base 50 HZ
-min_perc_increase = 2;
-max_perc_increase = 18;
+min_perc_increase = 40;
+max_perc_increase = 40;
 percentage_increases = [min_perc_increase:2:max_perc_increase] / 100;
 N_SNr = 30;
 
@@ -67,7 +67,7 @@ for per_i = 1:nr_perc_experiments
         
         
         %create directory path to save results from this experiment
-        root_folder = ['BIG_EXPERIMENTS_BASE_50HZ\FREQINCTO_',num2str(50 + (percentage_increases(per_i) * 50))];
+        root_folder = ['temp_results\FREQINCTO_',num2str(50 + (percentage_increases(per_i) * 50))];
 
         checkflag = fullfile(pwd, root_folder);
         if exist(checkflag,'dir') ~= 7
@@ -78,7 +78,7 @@ for per_i = 1:nr_perc_experiments
         
         exp_path = fullfile(root_folder,specific_folder );
         
-        res_dir_mip = TCmodel_func_bwfor(1, 1 , mov_onset, N_CX, N_SNr, F_CX, F_SNr, G_SNr_all, num_trials, corr_vals,F_Group_neurons,exp_path);  %binomial
+        res_dir_mip = TCmodel_func_bwfor(1, 1 , mov_onset, N_CX, F_CX, F_SNr, G_SNr_all, num_trials, corr_vals,F_Group_neurons,exp_path);  %binomial
         
         vis_res_lumped_mats(res_dir_mip, 'MIP')
 
