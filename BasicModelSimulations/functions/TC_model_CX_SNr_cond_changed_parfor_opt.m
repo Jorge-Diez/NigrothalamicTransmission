@@ -145,11 +145,14 @@ for tr_ind = 1:num_trials
     jit_spk_times = [];
     %spiketrain is generated
     %binary representation of spiketimes
+    all_spikes = struct();
+    
     for i = 1:length(FG_SNR)
         [spike_times] = MIP_imp_v4_beta(deg_of_jit,FG_SNR(i),F_SNr(i),...
                                                     T(T<=mov_onset));
                                                 
          jit_spk_times = vertcat( jit_spk_times, (reshape(spike_times,numel(spike_times),1)));
+         all_spikes(i).spikes = spike_times;
     end
                                                 
     %maybe try a function to modify this input (spike times, jitter spike times, 
@@ -176,7 +179,7 @@ for tr_ind = 1:num_trials
     
     %structure to save important outputs
         mem_v_traces(tr_ind).mov_onset = mov_onset; %movement onset happend
-        mem_v_traces(tr_ind).spike_times = spike_times;
+        mem_v_traces(tr_ind).spike_times = all_spikes;
         mem_v_traces(tr_ind).des_corr = deg_of_jit; %correlation
 %         mem_v_traces(tr_ind).exp_num = exp_num;
 

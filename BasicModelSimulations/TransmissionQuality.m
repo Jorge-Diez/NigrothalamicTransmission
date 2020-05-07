@@ -31,6 +31,7 @@ num_trials = 10;
 % the following is the increase in % with respect to base 50 HZ
 min_perc_increase = 40;
 max_perc_increase = 40;
+
 percentage_increases = [min_perc_increase:2:max_perc_increase] / 100;
 N_SNr = 30;
 

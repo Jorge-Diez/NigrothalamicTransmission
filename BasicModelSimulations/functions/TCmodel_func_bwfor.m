@@ -133,7 +133,7 @@ function [dir_name] = TCmodel_func_bwfor(job_id, num_jobs, mov_onset, N_CX, F_CX
         %'title', 'Overall progress of experiment'); 
 
     
-    parfor S = 1:size(NT_GS_JV_TF,2)   % Loop over experimental trials
+    for S = 1:size(NT_GS_JV_TF,2)   % Loop over experimental trials
         %disp(['jobnum = ',num2str(job_id), ', S = ',num2str(S)])
 
         [rebound_spk(S,:),all_reb_spk(S,:)] = ...
