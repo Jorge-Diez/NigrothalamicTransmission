@@ -26,20 +26,26 @@ function [spike_times] = ...
     F = max(F);
 %     t_vec = 0:.1:1000;
     mother_spk_train = spkgen(t_vec,1,moth_fr,0);
-    
+    original_mother_spk_train =  mother_spk_train;
 %     if des_corr <= 0.7
 %         while sum(mother_spk_train) < moth_fr
 %             mother_spk_train = spkgen(t_vec,1,moth_fr,0);
 %         end
 %     else
     % frequency in poisson can be different from the one thatr youy want
-    % in each spike train it has the exact number of spikes 
+    % in each spike train it has the exact number of spikes
+    
+    while_count = 0;
     if des_corr ~= 0
         while sum(mother_spk_train)/max(t_vec)*1000 < floor(moth_fr) || ...
                 sum(mother_spk_train)/max(t_vec)*1000 > ceil(moth_fr)
             mother_spk_train = spkgen(t_vec,1,moth_fr,0);
+            while_count = while_count + 1;
         end
     end
+    
+    %COEFFICIENT OF VARIATION 
+    
     
 %     end
     
@@ -48,6 +54,7 @@ function [spike_times] = ...
 %     end
 %     AA = sum(moth_spk_times);
     F = F * max(t_vec)/1000;
+    %0.5 to make sure that it is greater than 0 but less than 1
     moth_spk_times = t_vec(mother_spk_train > .5); 
     ind_of_corr = zeros(F,N);
     
@@ -60,6 +67,8 @@ function [spike_times] = ...
     % put is as spike time in given spike train
     
     %ind of corr ar the indices of the spiketimes
+    disp(F)
+    disp(N)
     for ind_int = 1:N
         ind_of_corr(:,ind_int) = randperm(length(moth_spk_times),F);
     end
@@ -73,6 +82,8 @@ function [spike_times] = ...
     
     %the long vector is used as the input to the neuron that is why its reshaped
     spike_times = spike_times';
+    
+    %disp("done")
 %     spike_trains = zeros(length(t_vec),N);
 %     for ind_trains = 1:size(spike_times,2);
 %         [spike_trains(2:end,ind_trains),~] = histcounts(spike_times(:,ind_trains),t_vec);

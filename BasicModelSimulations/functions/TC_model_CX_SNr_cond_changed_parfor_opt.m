@@ -135,12 +135,14 @@ R2_vec = zeros(1,num_trials);
 
 %start of simulation of model neuron for each trial
 for tr_ind = 1:num_trials
+    %constrain random number generator of matlab to give a certain spike train for each trial
+    disp(tr_ind)
     
     
     %disp(['S = ',num2str(S)])
 
     %specify random generator
-    rng(tr_ind) %constrain random number generator of matlab to give a certain spike train for each trial
+    
     % results will be consistent
     jit_spk_times = [];
     %spiketrain is generated
@@ -148,6 +150,7 @@ for tr_ind = 1:num_trials
     all_spikes = struct();
     
     for i = 1:length(FG_SNR)
+        rng(tr_ind)
         [spike_times] = MIP_imp_v4_beta(deg_of_jit,FG_SNR(i),F_SNr(i),...
                                                     T(T<=mov_onset));
                                                 

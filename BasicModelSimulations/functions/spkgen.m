@@ -15,6 +15,7 @@ T = zeros(1, N);
 p = r*dt;
 U = rand(size(t));
 Spk = U<=p;
+%disp('done')
 % Spk = zeros(length(t),1);
 % for i = 1:length(t)
 %     p=r(i)*dt;  % Application of frequency modulation function

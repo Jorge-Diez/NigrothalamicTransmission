@@ -7,7 +7,7 @@
 global T_vec
 T_vec = 0:0.01:1000;
 rate = 50;
-corr = 0.5;
+corr = 0.7;
 N = 30;
 
 ch_prob = [0, 0.4, 0.6]; %change probability
