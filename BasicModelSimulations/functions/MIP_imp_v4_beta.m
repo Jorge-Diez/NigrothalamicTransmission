@@ -26,7 +26,7 @@ function [spike_times] = ...
     F = max(F);
 %     t_vec = 0:.1:1000;
     mother_spk_train = spkgen(t_vec,1,moth_fr,0);
-    original_mother_spk_train =  mother_spk_train;
+%    original_mother_spk_train =  mother_spk_train;
 %     if des_corr <= 0.7
 %         while sum(mother_spk_train) < moth_fr
 %             mother_spk_train = spkgen(t_vec,1,moth_fr,0);
@@ -35,12 +35,10 @@ function [spike_times] = ...
     % frequency in poisson can be different from the one thatr youy want
     % in each spike train it has the exact number of spikes
     
-    while_count = 0;
     if des_corr ~= 0
         while sum(mother_spk_train)/max(t_vec)*1000 < floor(moth_fr) || ...
                 sum(mother_spk_train)/max(t_vec)*1000 > ceil(moth_fr)
             mother_spk_train = spkgen(t_vec,1,moth_fr,0);
-            while_count = while_count + 1;
         end
     end
     
@@ -67,8 +65,8 @@ function [spike_times] = ...
     % put is as spike time in given spike train
     
     %ind of corr ar the indices of the spiketimes
-    disp(F)
-    disp(N)
+ %   disp(F)
+ %   disp(N)
     for ind_int = 1:N
         ind_of_corr(:,ind_int) = randperm(length(moth_spk_times),F);
     end

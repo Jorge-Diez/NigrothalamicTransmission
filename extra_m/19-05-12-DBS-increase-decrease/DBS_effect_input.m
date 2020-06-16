@@ -6,8 +6,8 @@
 % train on the amplitude distribution of the resulting spike train.
 global T_vec
 T_vec = 0:0.01:1000;
-rate = 50;
-corr = 0.7;
+rate = 70;
+corr = 0.3;
 N = 30;
 
 ch_prob = [0, 0.4, 0.6]; %change probability

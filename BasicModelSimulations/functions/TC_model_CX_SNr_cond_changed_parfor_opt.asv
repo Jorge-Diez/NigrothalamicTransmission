@@ -161,16 +161,16 @@ for tr_ind = 1:num_trials
     nr_spikes_to_delete = max(F_SNr) - min(F_SNr);
     base_spikes = zeros(FG_SNR(1), F_SNr(1));
     %go over each neuron and delete randomly
-    base_freq = F_SNr(1);
+    base_freq = FG_SNR(1);
     for i = 1:FG_SNR(1)
         %we will keep only the number of spikes that we need
         positions_keep = randperm(F_SNr(2), base_freq);
-        base_spikes(i,:) = spike_times(i, positions_keep);
+        base_spikes(i) = spike_times(i, positions_keep);
     end
     
     %save first "group" of base freq
     all_spikes(1).spikes = base_spikes;
-    jit_spk_times = vertcat( jit_spk_times, (reshape(base_spikes,numel(base_spikes),1)));
+    
     
     
     %save neurons with higher frequency 
@@ -180,6 +180,20 @@ for tr_ind = 1:num_trials
     jit_spk_times = vertcat( jit_spk_times, (reshape(stimulated_spikes,numel(stimulated_spikes),1)));
     
     
+    for i = 1:length(FG_SNR)
+        
+        [spike_times] = MIP_imp_v4_beta(deg_of_jit,FG_SNR(i),F_SNr(i),...
+                                                    T(T<=mov_onset));
+                                                
+         jit_spk_times = vertcat( jit_spk_times, (reshape(spike_times,numel(spike_times),1)));
+         all_spikes(i).spikes = spike_times;
+    end
+                                                
+    %maybe try a function to modify this input (spike times, jitter spike times, 
+    % currently 30 spike trains are generated, maybe generate one by one
+    % and manipulate each
+    
+    % try to add or remove spikes from what is obtained from here
     
     %% Showing the results
     simopt = simset('SrcWorkspace','current');  %
