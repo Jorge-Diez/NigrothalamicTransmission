@@ -68,7 +68,7 @@ for per_i = 1:nr_perc_experiments
         
         
         %create directory path to save results from this experiment
-        root_folder = ['TESTS_RNG\FREQINCTO_',num2str(50 + (percentage_increases(per_i) * 50))];
+        root_folder = ['BIG_EXPERIMENTS_NEWMETHOD\FREQINCTO_',num2str(50 + (percentage_increases(per_i) * 50))];
 
         checkflag = fullfile(pwd, root_folder);
         if exist(checkflag,'dir') ~= 7
