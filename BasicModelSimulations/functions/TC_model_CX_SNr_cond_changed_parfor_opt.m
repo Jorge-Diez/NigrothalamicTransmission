@@ -157,28 +157,33 @@ for tr_ind = 1:num_trials
     %THIS IS DONE TAKING INTO ACCOUNT THAT TIME VECTOR IS 1 SECOND = 1000
     %MILLISECONDS AND THAT ONLY 2 GROUPS OF NEURONS EXIST (BASELINE AND
     %HIGHER FREQUENCY)
+    if (numel(F_SNr) > 1)
+        base_spikes = zeros(FG_SNR(1), F_SNr(1));
+        %go over each neuron and delete randomly
+        base_freq = F_SNr(1);
+        for i = 1:FG_SNR(1)
+            %we will keep only the number of spikes that we need
+            positions_keep = randperm(F_SNr(2), base_freq);
+            base_spikes(i,:) = spike_times(i, positions_keep);
+        end
+        
+        %save first "group" of base freq
+        all_spikes(1).spikes = base_spikes;
+        jit_spk_times = vertcat( jit_spk_times, (reshape(base_spikes,numel(base_spikes),1)));
+        
+        
+        %save neurons with higher frequency 
+        stimulated_spikes = spike_times(FG_SNR(1)+1:sum(FG_SNR),:);
+        all_spikes(2).spikes = stimulated_spikes;
+        %transform spikes for simulink
+        jit_spk_times = vertcat( jit_spk_times, (reshape(stimulated_spikes,numel(stimulated_spikes),1)));        
+    else
+        
+        all_spikes(1).spikes = spike_times;
+        jit_spk_times = (reshape(spike_times,numel(spike_times),1));
+        
     
-    nr_spikes_to_delete = max(F_SNr) - min(F_SNr);
-    base_spikes = zeros(FG_SNR(1), F_SNr(1));
-    %go over each neuron and delete randomly
-    base_freq = F_SNr(1);
-    for i = 1:FG_SNR(1)
-        %we will keep only the number of spikes that we need
-        positions_keep = randperm(F_SNr(2), base_freq);
-        base_spikes(i,:) = spike_times(i, positions_keep);
     end
-    
-    %save first "group" of base freq
-    all_spikes(1).spikes = base_spikes;
-    jit_spk_times = vertcat( jit_spk_times, (reshape(base_spikes,numel(base_spikes),1)));
-    
-    
-    %save neurons with higher frequency 
-    stimulated_spikes = spike_times(FG_SNR(1)+1:sum(FG_SNR),:);
-    all_spikes(2).spikes = stimulated_spikes;
-    %transform spikes for simulink
-    jit_spk_times = vertcat( jit_spk_times, (reshape(stimulated_spikes,numel(stimulated_spikes),1)));
-    
     
     
     %% Showing the results
