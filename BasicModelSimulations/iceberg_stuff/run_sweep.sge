@@ -1,0 +1,15 @@
+#!/bin/bash
+#Task Array example for MATLAB on Sheffield's ShARC system
+#Request 4 Gigabytes of memory per task
+#$ -l rmem=4G
+#Run 10 tasks where each task has a different $SGE_TASK_ID ranging from 1 to 10
+#$ -t 1-10
+
+#Output the Task ID
+echo "Task ID is $SGE_TASK_ID"
+
+#Load the MATLAB 2017b Environment module
+module load apps/matlab/2017b/binary
+
+#Run myfunc.m, passing $SGE_TASK_ID to it 
+matlab -nodisplay -r "myfunc $SGE_TASK_ID"

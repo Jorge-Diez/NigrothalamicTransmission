@@ -265,8 +265,12 @@ for tr_ind = 1:num_trials
     mem_v_traces(tr_ind).all_reb = all_rebound_spk;
     mem_v_traces(tr_ind).g_snr = g_snr;
     
+    disp(['trial ', num2str(tr_ind), ' has finished'])
 end
 
 save([dir_name_trace,num2str(round(deg_of_jit*100)),'-',...
     num2str(round(g_snr*100))],...
    'mem_v_traces')
+
+
+
