@@ -27,7 +27,7 @@
 % num_jobs = 1;
 
 function [dir_name] = TCmodel_func_bwfor(job_id, num_jobs, mov_onset, N_CX, F_CX,...
-    F_SNr, G_SNr_all, num_trials, corr_vals,FG_SNR,exppath)
+    F_SNr, G_SNr_all, num_trials, corr_vals,FG_SNR, sim_mode, exppath)
 
 % The goal of this m-file is to plot the results as Robert wants for his
 % reports. In these simulations, there is no cortical inputs and the goal
@@ -35,6 +35,12 @@ function [dir_name] = TCmodel_func_bwfor(job_id, num_jobs, mov_onset, N_CX, F_CX
 % rebound activity in a thalamocortical cell. Each simulation will be
 % repeated 100 times and then as a result, the percentage of reobund
 % activity is determined
+
+% sim_mode determines how the different spike times are generated
+% 1 - for each group a different mother spike train is generated,
+% correlation is not taken into account between different spike trains
+% 2 - a unique mother spike train is generated for highest frequency, and
+% the group with lower frequency deletes spikes randomly (uniform)
 
 %% Directory creation
 
@@ -135,12 +141,24 @@ function [dir_name] = TCmodel_func_bwfor(job_id, num_jobs, mov_onset, N_CX, F_CX
     
     parfor S = 1:size(NT_GS_JV_TF,2)   % Loop over experimental trials
         %disp(['jobnum = ',num2str(job_id), ', S = ',num2str(S)])
-
-        [rebound_spk(S,:),all_reb_spk(S,:)] = ...
-            TC_model_CX_SNr_cond_changed_parfor_opt(...
-                            F_SNr,0,comb_G_SNr(S),...
-                            T,mov_onset,comb_jit_val(S),...
-                            num_trials,dir_name_trace,S,FG_SNR);
+        switch sim_mode %for now we only have sim mode 1 and 2
+            case 1
+            
+                [rebound_spk(S,:),all_reb_spk(S,:)] = ...
+                    TC_model_CX_SNr_cond_changed_parfor_opt_diff_mothspikes(...
+                                    F_SNr,0,comb_G_SNr(S),...
+                                    T,mov_onset,comb_jit_val(S),...
+                                    num_trials,dir_name_trace,S,FG_SNR);
+            case 2
+            
+                [rebound_spk(S,:),all_reb_spk(S,:)] = ...
+                    TC_model_CX_SNr_cond_changed_parfor_opt(...
+                                    F_SNr,0,comb_G_SNr(S),...
+                                    T,mov_onset,comb_jit_val(S),...
+                                    num_trials,dir_name_trace,S,FG_SNR);
+            
+            
+        end
 
         %ppm.increment();
     %     end

@@ -69,11 +69,11 @@ plt.close()
 ##Now for generating the actual results
 
 
-big_exp_folder = "BIG_EXPERIMENTS_BASE_50HZ"
+big_exp_folder = input("Name of folder with data: ")
 main_big_exp_folder = os.path.join(pwd, big_exp_folder)
 x_values = ["0.3","0.4","0.5","0.6","0.7","0.8","0.9","1"]
 
-nr_experiments = int(input("please write how many experiments there are in the folder: "))
+nr_experiments = int(input("Total number of frequency experiments: "))
 
 
 #results are saved like this so that we can later obtain maximums and minimums from all results
@@ -103,7 +103,7 @@ for i, experiment_name in enumerate(os.listdir(main_big_exp_folder)):
         OVR_RESULTS[j:] = mat_data["OVR"]
         OVR_RESULTS_DIFFERENCE[j:] = mat_data["OVR"] - OG_OVR
         ALL_MEAN_OVR[j,i] = np.mean(mat_data["OVR"])
-        
+        # TODO do all mean for difference and changing order of mean 
 
     #Save results from main experiment
     ALL_OVR_RESULTS.append(OVR_RESULTS)    
@@ -202,8 +202,9 @@ for i in range (nr_experiments):
 
 ##Now we save the MEAN results
 #in 2D
+        
 
-x_values = np.arange(51,91).astype(str)
+x_values = np.arange(51,51+nr_experiments).astype(str)
 
 
 
@@ -218,11 +219,11 @@ plt.ylabel("Nr_neurons_freq_inc", fontsize = 16)
 cbar.set_label('TQ mean', fontsize = 20)
 
 plt.yticks( np.arange(0,30,1), np.arange(1,31,1))    
-plt.xticks( np.arange(0,40,1), x_values) 
+plt.xticks( np.arange(0,nr_experiments,1), x_values) 
 
 # Minor ticks
 ax.set_yticks(np.arange(0.5,30,1), minor=True);
-ax.set_xticks(np.arange(0.5,40,1), minor=True);
+ax.set_xticks(np.arange(0.5,nr_experiments,1), minor=True);
 ax.tick_params(axis=u'both', which=u'both',length=0)
 
 ax.grid(color='k', which='minor')
@@ -236,7 +237,7 @@ plt.close()
 #in 3D
 fig = plt.figure(figsize=(19,10))
 
-X = np.arange(0, 40)
+X = np.arange(0, nr_experiments)
 Y = np.arange(0, 30)
 
 xx,yy = np.meshgrid(X,Y)
@@ -253,7 +254,7 @@ ax.set_zlabel("TQ mean", fontsize = 16)
 fig.colorbar(surf, shrink = 1)
 
 plt.yticks( np.arange(0,30,3), np.arange(1,31,3))    
-plt.xticks( np.arange(0,40,4), np.arange(51,91,4))   
+plt.xticks( np.arange(0,nr_experiments,4), np.arange(51,51+nr_experiments,4))   
 
 plt.savefig(RESULTS_FOLDER + "\\" + "MEAN_3D",bbox_inches='tight')
-plt.close()     
+plt.close()

@@ -11,13 +11,16 @@ addpath('functions')
 % parameter space should be run and 2nd arg. specifies how many chunks
 % should the parameter space be devided into
 
+%avoid all warnings
+warning('off','all')
+warning
 
 mov_onset = 1000; % in ms
 N_CX = 200; %Do not contemplate for now
 
 F_CX = 1:0.5:10; %Do not contemplate for now
 
-
+sim_mode = 1; % 1 is different mother spikes, 2 is spike deletion method
 
 
 G_SNr_all = 0.70; %nigral conductance
@@ -29,8 +32,8 @@ num_trials = 10;
 %We will use 2 for loops in order for us to be able to use the double
 %progress bar
 % the following is the increase in % with respect to base 50 HZ
-min_perc_increase = 20;
-max_perc_increase = 20;
+min_perc_increase = 80;
+max_perc_increase = 80;
 
 percentage_increases = [min_perc_increase:2:max_perc_increase] / 100;
 N_SNr = 30;
@@ -50,6 +53,7 @@ disp(['TOTAL NUMBER OF EXPERIMENTS TO BE PERFORMED: ',num2str(total_number_exper
 
 experiments_performed = 0;
 last = 0;
+
 for per_i = 1:nr_perc_experiments
     for nr_j = 1:nr_neuron_experiments
         
@@ -67,8 +71,10 @@ for per_i = 1:nr_perc_experiments
         end
         
         
+        
+        
         %create directory path to save results from this experiment
-        root_folder = ['BIG_EXPERIMENTS_NEWMETHOD\FREQINCTO_',num2str(50 + (percentage_increases(per_i) * 50))];
+        root_folder = ['CLUSTERTRY\FREQINCTO_',num2str(50 + (percentage_increases(per_i) * 50))];
 
         checkflag = fullfile(pwd, root_folder);
         if exist(checkflag,'dir') ~= 7
@@ -76,13 +82,12 @@ for per_i = 1:nr_perc_experiments
         end
 
         specific_folder = ['perc_',num2str(percentage_increases(per_i)),'_nr_neurons_',num2str(neurons_with_increase(nr_j))];
-        
         exp_path = fullfile(root_folder,specific_folder );
-        
-        res_dir_mip = TCmodel_func_bwfor(1, 1 , mov_onset, N_CX, F_CX, F_SNr, G_SNr_all, num_trials, corr_vals,F_Group_neurons,exp_path);  %binomial
-        
+
+        res_dir_mip = TCmodel_func_bwfor(1, 1 , mov_onset, N_CX, F_CX, F_SNr, G_SNr_all, num_trials, corr_vals,F_Group_neurons,sim_mode,exp_path);  %binomial
         vis_res_lumped_mats(res_dir_mip, 'MIP')
 
+        
         
         %caculate percentages performed
         frac2 = nr_j / length(neurons_with_increase);
