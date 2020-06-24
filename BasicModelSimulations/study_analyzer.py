@@ -82,6 +82,7 @@ ALL_TITLES = [] #used for plotting and saving titles
 ALL_OVR_RESULTS = []
 ALL_OVR_RESULTS_DIFFERENCE = []
 ALL_MEAN_OVR = np.zeros((30,nr_experiments))
+ALL_MEAN_OVR_DIFFERENCE = np.zeros((30,nr_experiments))
 
 print("Obtaining results.... ")
 for i, experiment_name in enumerate(os.listdir(main_big_exp_folder)):
@@ -103,6 +104,7 @@ for i, experiment_name in enumerate(os.listdir(main_big_exp_folder)):
         OVR_RESULTS[j:] = mat_data["OVR"]
         OVR_RESULTS_DIFFERENCE[j:] = mat_data["OVR"] - OG_OVR
         ALL_MEAN_OVR[j,i] = np.mean(mat_data["OVR"])
+        ALL_MEAN_OVR_DIFFERENCE[j,i] = np.mean(mat_data["OVR"] - OG_OVR)
         # TODO do all mean for difference and changing order of mean 
 
     #Save results from main experiment
@@ -258,3 +260,84 @@ plt.xticks( np.arange(0,nr_experiments,4), np.arange(51,51+nr_experiments,4))
 
 plt.savefig(RESULTS_FOLDER + "\\" + "MEAN_3D",bbox_inches='tight')
 plt.close()
+
+
+
+
+
+
+
+
+
+
+
+
+##Now we save the MEAN DIFFERENCE results
+#in 2D
+        
+
+
+x_values = np.arange(51,51+nr_experiments).astype(str)
+
+
+
+fig = plt.figure(figsize=(19,10))
+plt.imshow(ALL_MEAN_OVR_DIFFERENCE, cmap='jet', vmin = 0, vmax = 1, aspect='auto')
+cbar = plt.colorbar()
+
+ax = plt.axes()
+plt.title("TQ difference mean over nr_neurons", fontsize = 20)
+plt.xlabel("Frequency increase to ", fontsize = 16)
+plt.ylabel("Nr_neurons_freq_inc", fontsize = 16)
+cbar.set_label('Difference with respect to baseline', fontsize = 20)
+
+plt.yticks( np.arange(0,30,1), np.arange(1,31,1))    
+plt.xticks( np.arange(0,nr_experiments,1), x_values) 
+
+# Minor ticks
+ax.set_yticks(np.arange(0.5,30,1), minor=True);
+ax.set_xticks(np.arange(0.5,nr_experiments,1), minor=True);
+ax.tick_params(axis=u'both', which=u'both',length=0)
+
+ax.grid(color='k', which='minor')
+
+plt.savefig(RESULTS_FOLDER + "\\" + "MEAN_2D_DIFFERENCE",bbox_inches='tight')
+plt.close()   
+
+
+
+
+#in 3D
+fig = plt.figure(figsize=(19,10))
+
+X = np.arange(0, nr_experiments)
+Y = np.arange(0, 30)
+
+xx,yy = np.meshgrid(X,Y)
+ax = plt.axes(projection='3d')
+ax.view_init(elev=15., azim=220)
+
+
+surf = ax.plot_surface(xx, yy, ALL_MEAN_OVR_DIFFERENCE, cmap='jet', linewidth=0, antialiased=False, vmin = 0, vmax = 1)
+plt.title("TQ difference mean over nr_neurons", fontsize = 20)
+ax.set_xlabel("Frequency increase to ", fontsize = 16)
+ax.set_ylabel("Nr_neurons_freq_inc", fontsize = 16)
+ax.set_zlabel("Difference with respect to baseline", fontsize = 16)
+
+fig.colorbar(surf, shrink = 1)
+
+plt.yticks( np.arange(0,30,3), np.arange(1,31,3))    
+plt.xticks( np.arange(0,nr_experiments,4), np.arange(51,51+nr_experiments,4))   
+
+plt.savefig(RESULTS_FOLDER + "\\" + "MEAN_3D_DIFFERENCE",bbox_inches='tight')
+plt.close()
+       
+
+
+
+
+
+
+
+
+
