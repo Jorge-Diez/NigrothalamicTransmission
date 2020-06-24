@@ -66,7 +66,7 @@ function [dir_name] = TCmodel_func_bwfor(job_id, num_jobs, mov_onset, N_CX, F_CX
     %N_SNr = 30; %number of nigral inputs
     
     %F_CX = 1:0.5:10; %firing rate of exc inputs
-    %F_SNr = 50; %firing rate of nigral inputs
+    %F_SNr = 50; %firsing rate of nigral inputs
 
     n_trials_var = length(N_CX);
 

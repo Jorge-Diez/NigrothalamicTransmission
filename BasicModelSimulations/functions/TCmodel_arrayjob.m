@@ -45,23 +45,15 @@ function [dir_name] = TCmodel_func_bwfor(job_id, num_jobs)
 
 
 
-%% Directory creation
-
-    F_SNr = [50 60]; %firing rate of nigral inputs
-    FG_SNR = [15 15];
+%% Parameter creation and sim mode
     sim_mode = 2;
-    
-    exppath = 'CLUSTERTRY\arrayjobtry';
-    
-    curr_dir = pwd;
-    sub_dir_name = strsplit(curr_dir,'/');
-    sub_dir_name = sub_dir_name{end};
 
-    % ws_dir = '/work/ws/nemo/fr_mm1108-Rebound-0';
-    ws_dir = pwd;
-    dir_name = fullfile(pwd, exppath);
-    % dir_name = [ws_dir,'/',sub_dir_name];
-    %dir_name = fullfile(ws_dir, 'Results-MIP');
+
+    F_SNr = 51:1:90; %firing rate increase 
+    nr_neurons = 1:1:30; %nr of neurons with firing rate increase
+    FREQ_NR_COMB = combvec(nr_neurons, F_SNr);
+    
+
 
 
     %% Ranges of variations for both CX and SNr
@@ -72,7 +64,7 @@ function [dir_name] = TCmodel_func_bwfor(job_id, num_jobs)
     mov_onset = 1000; %decrease in firing rate at t = this
 
     %N_CX = 200; %number of exc inputs
-    %N_SNr = 30; %number of nigral inputs
+    N_SNr = 30; %number of nigral inputs
     
     %F_CX = 1:0.5:10; %firing rate of exc inputs
     %F_SNr = 50; %firing rate of nigral inputs
@@ -95,8 +87,10 @@ function [dir_name] = TCmodel_func_bwfor(job_id, num_jobs)
     corr_vals = 0.3:0.1:1;   %values of correlation among inhibitory inputs
 
     NT_GS_JV_TF_all = combvec(G_SNr,corr_vals); %matrix of all possible combinations of conductances and corr values
-    NT_GS_JV_TF = NT_GS_JV_TF_all(:,job_id:num_jobs:end); %run it in paralell, split parameter vectors in number of jobs
+    ALL_EXPERIMENTS = combvec(NT_GS_JV_TF_all, FREQ_NR_COMB);
     %use number of threads available as MAX
+    
+    NT_GS_JV_TF = ALL_EXPERIMENTS(:,job_id:num_jobs:end); %parameter space
     
     rebound_spk = zeros(size(NT_GS_JV_TF,2),num_trials); %Result vector, rebound spikes after decrease
     all_reb_spk = zeros(size(NT_GS_JV_TF,2),num_trials); %Result vector, (check how its done may be the whole simuation)
@@ -104,49 +98,46 @@ function [dir_name] = TCmodel_func_bwfor(job_id, num_jobs)
     R2 = zeros(size(NT_GS_JV_TF,2),num_trials); %used to store the correlation values
 
     % comb_trial_num = NT_GS_JV_TF(1,:);
-    comb_G_SNr = NT_GS_JV_TF(1,:); %extract the vector that contains all conductance values
-    comb_jit_val = NT_GS_JV_TF(2,:); %extract the vector that contains all correlation values
-    % comb_exp_trial = NT_GS_JV_TF(4,:);
+    G_SNr = NT_GS_JV_TF(1,:); %extract conductance value
+    jit_val = NT_GS_JV_TF(2,:); %extract correlation value
+    nr_neurons_increase = NT_GS_JV_TF(3,:); %extract number of neurons with freq increase
+    freq_increase = NT_GS_JV_TF(4,:); % extract the frequency increase value
+    
+    
+    if (nr_neurons_increase == N_SNr)
+        F_SNr = freq_increase; %Hz
+        
+        FG_SNR = nr_neurons_increase; %groups of neurons with specific firing rates
+        
+    else
+        
+        %obtain parameters
+        F_SNr = [50 freq_increase]; %Hz
+        
+        FG_SNR = [N_SNr - nr_neurons_increase nr_neurons_increase]; %groups of neurons with specific firing rates
+    end
+    
+    
+    
 
     SPK = [];
-
-    % [~,sysname] = system('hostname');
-    % 
-    % if strcmp(sysname,'gonzo')
-    % else
-    % 
-    %    parcheck_dir = [dir_name,'/checkfiles/'];
-    % 
-    %     if exist(parcheck_dir,'dir') ~= 7
-    %         mkdir(parcheck_dir)
-    %     end
-    % 
-    %     if job_id - 1 == 0
-    %         parpool('local',str2double(getenv('MOAB_PROCCOUNT')))
-    %         fl_name = ['job-',num2str(job_id),'.mat'];
-    %         save([parcheck_dir,fl_name],'job_id')
-    %     else
-    %         fl_name = ['job-',num2str(job_id-1),'.mat'];
-    %         while exist([parcheck_dir,fl_name],'file') ~= 2
-    %         end
-    %         system(['rm -f ',parcheck_dir,fl_name])
-    %         parpool('local',str2double(getenv('MOAB_PROCCOUNT')))
-    %         fl_name = ['job-',num2str(job_id),'.mat'];
-    %        save([parcheck_dir,fl_name],'job_id')
-    %     end
-    % end
+    
+    exppath = ['CLUSTERTRY\FREQINCTO_',num2str(freq_increase)];
+    freq_experiment = fullfile(pwd, exppath);
+        if exist(freq_experiment,'dir') ~= 7
+            mkdir(freq_experiment)
+        end
+    
+    specific_folder = ['nr_neurons_',num2str(nr_neurons_increase)];
+    dir_name = fullfile(freq_experiment,specific_folder );
+    
 
     dir_name_trace = [dir_name,'/voltage-traces-and-inputs/'];
     if exist(dir_name_trace,'dir') ~= 7
         mkdir(dir_name_trace)
     end
 
-    %nr_experiments = size(NT_GS_JV_TF,2) * num_trials;
-    %save all the outputs (taking into account parallel computing, hence
-    %the parfor. outputs are the number of rebound spikes (mentioned before
-    %ppm = ParforProgressbar(nr_experiments, 'showWorkerProgress', true, 'progressBarUpdatePeriod', 5.0, ...
-        %'title', 'Overall progress of experiment'); 
-
+  
     
     for S = 1:size(NT_GS_JV_TF,2)   % Loop over experimental trials
         %disp(['jobnum = ',num2str(job_id), ', S = ',num2str(S)])
@@ -156,21 +147,21 @@ function [dir_name] = TCmodel_func_bwfor(job_id, num_jobs)
             
                 [rebound_spk(S,:),all_reb_spk(S,:)] = ...
                     TC_model_CX_SNr_cond_changed_parfor_opt_diff_mothspikes(...
-                                    F_SNr,0,comb_G_SNr(S),...
-                                    T,mov_onset,comb_jit_val(S),...
+                                    F_SNr,0,G_SNr(S),...
+                                    T,mov_onset,jit_val(S),...
                                     num_trials,dir_name_trace,S,FG_SNR);
             case 2
             
                 [rebound_spk(S,:),all_reb_spk(S,:)] = ...
                     TC_model_CX_SNr_cond_changed_parfor_opt(...
-                                    F_SNr,0,comb_G_SNr(S),...
-                                    T,mov_onset,comb_jit_val(S),...
+                                    F_SNr,0,G_SNr(S),...
+                                    T,mov_onset,jit_val(S),...
                                     num_trials,dir_name_trace,S,FG_SNR);
             
             
         end
 
-        disp(['job ', num2str(S), ' has finished'])
+        disp(['job ', num2str(job_id), ' has finished'])
     %     end
     end
     %delete(ppm);
@@ -180,7 +171,7 @@ function [dir_name] = TCmodel_func_bwfor(job_id, num_jobs)
         mkdir(dir_name_cp)
     end
 
-    save([dir_name_cp 'MIP-pois-' date '-nSNr-' num2str(sum(FG_SNR)) '-' num2str(job_id)],...
+    save([dir_name_cp 'corr-' num2str(jit_val*100) '-freq_inc-' num2str(freq_increase) '-nSNr_inc-' num2str(nr_neurons_increase) '-job-' num2str(job_id)],...
         'rebound_spk','all_reb_spk','G_SNr',...
         'num_trials','NT_GS_JV_TF','F_SNr','FG_SNR')
     
