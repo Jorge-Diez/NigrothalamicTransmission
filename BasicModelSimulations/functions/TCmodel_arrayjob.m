@@ -26,7 +26,7 @@
 % job_id = 1;
 % num_jobs = 1;
 
-function [dir_name] = TCmodel_func_bwfor(job_id, num_jobs)
+function [dir_name] = TCmodel_arrayjob(job_id, num_jobs)
 
 % The goal of this m-file is to plot the results as Robert wants for his
 % reports. In these simulations, there is no cortical inputs and the goal
@@ -46,7 +46,7 @@ function [dir_name] = TCmodel_func_bwfor(job_id, num_jobs)
 
 
 %% Parameter creation and sim mode
-    sim_mode = 2;
+    sim_mode = 1;
 
 
     F_SNr = 51:1:90; %firing rate increase 
@@ -122,7 +122,7 @@ function [dir_name] = TCmodel_func_bwfor(job_id, num_jobs)
 
     SPK = [];
     
-    exppath = ['CLUSTERTRY\FREQINCTO_',num2str(freq_increase)];
+    exppath = ['CLUSTERTRY/FREQINCTO_',num2str(freq_increase)];
     freq_experiment = fullfile(pwd, exppath);
         if exist(freq_experiment,'dir') ~= 7
             mkdir(freq_experiment)

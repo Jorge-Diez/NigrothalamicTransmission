@@ -1,0 +1,7 @@
+{Error using TC_model_CX_SNr_cond_changed_parfor_opt_diff_mothspikes (line 166)
+Output argument "infoStruct" (and maybe others) not assigned during call to
+"infomatman>force_load_info_mat_file".
+
+Error in TCmodel_arrayjob (line 150)
+                                    F_SNr,0,G_SNr(S),...
+} 

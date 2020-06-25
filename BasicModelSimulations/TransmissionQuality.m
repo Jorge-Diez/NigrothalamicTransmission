@@ -32,8 +32,8 @@ num_trials = 10;
 %We will use 2 for loops in order for us to be able to use the double
 %progress bar
 % the following is the increase in % with respect to base 50 HZ
-min_perc_increase = 80;
-max_perc_increase = 80;
+min_perc_increase = 20;
+max_perc_increase = 20;
 
 percentage_increases = [min_perc_increase:2:max_perc_increase] / 100;
 N_SNr = 30;
@@ -74,7 +74,7 @@ for per_i = 1:nr_perc_experiments
         
         
         %create directory path to save results from this experiment
-        root_folder = ['CLUSTERTRY\FREQINCTO_',num2str(50 + (percentage_increases(per_i) * 50))];
+        root_folder = ['TOCHECKREPRODUCABILITY\FREQINCTO_',num2str(50 + (percentage_increases(per_i) * 50))];
 
         checkflag = fullfile(pwd, root_folder);
         if exist(checkflag,'dir') ~= 7

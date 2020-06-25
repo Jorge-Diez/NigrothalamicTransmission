@@ -1,0 +1,8 @@
+#!/bin/bash
+#$ -N Arrayjobproject
+#$ -l rmem=4G
+#$ -o /home/$USER/logs/output
+#$ -e /home/$USER/logs/error
+#$ -t 2394
+module load apps/matlab/2016b/binary
+matlab -nodisplay -r "TCmodel_arrayjob($SGE_TASK_ID, 9600)"

@@ -84,6 +84,16 @@ ALL_OVR_RESULTS_DIFFERENCE = []
 ALL_MEAN_OVR = np.zeros((30,nr_experiments))
 ALL_MEAN_OVR_DIFFERENCE = np.zeros((30,nr_experiments))
 
+#Im doing this with a migraine so i want to make it simple
+ALL_OVR_CORR_30 = np.zeros((30,nr_experiments))
+ALL_OVR_CORR_40 = np.zeros((30,nr_experiments))
+ALL_OVR_CORR_50 = np.zeros((30,nr_experiments))
+ALL_OVR_CORR_60 = np.zeros((30,nr_experiments))
+ALL_OVR_CORR_70 = np.zeros((30,nr_experiments))
+ALL_OVR_CORR_80 = np.zeros((30,nr_experiments))
+ALL_OVR_CORR_90 = np.zeros((30,nr_experiments))
+ALL_OVR_CORR_100 = np.zeros((30,nr_experiments))
+
 print("Obtaining results.... ")
 for i, experiment_name in enumerate(os.listdir(main_big_exp_folder)):
     #each of these is a folder containing a experiment
