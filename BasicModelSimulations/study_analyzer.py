@@ -25,8 +25,9 @@ warnings.filterwarnings("ignore") #due to matplotlib depreciation warnings
 RESULTS_FOLDER = "graphic_results"
 RESULTS_FOLDER_TQ = "graphic_results\\TQ_VALUES"
 RESULTS_FOLDER_TQ_DIFF = "graphic_results\\TQ_DIFF"
+RESULTS_FOLDER_CORR_TQ = "graphic_results\\TQ_CORR"
 
-all_folder_results = [RESULTS_FOLDER, RESULTS_FOLDER_TQ, RESULTS_FOLDER_TQ_DIFF ]
+all_folder_results = [RESULTS_FOLDER, RESULTS_FOLDER_TQ, RESULTS_FOLDER_TQ_DIFF, RESULTS_FOLDER_CORR_TQ ]
 
 for i in all_folder_results:
     if not os.path.exists(i):
@@ -115,7 +116,15 @@ for i, experiment_name in enumerate(os.listdir(main_big_exp_folder)):
         OVR_RESULTS_DIFFERENCE[j:] = mat_data["OVR"] - OG_OVR
         ALL_MEAN_OVR[j,i] = np.mean(mat_data["OVR"])
         ALL_MEAN_OVR_DIFFERENCE[j,i] = np.mean(mat_data["OVR"] - OG_OVR)
-        # TODO do all mean for difference and changing order of mean 
+        # NEXT SET OF CODE IS ALL OVR RESULTS FOR SPECIFIC CORR VALUES
+        ALL_OVR_CORR_30[j,i] = mat_data["OVR"][0][0]
+        ALL_OVR_CORR_40[j,i] = mat_data["OVR"][0][1]
+        ALL_OVR_CORR_50[j,i] = mat_data["OVR"][0][2]
+        ALL_OVR_CORR_60[j,i] = mat_data["OVR"][0][3]
+        ALL_OVR_CORR_70[j,i] = mat_data["OVR"][0][4]
+        ALL_OVR_CORR_80[j,i] = mat_data["OVR"][0][5]
+        ALL_OVR_CORR_90[j,i] = mat_data["OVR"][0][6]
+        ALL_OVR_CORR_100[j,i] = mat_data["OVR"][0][7]
 
     #Save results from main experiment
     ALL_OVR_RESULTS.append(OVR_RESULTS)    
@@ -344,6 +353,40 @@ plt.close()
        
 
 
+
+
+
+corrs = [30, 40, 50, 60, 70, 80, 90, 100]
+corr_all_ovr = [ALL_OVR_CORR_30, ALL_OVR_CORR_40, ALL_OVR_CORR_50, ALL_OVR_CORR_60,
+                ALL_OVR_CORR_70, ALL_OVR_CORR_80, ALL_OVR_CORR_90, ALL_OVR_CORR_100]
+
+for i,j in zip(corrs,corr_all_ovr):
+    x_values = np.arange(51,51+nr_experiments).astype(str)
+
+
+
+    fig = plt.figure(figsize=(19,10))
+    plt.imshow(j, cmap='jet', vmin = 0, vmax = 1, aspect='auto')
+    cbar = plt.colorbar()
+    
+    ax = plt.axes()
+    plt.title("TQ values for correlation of " + str(i/100), fontsize = 20)
+    plt.xlabel("Frequency increase to ", fontsize = 16)
+    plt.ylabel("Nr_neurons_freq_inc", fontsize = 16)
+    cbar.set_label('TQ', fontsize = 20)
+    
+    plt.yticks( np.arange(0,30,1), np.arange(1,31,1))    
+    plt.xticks( np.arange(0,nr_experiments,1), x_values) 
+    
+    # Minor ticks
+    ax.set_yticks(np.arange(0.5,30,1), minor=True);
+    ax.set_xticks(np.arange(0.5,nr_experiments,1), minor=True);
+    ax.tick_params(axis=u'both', which=u'both',length=0)
+    
+    ax.grid(color='k', which='minor')
+    
+    plt.savefig(RESULTS_FOLDER_CORR_TQ + "\\" + "CORR_VALUE" + str(i) ,bbox_inches='tight')
+    plt.close()   
 
 
 
