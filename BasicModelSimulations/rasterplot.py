@@ -79,7 +79,6 @@ plt.bar(np.arange(len(bars_full)),probs_full)
 
 
 """ 
-np.sort(all_spikes)
 
 
 
@@ -94,12 +93,12 @@ plt.figure(2)
 plt.title("MIP with unique done directly")
 plt.bar(np.arange(len(bars)),probs)
 plt.xticks(np.arange(len(bars)), bars)
+"""
 
 
 
 
-
-
+np.sort(all_spikes)
 bin = float(input("select bin for amplitude-probability distribution: "))
 counts = []
 for i in np.arange(0,1000,bin):
@@ -111,13 +110,13 @@ bars_bins, bar_bins_counts = np.unique(np.sort(counts), return_counts = True)
 bars_bins = np.delete(bars_bins, 0)
 bar_bins_counts = np.delete(bar_bins_counts, 0)
 probs_bins = bar_bins_counts/bar_bins_counts.sum()
-plt.figure(3)
+plt.figure(4)
 plt.title("MIP with bins")
 plt.bar(np.arange(len(bars_bins)),probs_bins)
 plt.xticks(np.arange(len(bars_bins)), bars_bins)
 
 
-"""
+
 
 
 

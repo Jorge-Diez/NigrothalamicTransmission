@@ -30,6 +30,6 @@ for i,file in enumerate (natsorted(os.listdir(error_folder))):
         f.write("#$ -o /home/$USER/logs/output\n")
         f.write("#$ -e /home/$USER/logs/error\n")
         f.write("#$ -t "+ error_experiment+"\n")
-        f.write("module load apps/matlab/2016b/binary\n")
+        f.write("module load apps/matlab/2016b\n")
         f.write("matlab -nodisplay -r \"TCmodel_arrayjob($SGE_TASK_ID, 9600)\"")
         f.close()
