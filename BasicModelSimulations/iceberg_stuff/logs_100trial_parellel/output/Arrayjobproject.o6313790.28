@@ -1,0 +1,188 @@
+TASK ID is 28
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2016 The MathWorks, Inc.
+                   R2016b (9.1.0.441655) 64-bit (glnxa64)
+                             September 7, 2016
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+Starting parallel pool (parpool) using the 'local' profile ... [Warning: The system time zone setting, 'GB-Eire', does not specify a single
+time zone unambiguously. It will be treated as 'Europe/London'. See the <a
+href="matlab:doc('datetime.TimeZone')">datetime.TimeZone property</a> for
+details about specifying time zones.] 
+[> In verifyTimeZone (line 23)
+  In datetime (line 503)
+  In parallel.internal.cluster.CJSJobMethods>iDeriveFinishDateTimeFromTasks (line 249)
+  In parallel.internal.cluster.CJSJobMethods.setJobTerminalStateFromCluster (line 185)
+  In parallel.internal.cluster.CJSJobMixin/hSetTerminalStateFromCluster (line 93)
+  In parallel.cluster.CJSCluster/hGetJobState (line 361)
+  In parallel.internal.cluster.CJSJobMixin/getStateEnum (line 136)
+  In parallel.Job/get.StateEnum (line 214)
+  In parallel.Job/get.State (line 206)
+  In parallel.internal.customattr.CustomGetSet>iVectorisedGetHelper (line 105)
+  In parallel.internal.customattr.CustomGetSet>@(a,b,c)iVectorisedGetHelper(obj,a,b,c) (line 89)
+  In parallel.internal.customattr.CustomGetSet/doVectorisedGet (line 90)
+  In parallel.internal.customattr.CustomGetSet/hVectorisedGet (line 64)
+  In parallel.internal.customattr.GetSetImpl>iAccessProperties (line 289)
+  In parallel.internal.customattr.GetSetImpl>iGetAllPropertiesVec (line 235)
+  In parallel.internal.customattr.GetSetImpl.getImpl (line 112)
+  In parallel.internal.customattr.CustomGetSet/get (line 30)
+  In parallel.internal.pool.InteractiveClient/pRemoveOldJobs (line 464)
+  In parallel.internal.pool.InteractiveClient/start (line 311)
+  In parallel.Pool>iStartClient (line 567)
+  In parallel.Pool.hBuildPool (line 446)
+  In parallel.internal.pool.doParpool (line 15)
+  In parpool (line 89)
+  In parallel.internal.pool.PoolArrayManager.getOrAutoCreateWithCleanup (line 49)
+  In pctTryCreatePoolIfNecessary (line 23)
+  In distcomp.remoteparfor.tryRemoteParfor
+  In parallel_function (line 433)
+  In TCmodel_arrayjob (line 142)] 
+[Warning: The cluster failed to cancel the job execution. The error was: Unable
+to read file '/home/pcp19jd/.matlab/local_cluster_jobs/R2016b/Job56.in.mat'. No
+such file or directory.] 
+[> In parallel.internal.cluster.CJSJobMethods.cancelOneJob (line 53)
+  In parallel.job.CJSCommunicatingJob/cancelOneJob (line 99)
+  In parallel.Job/cancel (line 1164)
+  In parallel.Cluster/hDeleteOneJob (line 847)
+  In parallel.internal.pool.InteractiveClient>iDeleteJobs (line 846)
+  In parallel.internal.pool.InteractiveClient/pRemoveOldJobs (line 471)
+  In parallel.internal.pool.InteractiveClient/start (line 311)
+  In parallel.Pool>iStartClient (line 567)
+  In parallel.Pool.hBuildPool (line 446)
+  In parallel.internal.pool.doParpool (line 15)
+  In parpool (line 89)
+  In parallel.internal.pool.PoolArrayManager.getOrAutoCreateWithCleanup (line 49)
+  In pctTryCreatePoolIfNecessary (line 23)
+  In distcomp.remoteparfor.tryRemoteParfor
+  In parallel_function (line 433)
+  In TCmodel_arrayjob (line 142)] 
+[Warning: The cluster reported an error while deleting an unavailable job.  This
+job may already have been deleted.] 
+[> In parallel.internal.cluster.CJSJobMethods.destroyOneJob (line 76)
+  In parallel.job.CJSCommunicatingJob/destroyOneJob (line 94)
+  In parallel.Job/delete (line 1098)
+  In parallel.Cluster/hDeleteOneJob (line 862)
+  In parallel.internal.pool.InteractiveClient>iDeleteJobs (line 846)
+  In parallel.internal.pool.InteractiveClient/pRemoveOldJobs (line 471)
+  In parallel.internal.pool.InteractiveClient/start (line 311)
+  In parallel.Pool>iStartClient (line 567)
+  In parallel.Pool.hBuildPool (line 446)
+  In parallel.internal.pool.doParpool (line 15)
+  In parpool (line 89)
+  In parallel.internal.pool.PoolArrayManager.getOrAutoCreateWithCleanup (line 49)
+  In pctTryCreatePoolIfNecessary (line 23)
+  In distcomp.remoteparfor.tryRemoteParfor
+  In parallel_function (line 433)
+  In TCmodel_arrayjob (line 142)] 
+connected to 1 workers.
+trial 1 has finished
+trial 2 has finished
+trial 3 has finished
+trial 4 has finished
+trial 5 has finished
+trial 6 has finished
+trial 7 has finished
+trial 8 has finished
+trial 9 has finished
+trial 10 has finished
+trial 11 has finished
+trial 12 has finished
+trial 13 has finished
+trial 14 has finished
+trial 15 has finished
+trial 16 has finished
+trial 17 has finished
+trial 18 has finished
+trial 19 has finished
+trial 20 has finished
+trial 21 has finished
+trial 22 has finished
+trial 23 has finished
+trial 24 has finished
+trial 25 has finished
+trial 26 has finished
+trial 27 has finished
+trial 28 has finished
+trial 29 has finished
+trial 30 has finished
+trial 31 has finished
+trial 32 has finished
+trial 33 has finished
+trial 34 has finished
+trial 35 has finished
+trial 36 has finished
+trial 37 has finished
+trial 38 has finished
+trial 39 has finished
+trial 40 has finished
+trial 41 has finished
+trial 42 has finished
+trial 43 has finished
+trial 44 has finished
+trial 45 has finished
+trial 46 has finished
+trial 47 has finished
+trial 48 has finished
+trial 49 has finished
+trial 50 has finished
+trial 51 has finished
+trial 52 has finished
+trial 53 has finished
+trial 54 has finished
+trial 55 has finished
+trial 56 has finished
+trial 57 has finished
+trial 58 has finished
+trial 59 has finished
+trial 60 has finished
+trial 61 has finished
+trial 62 has finished
+trial 63 has finished
+trial 64 has finished
+trial 65 has finished
+trial 66 has finished
+trial 67 has finished
+trial 68 has finished
+trial 69 has finished
+trial 70 has finished
+trial 71 has finished
+trial 72 has finished
+trial 73 has finished
+trial 74 has finished
+trial 75 has finished
+trial 76 has finished
+trial 77 has finished
+trial 78 has finished
+trial 79 has finished
+trial 80 has finished
+trial 81 has finished
+trial 82 has finished
+trial 83 has finished
+trial 84 has finished
+trial 85 has finished
+trial 86 has finished
+trial 87 has finished
+trial 88 has finished
+trial 89 has finished
+trial 90 has finished
+trial 91 has finished
+trial 92 has finished
+trial 93 has finished
+trial 94 has finished
+trial 95 has finished
+trial 96 has finished
+trial 97 has finished
+trial 98 has finished
+trial 99 has finished
+trial 100 has finished
+job 28 has finished
+
+ans =
+
+/home/pcp19jd/nigro_arrayjobs/CLUSTERTRY/FREQINCTO_51/nr_neurons_4
+
+>> 
