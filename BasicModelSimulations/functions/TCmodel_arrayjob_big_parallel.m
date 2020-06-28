@@ -123,7 +123,7 @@ parfor exp = 1:size(NT_GS_JV_TF,2)
 end
 
 % save results
-for i = 1:length(dir_name_list)
+parfor i = 1:length(dir_name_list)
     
     
     exppath = ['CLUSTERTRY/FREQINCTO_',num2str(freq_increase(i))];
