@@ -1,0 +1,491 @@
+TASK ID is 766
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2016 The MathWorks, Inc.
+                   R2016b (9.1.0.441655) 64-bit (glnxa64)
+                             September 7, 2016
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+Starting parallel pool (parpool) using the 'local' profile ... [Warning: Unexpected end-of-file while reading compressed data.] 
+[> In parallel.internal.cluster.FileSerializer>iLoadMat (line 286)
+  In parallel.internal.cluster.FileSerializer/getFields (line 100)
+  In parallel.internal.cluster.CJSSupport/getProperties (line 252)
+  In parallel.internal.cluster.CJSSupport/getJobProperties (line 463)
+  In parallel.internal.cluster.CJSJobMixin/hGetProperty (line 70)
+  In parallel.internal.customattr.GetSetImpl>iGetProperties (line 270)
+  In parallel.internal.customattr.GetSetImpl>iGetAllProperties (line 248)
+  In parallel.internal.customattr.GetSetImpl.getImpl (line 124)
+  In parallel.internal.customattr.CustomGetSet/get (line 30)
+  In parallel.internal.customattr.WorkUnitFinder/filter (line 28)
+  In parallel.internal.customattr.WorkUnitFinder.find (line 53)
+  In parallel.Cluster/findJob>iIsMatchingJobNoError (line 117)
+  In parallel.Cluster/findJob>@(x)iIsMatchingJobNoError(x,varargin{:}) (line 106)
+  In parallel.Cluster/findJob>iFindSingleJobFromArrayNoError (line 106)
+  In parallel.Cluster/findJob>@(x)iFindSingleJobFromArrayNoError(x,varargin{:}) (line 86)
+  In parallel.Cluster/findJob (line 86)
+  In parallel.internal.pool.InteractiveClient>@(sched,tag,username)sched.findJob('ApiTag',tag,'Username',username) (line 502)
+  In parallel.internal.pool.InteractiveClient/pRemoveOldJobs (line 459)
+  In parallel.internal.pool.InteractiveClient/start (line 311)
+  In parallel.Pool>iStartClient (line 567)
+  In parallel.Pool.hBuildPool (line 446)
+  In parallel.internal.pool.doParpool (line 15)
+  In parpool (line 89)
+  In parallel.internal.pool.PoolArrayManager.getOrAutoCreateWithCleanup (line 49)
+  In pctTryCreatePoolIfNecessary (line 23)
+  In distcomp.remoteparfor.tryRemoteParfor
+  In parallel_function (line 433)
+  In TCmodel_arrayjob_big_parallel (line 69)] 
+[Warning: Unexpected end-of-file while reading compressed data.] 
+[> In parallel.internal.cluster.FileSerializer>iLoadMat (line 286)
+  In parallel.internal.cluster.FileSerializer/getFields (line 100)
+  In parallel.internal.cluster.CJSSupport/getProperties (line 252)
+  In parallel.internal.cluster.CJSSupport/getJobProperties (line 463)
+  In parallel.internal.cluster.CJSJobMixin/hGetProperty (line 70)
+  In parallel.internal.customattr.GetSetImpl>iGetProperties (line 270)
+  In parallel.internal.customattr.GetSetImpl>iGetAllProperties (line 248)
+  In parallel.internal.customattr.GetSetImpl.getImpl (line 124)
+  In parallel.internal.customattr.CustomGetSet/get (line 30)
+  In parallel.internal.customattr.WorkUnitFinder/filter (line 28)
+  In parallel.internal.customattr.WorkUnitFinder.find (line 53)
+  In parallel.Cluster/findJob>iIsMatchingJobNoError (line 117)
+  In parallel.Cluster/findJob>@(x)iIsMatchingJobNoError(x,varargin{:}) (line 106)
+  In parallel.Cluster/findJob>iFindSingleJobFromArrayNoError (line 106)
+  In parallel.Cluster/findJob>@(x)iFindSingleJobFromArrayNoError(x,varargin{:}) (line 86)
+  In parallel.Cluster/findJob (line 86)
+  In parallel.internal.pool.InteractiveClient>@(sched,tag,username)sched.findJob('ApiTag',tag,'Username',username) (line 502)
+  In parallel.internal.pool.InteractiveClient/pRemoveOldJobs (line 459)
+  In parallel.internal.pool.InteractiveClient/start (line 311)
+  In parallel.Pool>iStartClient (line 567)
+  In parallel.Pool.hBuildPool (line 446)
+  In parallel.internal.pool.doParpool (line 15)
+  In parpool (line 89)
+  In parallel.internal.pool.PoolArrayManager.getOrAutoCreateWithCleanup (line 49)
+  In pctTryCreatePoolIfNecessary (line 23)
+  In distcomp.remoteparfor.tryRemoteParfor
+  In parallel_function (line 433)
+  In TCmodel_arrayjob_big_parallel (line 69)] 
+[Warning: Variable 'apitag' not found.] 
+[> In parallel.internal.cluster.FileSerializer>iLoadMat (line 286)
+  In parallel.internal.cluster.FileSerializer/getFields (line 100)
+  In parallel.internal.cluster.CJSSupport/getProperties (line 252)
+  In parallel.internal.cluster.CJSSupport/getJobProperties (line 463)
+  In parallel.internal.cluster.CJSJobMixin/hGetProperty (line 70)
+  In parallel.internal.customattr.GetSetImpl>iGetProperties (line 270)
+  In parallel.internal.customattr.GetSetImpl>iGetAllProperties (line 248)
+  In parallel.internal.customattr.GetSetImpl.getImpl (line 124)
+  In parallel.internal.customattr.CustomGetSet/get (line 30)
+  In parallel.internal.customattr.WorkUnitFinder/filter (line 28)
+  In parallel.internal.customattr.WorkUnitFinder.find (line 53)
+  In parallel.Cluster/findJob>iIsMatchingJobNoError (line 117)
+  In parallel.Cluster/findJob>@(x)iIsMatchingJobNoError(x,varargin{:}) (line 106)
+  In parallel.Cluster/findJob>iFindSingleJobFromArrayNoError (line 106)
+  In parallel.Cluster/findJob>@(x)iFindSingleJobFromArrayNoError(x,varargin{:}) (line 86)
+  In parallel.Cluster/findJob (line 86)
+  In parallel.internal.pool.InteractiveClient>@(sched,tag,username)sched.findJob('ApiTag',tag,'Username',username) (line 502)
+  In parallel.internal.pool.InteractiveClient/pRemoveOldJobs (line 459)
+  In parallel.internal.pool.InteractiveClient/start (line 311)
+  In parallel.Pool>iStartClient (line 567)
+  In parallel.Pool.hBuildPool (line 446)
+  In parallel.internal.pool.doParpool (line 15)
+  In parpool (line 89)
+  In parallel.internal.pool.PoolArrayManager.getOrAutoCreateWithCleanup (line 49)
+  In pctTryCreatePoolIfNecessary (line 23)
+  In distcomp.remoteparfor.tryRemoteParfor
+  In parallel_function (line 433)
+  In TCmodel_arrayjob_big_parallel (line 69)] 
+[Warning: Unexpected end-of-file while reading compressed data.] 
+[> In parallel.internal.cluster.FileSerializer>iLoadMat (line 286)
+  In parallel.internal.cluster.FileSerializer/getFields (line 100)
+  In parallel.internal.cluster.CJSSupport/getProperties (line 252)
+  In parallel.internal.cluster.CJSSupport/getJobProperties (line 463)
+  In parallel.internal.cluster.CJSJobMixin/hGetProperty (line 70)
+  In parallel.internal.customattr.GetSetImpl>iGetProperties (line 270)
+  In parallel.internal.customattr.GetSetImpl>iGetAllProperties (line 248)
+  In parallel.internal.customattr.GetSetImpl.getImpl (line 124)
+  In parallel.internal.customattr.CustomGetSet/get (line 30)
+  In parallel.internal.customattr.WorkUnitFinder/filter (line 28)
+  In parallel.internal.customattr.WorkUnitFinder.find (line 53)
+  In parallel.Cluster/findJob>iIsMatchingJobNoError (line 117)
+  In parallel.Cluster/findJob>@(x)iIsMatchingJobNoError(x,varargin{:}) (line 106)
+  In parallel.Cluster/findJob>iFindSingleJobFromArrayNoError (line 106)
+  In parallel.Cluster/findJob>@(x)iFindSingleJobFromArrayNoError(x,varargin{:}) (line 86)
+  In parallel.Cluster/findJob (line 86)
+  In parallel.internal.pool.InteractiveClient>@(sched,tag,username)sched.findJob('ApiTag',tag,'Username',username) (line 502)
+  In parallel.internal.pool.InteractiveClient/pRemoveOldJobs (line 459)
+  In parallel.internal.pool.InteractiveClient/start (line 311)
+  In parallel.Pool>iStartClient (line 567)
+  In parallel.Pool.hBuildPool (line 446)
+  In parallel.internal.pool.doParpool (line 15)
+  In parpool (line 89)
+  In parallel.internal.pool.PoolArrayManager.getOrAutoCreateWithCleanup (line 49)
+  In pctTryCreatePoolIfNecessary (line 23)
+  In distcomp.remoteparfor.tryRemoteParfor
+  In parallel_function (line 433)
+  In TCmodel_arrayjob_big_parallel (line 69)] 
+[Warning: Unexpected end-of-file while reading compressed data.] 
+[> In parallel.internal.cluster.FileSerializer>iLoadMat (line 286)
+  In parallel.internal.cluster.FileSerializer/getFields (line 100)
+  In parallel.internal.cluster.CJSSupport/getProperties (line 252)
+  In parallel.internal.cluster.CJSSupport/getJobProperties (line 463)
+  In parallel.internal.cluster.CJSJobMixin/hGetProperty (line 70)
+  In parallel.internal.customattr.GetSetImpl>iGetProperties (line 270)
+  In parallel.internal.customattr.GetSetImpl>iGetAllProperties (line 248)
+  In parallel.internal.customattr.GetSetImpl.getImpl (line 124)
+  In parallel.internal.customattr.CustomGetSet/get (line 30)
+  In parallel.internal.customattr.WorkUnitFinder/filter (line 28)
+  In parallel.internal.customattr.WorkUnitFinder.find (line 53)
+  In parallel.Cluster/findJob>iIsMatchingJobNoError (line 117)
+  In parallel.Cluster/findJob>@(x)iIsMatchingJobNoError(x,varargin{:}) (line 106)
+  In parallel.Cluster/findJob>iFindSingleJobFromArrayNoError (line 106)
+  In parallel.Cluster/findJob>@(x)iFindSingleJobFromArrayNoError(x,varargin{:}) (line 86)
+  In parallel.Cluster/findJob (line 86)
+  In parallel.internal.pool.InteractiveClient>@(sched,tag,username)sched.findJob('ApiTag',tag,'Username',username) (line 502)
+  In parallel.internal.pool.InteractiveClient/pRemoveOldJobs (line 459)
+  In parallel.internal.pool.InteractiveClient/start (line 311)
+  In parallel.Pool>iStartClient (line 567)
+  In parallel.Pool.hBuildPool (line 446)
+  In parallel.internal.pool.doParpool (line 15)
+  In parpool (line 89)
+  In parallel.internal.pool.PoolArrayManager.getOrAutoCreateWithCleanup (line 49)
+  In pctTryCreatePoolIfNecessary (line 23)
+  In distcomp.remoteparfor.tryRemoteParfor
+  In parallel_function (line 433)
+  In TCmodel_arrayjob_big_parallel (line 69)] 
+[Warning: Variable 'apitag' not found.] 
+[> In parallel.internal.cluster.FileSerializer>iLoadMat (line 286)
+  In parallel.internal.cluster.FileSerializer/getFields (line 100)
+  In parallel.internal.cluster.CJSSupport/getProperties (line 252)
+  In parallel.internal.cluster.CJSSupport/getJobProperties (line 463)
+  In parallel.internal.cluster.CJSJobMixin/hGetProperty (line 70)
+  In parallel.internal.customattr.GetSetImpl>iGetProperties (line 270)
+  In parallel.internal.customattr.GetSetImpl>iGetAllProperties (line 248)
+  In parallel.internal.customattr.GetSetImpl.getImpl (line 124)
+  In parallel.internal.customattr.CustomGetSet/get (line 30)
+  In parallel.internal.customattr.WorkUnitFinder/filter (line 28)
+  In parallel.internal.customattr.WorkUnitFinder.find (line 53)
+  In parallel.Cluster/findJob>iIsMatchingJobNoError (line 117)
+  In parallel.Cluster/findJob>@(x)iIsMatchingJobNoError(x,varargin{:}) (line 106)
+  In parallel.Cluster/findJob>iFindSingleJobFromArrayNoError (line 106)
+  In parallel.Cluster/findJob>@(x)iFindSingleJobFromArrayNoError(x,varargin{:}) (line 86)
+  In parallel.Cluster/findJob (line 86)
+  In parallel.internal.pool.InteractiveClient>@(sched,tag,username)sched.findJob('ApiTag',tag,'Username',username) (line 502)
+  In parallel.internal.pool.InteractiveClient/pRemoveOldJobs (line 459)
+  In parallel.internal.pool.InteractiveClient/start (line 311)
+  In parallel.Pool>iStartClient (line 567)
+  In parallel.Pool.hBuildPool (line 446)
+  In parallel.internal.pool.doParpool (line 15)
+  In parpool (line 89)
+  In parallel.internal.pool.PoolArrayManager.getOrAutoCreateWithCleanup (line 49)
+  In pctTryCreatePoolIfNecessary (line 23)
+  In distcomp.remoteparfor.tryRemoteParfor
+  In parallel_function (line 433)
+  In TCmodel_arrayjob_big_parallel (line 69)] 
+[Warning: Unexpected end-of-file while reading compressed data.] 
+[> In parallel.internal.cluster.FileSerializer>iLoadMat (line 286)
+  In parallel.internal.cluster.FileSerializer/getFields (line 100)
+  In parallel.internal.cluster.CJSSupport/getProperties (line 272)
+  In parallel.internal.cluster.CJSSupport/getJobProperties (line 463)
+  In parallel.internal.cluster.CJSJobMixin/hGetProperty (line 70)
+  In parallel.internal.customattr.GetSetImpl>iGetProperties (line 270)
+  In parallel.internal.customattr.GetSetImpl>iGetAllProperties (line 248)
+  In parallel.internal.customattr.GetSetImpl.getImpl (line 124)
+  In parallel.internal.customattr.CustomGetSet/get (line 30)
+  In parallel.internal.customattr.WorkUnitFinder/filter (line 28)
+  In parallel.internal.customattr.WorkUnitFinder.find (line 53)
+  In parallel.Cluster/findJob>iIsMatchingJobNoError (line 117)
+  In parallel.Cluster/findJob>@(x)iIsMatchingJobNoError(x,varargin{:}) (line 106)
+  In parallel.Cluster/findJob>iFindSingleJobFromArrayNoError (line 106)
+  In parallel.Cluster/findJob>@(x)iFindSingleJobFromArrayNoError(x,varargin{:}) (line 86)
+  In parallel.Cluster/findJob (line 86)
+  In parallel.internal.pool.InteractiveClient>@(sched,tag,username)sched.findJob('ApiTag',tag,'Username',username) (line 502)
+  In parallel.internal.pool.InteractiveClient/pRemoveOldJobs (line 459)
+  In parallel.internal.pool.InteractiveClient/start (line 311)
+  In parallel.Pool>iStartClient (line 567)
+  In parallel.Pool.hBuildPool (line 446)
+  In parallel.internal.pool.doParpool (line 15)
+  In parpool (line 89)
+  In parallel.internal.pool.PoolArrayManager.getOrAutoCreateWithCleanup (line 49)
+  In pctTryCreatePoolIfNecessary (line 23)
+  In distcomp.remoteparfor.tryRemoteParfor
+  In parallel_function (line 433)
+  In TCmodel_arrayjob_big_parallel (line 69)] 
+[Warning: Unexpected end-of-file while reading compressed data.] 
+[> In parallel.internal.cluster.FileSerializer>iLoadMat (line 286)
+  In parallel.internal.cluster.FileSerializer/getFields (line 100)
+  In parallel.internal.cluster.CJSSupport/getProperties (line 272)
+  In parallel.internal.cluster.CJSSupport/getJobProperties (line 463)
+  In parallel.internal.cluster.CJSJobMixin/hGetProperty (line 70)
+  In parallel.internal.customattr.GetSetImpl>iGetProperties (line 270)
+  In parallel.internal.customattr.GetSetImpl>iGetAllProperties (line 248)
+  In parallel.internal.customattr.GetSetImpl.getImpl (line 124)
+  In parallel.internal.customattr.CustomGetSet/get (line 30)
+  In parallel.internal.customattr.WorkUnitFinder/filter (line 28)
+  In parallel.internal.customattr.WorkUnitFinder.find (line 53)
+  In parallel.Cluster/findJob>iIsMatchingJobNoError (line 117)
+  In parallel.Cluster/findJob>@(x)iIsMatchingJobNoError(x,varargin{:}) (line 106)
+  In parallel.Cluster/findJob>iFindSingleJobFromArrayNoError (line 106)
+  In parallel.Cluster/findJob>@(x)iFindSingleJobFromArrayNoError(x,varargin{:}) (line 86)
+  In parallel.Cluster/findJob (line 86)
+  In parallel.internal.pool.InteractiveClient>@(sched,tag,username)sched.findJob('ApiTag',tag,'Username',username) (line 502)
+  In parallel.internal.pool.InteractiveClient/pRemoveOldJobs (line 459)
+  In parallel.internal.pool.InteractiveClient/start (line 311)
+  In parallel.Pool>iStartClient (line 567)
+  In parallel.Pool.hBuildPool (line 446)
+  In parallel.internal.pool.doParpool (line 15)
+  In parpool (line 89)
+  In parallel.internal.pool.PoolArrayManager.getOrAutoCreateWithCleanup (line 49)
+  In pctTryCreatePoolIfNecessary (line 23)
+  In distcomp.remoteparfor.tryRemoteParfor
+  In parallel_function (line 433)
+  In TCmodel_arrayjob_big_parallel (line 69)] 
+[Warning: Variable 'apitag' not found.] 
+[> In parallel.internal.cluster.FileSerializer>iLoadMat (line 286)
+  In parallel.internal.cluster.FileSerializer/getFields (line 100)
+  In parallel.internal.cluster.CJSSupport/getProperties (line 272)
+  In parallel.internal.cluster.CJSSupport/getJobProperties (line 463)
+  In parallel.internal.cluster.CJSJobMixin/hGetProperty (line 70)
+  In parallel.internal.customattr.GetSetImpl>iGetProperties (line 270)
+  In parallel.internal.customattr.GetSetImpl>iGetAllProperties (line 248)
+  In parallel.internal.customattr.GetSetImpl.getImpl (line 124)
+  In parallel.internal.customattr.CustomGetSet/get (line 30)
+  In parallel.internal.customattr.WorkUnitFinder/filter (line 28)
+  In parallel.internal.customattr.WorkUnitFinder.find (line 53)
+  In parallel.Cluster/findJob>iIsMatchingJobNoError (line 117)
+  In parallel.Cluster/findJob>@(x)iIsMatchingJobNoError(x,varargin{:}) (line 106)
+  In parallel.Cluster/findJob>iFindSingleJobFromArrayNoError (line 106)
+  In parallel.Cluster/findJob>@(x)iFindSingleJobFromArrayNoError(x,varargin{:}) (line 86)
+  In parallel.Cluster/findJob (line 86)
+  In parallel.internal.pool.InteractiveClient>@(sched,tag,username)sched.findJob('ApiTag',tag,'Username',username) (line 502)
+  In parallel.internal.pool.InteractiveClient/pRemoveOldJobs (line 459)
+  In parallel.internal.pool.InteractiveClient/start (line 311)
+  In parallel.Pool>iStartClient (line 567)
+  In parallel.Pool.hBuildPool (line 446)
+  In parallel.internal.pool.doParpool (line 15)
+  In parpool (line 89)
+  In parallel.internal.pool.PoolArrayManager.getOrAutoCreateWithCleanup (line 49)
+  In pctTryCreatePoolIfNecessary (line 23)
+  In distcomp.remoteparfor.tryRemoteParfor
+  In parallel_function (line 433)
+  In TCmodel_arrayjob_big_parallel (line 69)] 
+[Warning: Unexpected end-of-file while reading compressed data.] 
+[> In parallel.internal.cluster.FileSerializer>iLoadMat (line 286)
+  In parallel.internal.cluster.FileSerializer/getFields (line 100)
+  In parallel.internal.cluster.CJSSupport/getProperties (line 272)
+  In parallel.internal.cluster.CJSSupport/getJobProperties (line 463)
+  In parallel.internal.cluster.CJSJobMixin/hGetProperty (line 70)
+  In parallel.internal.customattr.GetSetImpl>iGetProperties (line 270)
+  In parallel.internal.customattr.GetSetImpl>iGetAllProperties (line 248)
+  In parallel.internal.customattr.GetSetImpl.getImpl (line 124)
+  In parallel.internal.customattr.CustomGetSet/get (line 30)
+  In parallel.internal.customattr.WorkUnitFinder/filter (line 28)
+  In parallel.internal.customattr.WorkUnitFinder.find (line 53)
+  In parallel.Cluster/findJob>iIsMatchingJobNoError (line 117)
+  In parallel.Cluster/findJob>@(x)iIsMatchingJobNoError(x,varargin{:}) (line 106)
+  In parallel.Cluster/findJob>iFindSingleJobFromArrayNoError (line 106)
+  In parallel.Cluster/findJob>@(x)iFindSingleJobFromArrayNoError(x,varargin{:}) (line 86)
+  In parallel.Cluster/findJob (line 86)
+  In parallel.internal.pool.InteractiveClient>@(sched,tag,username)sched.findJob('ApiTag',tag,'Username',username) (line 502)
+  In parallel.internal.pool.InteractiveClient/pRemoveOldJobs (line 459)
+  In parallel.internal.pool.InteractiveClient/start (line 311)
+  In parallel.Pool>iStartClient (line 567)
+  In parallel.Pool.hBuildPool (line 446)
+  In parallel.internal.pool.doParpool (line 15)
+  In parpool (line 89)
+  In parallel.internal.pool.PoolArrayManager.getOrAutoCreateWithCleanup (line 49)
+  In pctTryCreatePoolIfNecessary (line 23)
+  In distcomp.remoteparfor.tryRemoteParfor
+  In parallel_function (line 433)
+  In TCmodel_arrayjob_big_parallel (line 69)] 
+[Warning: Unexpected end-of-file while reading compressed data.] 
+[> In parallel.internal.cluster.FileSerializer>iLoadMat (line 286)
+  In parallel.internal.cluster.FileSerializer/getFields (line 100)
+  In parallel.internal.cluster.CJSSupport/getProperties (line 272)
+  In parallel.internal.cluster.CJSSupport/getJobProperties (line 463)
+  In parallel.internal.cluster.CJSJobMixin/hGetProperty (line 70)
+  In parallel.internal.customattr.GetSetImpl>iGetProperties (line 270)
+  In parallel.internal.customattr.GetSetImpl>iGetAllProperties (line 248)
+  In parallel.internal.customattr.GetSetImpl.getImpl (line 124)
+  In parallel.internal.customattr.CustomGetSet/get (line 30)
+  In parallel.internal.customattr.WorkUnitFinder/filter (line 28)
+  In parallel.internal.customattr.WorkUnitFinder.find (line 53)
+  In parallel.Cluster/findJob>iIsMatchingJobNoError (line 117)
+  In parallel.Cluster/findJob>@(x)iIsMatchingJobNoError(x,varargin{:}) (line 106)
+  In parallel.Cluster/findJob>iFindSingleJobFromArrayNoError (line 106)
+  In parallel.Cluster/findJob>@(x)iFindSingleJobFromArrayNoError(x,varargin{:}) (line 86)
+  In parallel.Cluster/findJob (line 86)
+  In parallel.internal.pool.InteractiveClient>@(sched,tag,username)sched.findJob('ApiTag',tag,'Username',username) (line 502)
+  In parallel.internal.pool.InteractiveClient/pRemoveOldJobs (line 459)
+  In parallel.internal.pool.InteractiveClient/start (line 311)
+  In parallel.Pool>iStartClient (line 567)
+  In parallel.Pool.hBuildPool (line 446)
+  In parallel.internal.pool.doParpool (line 15)
+  In parpool (line 89)
+  In parallel.internal.pool.PoolArrayManager.getOrAutoCreateWithCleanup (line 49)
+  In pctTryCreatePoolIfNecessary (line 23)
+  In distcomp.remoteparfor.tryRemoteParfor
+  In parallel_function (line 433)
+  In TCmodel_arrayjob_big_parallel (line 69)] 
+[Warning: Variable 'apitag' not found.] 
+[> In parallel.internal.cluster.FileSerializer>iLoadMat (line 286)
+  In parallel.internal.cluster.FileSerializer/getFields (line 100)
+  In parallel.internal.cluster.CJSSupport/getProperties (line 272)
+  In parallel.internal.cluster.CJSSupport/getJobProperties (line 463)
+  In parallel.internal.cluster.CJSJobMixin/hGetProperty (line 70)
+  In parallel.internal.customattr.GetSetImpl>iGetProperties (line 270)
+  In parallel.internal.customattr.GetSetImpl>iGetAllProperties (line 248)
+  In parallel.internal.customattr.GetSetImpl.getImpl (line 124)
+  In parallel.internal.customattr.CustomGetSet/get (line 30)
+  In parallel.internal.customattr.WorkUnitFinder/filter (line 28)
+  In parallel.internal.customattr.WorkUnitFinder.find (line 53)
+  In parallel.Cluster/findJob>iIsMatchingJobNoError (line 117)
+  In parallel.Cluster/findJob>@(x)iIsMatchingJobNoError(x,varargin{:}) (line 106)
+  In parallel.Cluster/findJob>iFindSingleJobFromArrayNoError (line 106)
+  In parallel.Cluster/findJob>@(x)iFindSingleJobFromArrayNoError(x,varargin{:}) (line 86)
+  In parallel.Cluster/findJob (line 86)
+  In parallel.internal.pool.InteractiveClient>@(sched,tag,username)sched.findJob('ApiTag',tag,'Username',username) (line 502)
+  In parallel.internal.pool.InteractiveClient/pRemoveOldJobs (line 459)
+  In parallel.internal.pool.InteractiveClient/start (line 311)
+  In parallel.Pool>iStartClient (line 567)
+  In parallel.Pool.hBuildPool (line 446)
+  In parallel.internal.pool.doParpool (line 15)
+  In parpool (line 89)
+  In parallel.internal.pool.PoolArrayManager.getOrAutoCreateWithCleanup (line 49)
+  In pctTryCreatePoolIfNecessary (line 23)
+  In distcomp.remoteparfor.tryRemoteParfor
+  In parallel_function (line 433)
+  In TCmodel_arrayjob_big_parallel (line 69)] 
+[Warning: The system time zone setting, 'GB', does not specify a single time
+zone unambiguously. It will be treated as 'Europe/London'. See the <a
+href="matlab:doc('datetime.TimeZone')">datetime.TimeZone property</a> for
+details about specifying time zones.] 
+[> In verifyTimeZone (line 23)
+  In datetime (line 503)
+  In parallel.internal.cluster.DefaultProperties.getNewJobPropStruct (line 16)
+  In parallel.internal.cluster.CJSSupport/buildJob (line 151)
+  In parallel.cluster.CJSCluster/buildCommunicatingJob (line 452)
+  In parallel.Cluster/createCommunicatingJob (line 89)
+  In parallel.internal.pool.InteractiveClient>iCreateCommunicatingJob (line 714)
+  In parallel.internal.pool.InteractiveClient/start (line 325)
+  In parallel.Pool>iStartClient (line 567)
+  In parallel.Pool.hBuildPool (line 446)
+  In parallel.internal.pool.doParpool (line 15)
+  In parpool (line 89)
+  In parallel.internal.pool.PoolArrayManager.getOrAutoCreateWithCleanup (line 49)
+  In pctTryCreatePoolIfNecessary (line 23)
+  In distcomp.remoteparfor.tryRemoteParfor
+  In parallel_function (line 433)
+  In TCmodel_arrayjob_big_parallel (line 69)] 
+connected to 1 workers.
+trial 1 has finished
+trial 2 has finished
+trial 3 has finished
+trial 4 has finished
+trial 5 has finished
+trial 6 has finished
+trial 7 has finished
+trial 8 has finished
+trial 9 has finished
+trial 10 has finished
+subexperiment 7 has finished
+trial 1 has finished
+trial 2 has finished
+trial 3 has finished
+trial 4 has finished
+trial 5 has finished
+trial 6 has finished
+trial 7 has finished
+trial 8 has finished
+trial 9 has finished
+trial 10 has finished
+subexperiment 6 has finished
+trial 1 has finished
+trial 2 has finished
+trial 3 has finished
+trial 4 has finished
+trial 5 has finished
+trial 6 has finished
+trial 7 has finished
+trial 8 has finished
+trial 9 has finished
+trial 10 has finished
+subexperiment 5 has finished
+trial 1 has finished
+trial 2 has finished
+trial 3 has finished
+trial 4 has finished
+trial 5 has finished
+trial 6 has finished
+trial 7 has finished
+trial 8 has finished
+trial 9 has finished
+trial 10 has finished
+subexperiment 4 has finished
+trial 1 has finished
+trial 2 has finished
+trial 3 has finished
+trial 4 has finished
+trial 5 has finished
+trial 6 has finished
+trial 7 has finished
+trial 8 has finished
+trial 9 has finished
+trial 10 has finished
+subexperiment 3 has finished
+trial 1 has finished
+trial 2 has finished
+trial 3 has finished
+trial 4 has finished
+trial 5 has finished
+trial 6 has finished
+trial 7 has finished
+trial 8 has finished
+trial 9 has finished
+trial 10 has finished
+subexperiment 2 has finished
+trial 1 has finished
+trial 2 has finished
+trial 3 has finished
+trial 4 has finished
+trial 5 has finished
+trial 6 has finished
+trial 7 has finished
+trial 8 has finished
+trial 9 has finished
+trial 10 has finished
+subexperiment 1 has finished
+trial 1 has finished
+trial 2 has finished
+trial 3 has finished
+trial 4 has finished
+trial 5 has finished
+trial 6 has finished
+trial 7 has finished
+trial 8 has finished
+trial 9 has finished
+trial 10 has finished
+subexperiment 10 has finished
+trial 1 has finished
+trial 2 has finished
+trial 3 has finished
+trial 4 has finished
+trial 5 has finished
+trial 6 has finished
+trial 7 has finished
+trial 8 has finished
+trial 9 has finished
+trial 10 has finished
+subexperiment 9 has finished
+trial 1 has finished
+trial 2 has finished
+trial 3 has finished
+trial 4 has finished
+trial 5 has finished
+trial 6 has finished
+trial 7 has finished
+trial 8 has finished
+trial 9 has finished
+trial 10 has finished
+subexperiment 8 has finished
