@@ -1,7 +1,0 @@
-{Error using TC_model_CX_SNr_cond_changed_parfor_opt_diff_mothspikes (line 166)
-Cannot read file
-/home/pcp19jd/nigro_arrayjobs/slprj/_sfprj/EMLReport/emlReportAccessInfo.mat.
-
-Error in TCmodel_arrayjob (line 150)
-                                    F_SNr,0,G_SNr(S),...
-} 

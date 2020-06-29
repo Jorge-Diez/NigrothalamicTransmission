@@ -1,6 +1,0 @@
-{Error using TC_model_CX_SNr_cond_changed_parfor_opt_diff_mothspikes (line 166)
-Error parsing bitcode: Invalid bitcode signature
-
-Error in TCmodel_arrayjob (line 150)
-                                    F_SNr,0,G_SNr(S),...
-} 

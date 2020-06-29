@@ -15,9 +15,9 @@ function [outputres] = vis_res_lumped_mats(res_path, amp_dist_name)
     actual_cc = [];
     for filename_ind = 1:length(mat_files)
         temp_stuc(filename_ind) = load([res_dir,mat_files{filename_ind}]);
-        NT_GS_JV_TF = [NT_GS_JV_TF,temp_stuc(filename_ind).NT_GS_JV_TF];
-        all_reb_spk = [all_reb_spk;temp_stuc(filename_ind).all_reb_spk];
-        rebound_spk = [rebound_spk;temp_stuc(filename_ind).rebound_spk];
+        NT_GS_JV_TF = [NT_GS_JV_TF,temp_stuc(filename_ind).temp_NT_GS_JV_TF];
+        all_reb_spk = [all_reb_spk;temp_stuc(filename_ind).temp_all_reb_spk];
+        rebound_spk = [rebound_spk;temp_stuc(filename_ind).temp_rebound_spk];
         clear temp_stuc
     end
 
