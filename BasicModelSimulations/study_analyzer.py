@@ -95,6 +95,37 @@ ALL_OVR_CORR_80 = np.zeros((30,nr_experiments))
 ALL_OVR_CORR_90 = np.zeros((30,nr_experiments))
 ALL_OVR_CORR_100 = np.zeros((30,nr_experiments))
 
+
+
+
+for i, experiment_name in enumerate(os.listdir(main_big_exp_folder)):
+
+    exp_folder = os.path.join(main_big_exp_folder, experiment_name)
+    
+    for j,nr_neurons_increased in enumerate(natsorted(os.listdir(os.path.join(main_big_exp_folder, experiment_name)))):
+        temp_neuron_nr_folder = os.path.join(exp_folder, nr_neurons_increased)  
+        mat_data = sio.loadmat(temp_neuron_nr_folder + '\\plotting-params-MIP')#load data from nr_neuron sub experiment
+        
+
+        a = mat_data["OVR"]
+        if (a.size != 8):
+            print("PROBLEM! MISSING DATA AT: \n")
+            print(temp_neuron_nr_folder)
+            
+
+    #Save results from main experiment
+
+
+
+
+
+
+
+
+
+
+
+
 print("Obtaining results.... ")
 for i, experiment_name in enumerate(os.listdir(main_big_exp_folder)):
     #each of these is a folder containing a experiment
@@ -112,6 +143,8 @@ for i, experiment_name in enumerate(os.listdir(main_big_exp_folder)):
         mat_data = sio.loadmat(temp_neuron_nr_folder + '\\plotting-params-MIP')#load data from nr_neuron sub experiment
         
         #save results from experiment with specific neurons
+
+        
         OVR_RESULTS[j:] = mat_data["OVR"]
         OVR_RESULTS_DIFFERENCE[j:] = mat_data["OVR"] - OG_OVR
         ALL_MEAN_OVR[j,i] = np.mean(mat_data["OVR"])
