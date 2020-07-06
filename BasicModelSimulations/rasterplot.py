@@ -4,8 +4,8 @@ import scipy.io as sio
 import numpy as np
 import os
 import warnings
-
-
+from scipy.ndimage import gaussian_filter1d
+from scipy.signal import savgol_filter
 
 def progressbar(acc, total, total_bar):
     """ simple progressbar """
@@ -35,7 +35,7 @@ if not os.path.exists(RESULTS_FOLDER):
 
 
 
-spiketrains = neural_data[0] # grab the main structure mem_v_traces
+spiketrains = neural_data[0] # grab the main structure mem_v_traces, each index is a trial 
 spiketrainsv2 = spiketrains[0]
 all_spiketrains = spiketrainsv2[1].flatten()
 
@@ -274,18 +274,72 @@ plt.savefig(RESULTS_FOLDER + "\\" + "Amplitude_distribution_bins_pauses",bbox_in
 
 
 
+############################################################################################################
+############################################################################################################
+#POPULATION FIRING RATE
+
+
+firing_rate_bin = int(input("\nselect bin for population firing rate : "))
+firing_rate = []
+
+
+for i in np.arange(0,1000,firing_rate_bin):
+    spike_bits_slice = spike_bits[:,i*100:(i+firing_rate_bin)*100]
+    nr_spikes = np.count_nonzero(spike_bits_slice)
+    firing_rate.append(nr_spikes)
+    
+gauss_filtered = gaussian_filter1d(firing_rate, sigma = 1, order = 0) #linear gaussian filter
+
+
+firing_rate_filtered_savgol = savgol_filter(firing_rate, 31, 3) #savgol filter
+
+plt.figure(7, figsize=(10,8))
+plt.plot( np.arange(0,1000,firing_rate_bin) , firing_rate_filtered_savgol )
+plt.title("Population firing rate for bins of: "+ str(firing_rate_bin) + " ms for " + exp_name)
+
+
+
+
 
 
 
 ############################################################################################################
 ############################################################################################################
+# CORRELATION MATRIX
+# GENERAL CASE
+
+nr_neurons = int(input("Indicate how many neurons are in group with freq. increase: "))
+
+
+corr_matrix = np.corrcoef(spike_bits)
+upper_mask =  np.tri(corr_matrix.shape[0], k=-1)
+upper_mask[np.diag_indices(upper_mask.shape[0])] = 1
+
+
+upper_corr_matrix = np.ma.array(corr_matrix, mask=upper_mask)
+
+#following calculations made for means
+zero_mask = np.ma.array(corr_matrix, mask=upper_mask, fill_value=0 )
+masked_zeroed_corr_matrix = zero_mask.filled()
+#calculate means
+baseline_group_mean= np.sum(masked_zeroed_corr_matrix[0:30-nr_neurons])/ np.count_nonzero(masked_zeroed_corr_matrix[0:30-nr_neurons])
+freqinc_group_mean = np.sum(masked_zeroed_corr_matrix[30-nr_neurons:30])/ np.count_nonzero(masked_zeroed_corr_matrix[30-nr_neurons:30])
 
 
 
+plt.figure(8, figsize=(10,8))
+plt.matshow(upper_corr_matrix, fignum=8)
+plt.plot(  [0,30] , [30-nr_neurons-0.5,30-nr_neurons-0.5], 'k'   )
+plt.plot(  [30-nr_neurons-0.5,30-nr_neurons-0.5] , [-0.5,30] , 'k'  )
+
+plt.colorbar()
+plt.title("Correlation matrix of spiketrains for " + exp_name + "\n" + "Mean of baseline freq: " + str(baseline_group_mean) + " ||  Mean of freq increase: " + str(freqinc_group_mean))
+
+plt.savefig(RESULTS_FOLDER + "\\" + "Correlation_Matrix",bbox_inches='tight')
 
 
-corr_matrix = np.cov(spike_bits)
-corr_matrix_upper = np.triu(corr_matrix)
+# CORRELATION MATRIXES FOR OTHER GROUPS
+
 
 
 

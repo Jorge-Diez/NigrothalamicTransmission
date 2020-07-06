@@ -239,6 +239,7 @@ for tr_ind = 1:num_trials
     mem_v_traces(tr_ind).mov_reb = mov_rebound_spk;
     mem_v_traces(tr_ind).all_reb = all_rebound_spk;
     mem_v_traces(tr_ind).g_snr = g_snr;
+    mem_v_traces(tr_ind).vthvalues = vth.signals.values;
     disp(['trial ', num2str(tr_ind), ' has finished'])
 
 end
