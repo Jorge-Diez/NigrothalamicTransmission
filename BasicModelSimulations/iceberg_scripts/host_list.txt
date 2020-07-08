@@ -1,0 +1,763 @@
+HOSTNAME                ARCH         NCPU NSOC NCOR NTHR  LOAD  MEMTOT  MEMUSE  SWAPTO  SWAPUS
+----------------------------------------------------------------------------------------------
+global                  -               -    -    -    -     -       -       -       -       -
+node096                 amd-6328       48    4   48   48  0.00  252.4G    2.2G  512.0G   24.3M
+   admin.q              BIP   0/0/1         
+   popgenom.q           BIP   0/1/48        
+node097                 intel-e5-2670  16    2   16   16  0.03  252.4G    2.0G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   insigneo-imsb.q      BIP   0/0/16        
+   insigneo.q           BIP   0/0/16        
+node098                 intel-e5-2670  16    2   16   16  0.01  252.4G    2.0G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   insigneo-imsb.q      BIP   0/0/16        
+   insigneo.q           BIP   0/0/16        
+node099                 intel-e5-2670  16    2   16   16  0.02  252.4G    2.0G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   insigneo-imsb.q      BIP   0/0/16        
+   insigneo.q           BIP   0/0/16        
+node100                 intel-e5-2670  16    2   16   16  0.01  252.3G    1.9G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   insigneo-imsb.q      BIP   0/0/16        
+   insigneo-notremor.q  BIP   0/0/16        
+   insigneo.q           BIP   0/0/16        
+node101                 intel-e5-2670  16    2   16   16  0.04  252.3G    1.9G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   insigneo-imsb.q      BIP   0/0/16        
+   insigneo-notremor.q  BIP   0/0/16        
+   insigneo.q           BIP   0/0/16        
+node102                 intel-e5-2670  16    2   16   16  0.00  252.3G    1.9G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   insigneo-imsb.q      BIP   0/0/16        
+   insigneo-notremor.q  BIP   0/0/16        
+   insigneo.q           BIP   0/0/16        
+node103                 intel-e5-2670  16    2   16   16  0.00  252.3G    1.9G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   insigneo-imsb.q      BIP   0/0/16        
+   insigneo-notremor.q  BIP   0/0/16        
+   insigneo.q           BIP   0/0/16        
+node104                 intel-e5-2670  16    2   16   16  0.01  252.3G    1.9G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   insigneo-imsb.q      BIP   0/0/16        
+   insigneo-notremor.q  BIP   0/0/16        
+   insigneo.q           BIP   0/0/16        
+node105                 intel-e5-2670  16    2   16   16  0.00  252.3G    1.8G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   insigneo-imsb.q      BIP   0/0/16        
+   insigneo-notremor.q  BIP   0/0/16        
+   insigneo.q           BIP   0/0/16        
+node106                 intel-e5-2670  16    2   16   16  0.00  252.4G    1.9G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   insigneo-imsb.q      BIP   0/0/16        
+   insigneo-notremor.q  BIP   0/0/16        
+   insigneo.q           BIP   0/0/16        
+node107                 intel-e5-2670  16    2   16   16  0.01  252.3G    1.9G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   insigneo-imsb.q      BIP   0/0/16        
+   insigneo-notremor.q  BIP   0/0/16        
+   insigneo.q           BIP   0/0/16        
+node108                 amd-6380       64    4   64   64     -  504.9G       -    1.0T       -
+   admin.q              BIP   0/0/1         au
+   molecol.q            BIP   0/48/64       au
+node109                 intel-e5-2670  16    2   16   16 16.24  126.1G    4.8G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   thermofluids.q       BIP   0/16/16       
+node110                 intel-e5-2670  16    2   16   16 16.01  126.1G    5.0G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   thermofluids.q       BIP   0/16/16       
+node111                 intel-e5-2670  16    2   16   16 16.02  126.1G    4.8G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   thermofluids.q       BIP   0/16/16       
+node112                 intel-e5-2670  16    2   16   16 16.06  126.1G    4.9G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   thermofluids.q       BIP   0/16/16       
+node113                 intel-e5-2670  16    2   16   16  0.00   63.0G  895.2M   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   mechaero.q           BIP   0/0/16        
+node114                 intel-e5-2670  16    2   16   16  0.03   63.0G  903.3M   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   mechaero.q           BIP   0/0/16        
+node115                 intel-e5-2670  16    2   16   16  0.01   63.0G  898.4M   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   mechaero.q           BIP   0/0/16        
+node116                 intel-e5-2670  16    2   16   16  0.00   63.0G  899.1M   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   mechaero.q           BIP   0/0/16        
+node117                 intel-e5-2650  16    2   16   16  0.00   63.0G  884.6M   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   insigneo-notremor.q  BIP   0/0/16        
+   insigneo.q           BIP   0/0/16        
+node118                 intel-e5-2650  16    2   16   16  0.01   63.0G    1.6G   16.0G  592.0K
+   admin.q              BIP   0/0/1         
+   interactive.q        IP    0/1/30        
+node119                 intel-e5-2650  16    2   16   16  0.00   63.0G    3.2G   16.0G    2.0M
+   admin.q              BIP   0/0/1         
+   interactive.q        IP    0/0/30        
+node120                 intel-e5-2650  16    2   16   16 16.15   63.0G   12.2G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/2/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/12/16       
+   openmp.q             BP    0/2/16        
+node121                 intel-e5-2650  16    2   16   16 16.04   63.0G   22.6G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/16/16       
+   openmp.q             BP    0/0/16        
+node122                 intel-e5-2650  16    2   16   16 16.10   63.0G   12.1G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/1/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/15/16       
+   openmp.q             BP    0/0/16        
+node123                 intel-e5-2650  16    2   16   16 16.25   63.0G    4.6G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/0/16        
+   openmp.q             BP    0/16/16       
+node124                 intel-e5-2650  16    2   16   16 16.02   63.0G    6.4G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/1/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/15/16       
+   openmp.q             BP    0/0/16        
+node125                 intel-e5-2650  16    2   16   16 15.15   63.0G   20.9G   16.0G   16.0M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/14/16       
+   openmp.q             BP    0/2/16        
+node126                 intel-e5-2650  16    2   16   16  3.57   63.0G    2.3G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/0/16        
+   openmp.q             BP    0/4/16        
+node127                 intel-e5-2650  16    2   16   16  0.03   55.1G  731.2M   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        d
+   short.q              BP    0/0/16        d
+   short-offpeak.q      B     0/0/16        Dd
+   parallel.q           BP    0/0/16        d
+   openmp.q             BP    0/0/16        d
+node128                 intel-e5-2650  16    2   16   16 15.05   63.0G   18.1G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/2/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/11/16       
+   openmp.q             BP    0/3/16        
+node129                 intel-e5-2650  16    2   16   16 16.03   63.0G    6.8G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/1/16        
+   short.q              BP    0/1/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/14/16       
+   openmp.q             BP    0/0/16        
+node130                 intel-e5-2650  16    2   16   16 16.11   63.0G    4.4G   16.0G   11.2M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/0/16        
+   openmp.q             BP    0/16/16       
+node131                 intel-e5-2650  16    2   16   16 16.01   63.0G   10.3G   16.0G   42.8M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/1/16        
+   short.q              BP    0/2/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/13/16       
+   openmp.q             BP    0/0/16        
+node132                 intel-e5-2650  16    2   16   16 16.08   63.0G   16.2G   16.0G    3.4M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/16/16       
+   openmp.q             BP    0/0/16        
+node133                 intel-e5-2650  16    2   16   16 16.02   63.0G    6.3G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/16/16       
+   openmp.q             BP    0/0/16        
+node134                 intel-e5-2650  16    2   16   16 16.32   63.0G    7.4G   16.0G   17.6M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/1/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/13/16       
+   openmp.q             BP    0/2/16        
+node135                 intel-e5-2650  16    2   16   16 16.00   63.0G   21.7G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/1/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/15/16       
+   openmp.q             BP    0/0/16        
+node136                 intel-e5-2650  16    2   16   16 15.09   63.0G    8.0G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/1/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/13/16       
+   openmp.q             BP    0/2/16        
+node137                 intel-e5-2650  16    2   16   16 16.12   63.0G   18.8G   16.0G   14.0M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/16/16       
+   openmp.q             BP    0/0/16        
+node138                 intel-e5-2650  16    2   16   16 15.95   63.0G    7.1G   16.0G   13.2M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/5/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/11/16       
+   openmp.q             BP    0/0/16        
+node139                 intel-e5-2650  16    2   16   16 16.10   63.0G   16.9G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/1/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/15/16       
+   openmp.q             BP    0/0/16        
+node140                 intel-e5-2650  16    2   16   16 16.03   63.0G   20.7G   16.0G   17.5M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/16/16       
+   openmp.q             BP    0/0/16        
+node141                 intel-e5-2650  16    2   16   16 15.98   63.0G   20.5G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/1/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/15/16       
+   openmp.q             BP    0/0/16        
+node142                 intel-e5-2650  16    2   16   16 16.05   63.0G    6.2G   16.0G  226.0M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/2/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/14/16       
+   openmp.q             BP    0/0/16        
+node143                 intel-e5-2650  16    2   16   16 16.18   63.0G   15.8G   16.0G   19.5M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/16/16       
+   openmp.q             BP    0/0/16        
+node144                 intel-e5-2650  16    2   16   16 16.03   63.0G    9.2G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/2/16        
+   short.q              BP    0/2/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/12/16       
+   openmp.q             BP    0/0/16        
+node145                 intel-e5-2650  16    2   16   16 16.00   63.0G   16.0G   16.0G   11.9M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/1/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/15/16       
+   openmp.q             BP    0/0/16        
+node146                 intel-e5-2650  16    2   16   16 15.97   63.0G    5.9G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/1/16        
+   short.q              BP    0/2/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/13/16       
+   openmp.q             BP    0/0/16        
+node147                 intel-e5-2650  16    2   16   16 16.03   63.0G   23.0G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/16/16       
+   openmp.q             BP    0/0/16        
+node148                 intel-e5-2650  16    2   16   16 16.36   63.0G    4.7G   16.0G   71.7M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/0/16        
+   openmp.q             BP    0/16/16       
+node149                 intel-e5-2650  16    2   16   16 16.08   63.0G   16.6G   16.0G    9.9M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/16/16       
+   openmp.q             BP    0/0/16        
+node150                 intel-e5-2650  16    2   16   16 35.10   63.0G    5.8G   16.0G   15.0M
+   admin.q              BIP   0/0/1         a
+   long.q               B     0/0/16        a
+   short.q              BP    0/0/16        a
+   short-offpeak.q      B     0/0/16        aD
+   parallel.q           BP    0/3/16        a
+   openmp.q             BP    0/2/16        a
+node151                 intel-e5-2650  16    2   16   16 16.01   63.0G   22.5G   16.0G  114.2M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/16/16       
+   openmp.q             BP    0/0/16        
+node152                 intel-e5-2650  16    2   16   16 15.97   63.0G   10.1G   16.0G   22.3M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/1/16        
+   short.q              BP    0/3/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/12/16       
+   openmp.q             BP    0/0/16        
+node153                 intel-e5-2650  16    2   16   16 15.08   63.0G   14.2G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/1/16        
+   short.q              BP    0/2/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/11/16       
+   openmp.q             BP    0/2/16        
+node154                 intel-e5-2650  16    2   16   16  2.47   63.0G   37.4G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/2/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/0/16        
+   openmp.q             BP    0/4/16        
+node155                 intel-e5-2650  16    2   16   16 16.06   63.0G   22.6G   16.0G    1.9M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/16/16       
+   openmp.q             BP    0/0/16        
+node156                 intel-e5-2650  16    2   16   16 16.01   63.0G   16.4G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/16/16       
+   openmp.q             BP    0/0/16        
+node157                 intel-e5-2650  16    2   16   16 16.01   63.0G   17.5G   16.0G   46.5M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/2/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/14/16       
+   openmp.q             BP    0/0/16        
+node158                 intel-e5-2650  16    2   16   16 16.01   63.0G   17.4G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/2/16        
+   short.q              BP    0/3/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/11/16       
+   openmp.q             BP    0/0/16        
+node159                 intel-e5-2650  16    2   16   16 16.29   63.0G    5.1G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/0/16        
+   openmp.q             BP    0/16/16       
+node160                 intel-e5-2650  16    2   16   16  8.27   63.0G   41.9G   16.0G   24.7M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/8/16        
+   openmp.q             BP    0/4/16        
+node161                 intel-e5-2650  16    2   16   16 16.29   63.0G    4.9G   16.0G    8.1M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/0/16        
+   openmp.q             BP    0/16/16       
+node162                 intel-e5-2650  16    2   16   16 16.05   63.0G   22.1G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/16/16       
+   openmp.q             BP    0/0/16        
+node163                 intel-e5-2650  16    2   16   16 16.04   63.0G   14.7G   16.0G   25.0M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/2/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/14/16       
+   openmp.q             BP    0/0/16        
+node164                 intel-e5-2650  16    2   16   16 16.04   63.0G   16.4G   16.0G   14.9M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/1/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/15/16       
+   openmp.q             BP    0/0/16        
+node165                 intel-e5-2650  16    2   16   16  3.61   63.0G    2.1G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/0/16        
+   openmp.q             BP    0/4/16        
+node166                 intel-e5-2650  16    2   16   16 16.05   63.0G   12.8G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/16/16       
+   openmp.q             BP    0/0/16        
+node167                 intel-e5-2650  16    2   16   16 16.04   63.0G    6.1G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/1/16        
+   short.q              BP    0/2/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/13/16       
+   openmp.q             BP    0/0/16        
+node168                 intel-e5-2650  16    2   16   16 16.04   63.0G   18.9G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/16/16       
+   openmp.q             BP    0/0/16        
+node169                 intel-e5-2650  16    2   16   16 16.10   63.0G    6.5G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/14/16       
+   openmp.q             BP    0/2/16        
+node170                 intel-e5-2650  16    2   16   16  7.59   63.0G   22.3G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/7/16        
+   openmp.q             BP    0/4/16        
+node171                 intel-e5-2650  16    2   16   16 15.97   63.0G   17.2G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/2/16        
+   short.q              BP    0/3/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/11/16       
+   openmp.q             BP    0/0/16        
+node172                 intel-e5-2650  16    2   16   16 14.97   63.0G   11.8G   16.0G   17.6M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/1/16        
+   short.q              BP    0/2/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/12/16       
+   openmp.q             BP    0/0/16        
+node173                 intel-e5-2650  16    2   16   16 13.40   63.0G    7.7G   16.0G   20.8M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/7/16        
+   openmp.q             BP    0/6/16        
+node174                 intel-e5-2650  16    2   16   16 16.11   63.0G    7.1G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/16/16       
+   openmp.q             BP    0/0/16        
+node175                 intel-e5-2650  16    2   16   16 16.03   63.0G    7.2G   16.0G   21.5M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/3/16        
+   short.q              BP    0/1/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/12/16       
+   openmp.q             BP    0/0/16        
+node176                 intel-e5-2650  16    2   16   16 16.08   63.0G    6.6G   16.0G   25.1M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/16/16       
+   openmp.q             BP    0/0/16        
+node177                 intel-e5-2650  16    2   16   16 16.14   63.0G    6.2G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/3/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/12/16       
+   openmp.q             BP    0/1/16        
+node178                 intel-e5-2650  16    2   16   16 16.18   63.0G    5.0G   16.0G    9.7M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/0/16        
+   openmp.q             BP    0/16/16       
+node179                 intel-e5-2650  16    2   16   16 16.04   63.0G   17.4G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/1/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/15/16       
+   openmp.q             BP    0/0/16        
+node180                 intel-e5-2650  16    2   16   16 16.00   63.0G   14.1G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/1/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/15/16       
+   openmp.q             BP    0/0/16        
+node181                 intel-e5-2650  16    2   16   16 16.11   63.0G    6.1G   16.0G  360.0K
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/16/16       
+   openmp.q             BP    0/0/16        
+node182                 intel-e5-2650  16    2   16   16 15.94   63.0G    8.1G   16.0G  304.0K
+   admin.q              BIP   0/0/1         
+   long.q               B     0/1/16        
+   short.q              BP    0/4/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/11/16       
+   openmp.q             BP    0/0/16        
+node183                 intel-e5-2650  16    2   16   16 15.99   63.0G    8.4G   16.0G    3.8M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/3/16        
+   short.q              BP    0/1/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/12/16       
+   openmp.q             BP    0/0/16        
+node184                 intel-e5-2650  16    2   16   16 15.06   63.0G   14.0G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/1/16        
+   short.q              BP    0/1/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/12/16       
+   openmp.q             BP    0/2/16        
+node185                 intel-e5-2650  16    2   16   16 16.09   63.0G   17.6G   16.0G   27.2M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/2/16        
+   short.q              BP    0/1/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/13/16       
+   openmp.q             BP    0/0/16        
+node186                 intel-e5-2650  16    2   16   16 16.03   63.0G   16.5G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/16/16       
+   openmp.q             BP    0/0/16        
+node187                 intel-e5-2650  16    2   16   16 16.24   63.0G    4.8G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/0/16        
+   openmp.q             BP    0/16/16       
+node188                 intel-e5-2650  16    2   16   16 16.03   63.0G   19.2G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/16/16       
+   openmp.q             BP    0/0/16        
+node189                 intel-e5-2650  16    2   16   16 14.94   63.0G   12.8G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/2/16        
+   short.q              BP    0/5/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/8/16        
+   openmp.q             BP    0/0/16        
+node190                 intel-e5-2650  16    2   16   16 16.03   63.0G   13.0G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/2/16        
+   short.q              BP    0/1/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/13/16       
+   openmp.q             BP    0/0/16        
+node191                 intel-e5-2650  16    2   16   16 16.05   63.0G    6.5G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/2/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/14/16       
+   openmp.q             BP    0/0/16        
+node192                 intel-e5-2650  16    2   16   16 16.09   63.0G   18.3G   16.0G    8.9M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/16/16       
+   openmp.q             BP    0/0/16        
+node193                 intel-e5-2650  16    2   16   16 16.16   63.0G    5.2G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/0/16        
+   openmp.q             BP    0/16/16       
+node194                 intel-e5-2650  16    2   16   16 14.20   63.0G   22.3G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/2/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/8/16        
+   openmp.q             BP    0/6/16        
+node195                 intel-e5-2650  16    2   16   16 11.05   63.0G    9.7G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/2/16        
+   short.q              BP    0/2/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/4/16        
+   openmp.q             BP    0/6/16        
+node196                 intel-e5-2650  16    2   16   16  0.04   63.0G  710.9M   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   interactive.q        IP    0/0/30        
+node197                 intel-e5-2650  16    2   16   16 15.95   63.0G   16.7G   16.0G   23.6M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/4/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/12/16       
+   openmp.q             BP    0/0/16        
+node198                 intel-e5-2650  16    2   16   16 15.38   63.0G   11.7G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/11/16       
+   openmp.q             BP    0/5/16        
+node199                 intel-e5-2650  16    2   16   16 16.18   63.0G    9.3G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/1/16        
+   short.q              BP    0/3/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/11/16       
+   openmp.q             BP    0/1/16        
+node200                 intel-e5-2650  16    2   16   16 16.02   63.0G   13.4G   16.0G   62.9M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/1/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/15/16       
+   openmp.q             BP    0/0/16        
+node201                 intel-e5-2650  16    2   16   16 16.84   63.0G   29.9G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/0/16        
+   openmp.q             BP    0/16/16       
+node202                 intel-e5-2650  16    2   16   16 16.02   63.0G   19.1G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/1/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/15/16       
+   openmp.q             BP    0/0/16        
+node203                 intel-e5-2650  16    2   16   16     -   63.0G       -   16.0G       -
+   admin.q              BIP   0/0/1         adu
+   long.q               B     0/0/16        adu
+   short.q              BP    0/0/16        adu
+   short-offpeak.q      B     0/0/16        aDdu
+   parallel.q           BP    0/0/16        adu
+   openmp.q             BP    0/0/16        adu
+node204                 intel-e5-2650  16    2   16   16 16.00   63.0G    5.6G   16.0G   42.0M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/2/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/14/16       
+   openmp.q             BP    0/0/16        
+node205                 intel-e5-2650  16    2   16   16  0.00   63.0G    2.5G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   interactive.q        IP    0/0/30        
+node206                 intel-e5-2650  16    2   16   16 16.13   63.0G    7.6G   16.0G   14.3M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/16/16       
+   openmp.q             BP    0/0/16        
+node207                 intel-e5-2650  16    2   16   16 16.01   63.0G   13.8G   16.0G  129.4M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/1/16        
+   short.q              BP    0/2/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/13/16       
+   openmp.q             BP    0/0/16        
+node208                 intel-e5-2650  16    2   16   16 16.00   63.0G   18.4G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/16/16       
+   openmp.q             BP    0/0/16        
+node209                 intel-e5-2650  16    2   16   16 16.17  252.3G   20.4G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/16/16       
+   openmp.q             BP    0/0/16        
+node210                 intel-e5-2650  16    2   16   16 16.02  252.3G   23.7G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/0/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/16/16       
+   openmp.q             BP    0/0/16        
+node211                 intel-e5-2650  16    2   16   16 15.89  252.3G   12.0G   16.0G   19.4M
+   admin.q              BIP   0/0/1         
+   long.q               B     0/0/16        
+   short.q              BP    0/5/16        
+   short-offpeak.q      B     0/0/16        D
+   parallel.q           BP    0/11/16       
+   openmp.q             BP    0/0/16        
+node212                 intel-e5-2650  16    2   16   16  0.00  252.3G    1.9G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   alloteropsis.q       BIP   0/0/16        
+node213                 intel-e5-2650  16    2   16   16  1.01   63.0G    1.8G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   cstest.q             BIP   0/0/16        d
+   gpu-int.q            IP    0/0/16        
+   gpu.q                BP    0/1/16        
+   short-offpeak.q      B     0/0/16        Dd
+node214                 intel-e5-2650  16    2   16   16  0.00   63.0G  764.8M   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   gpu-int.q            IP    0/0/16        
+   gpu.q                BP    0/0/16        
+   short-offpeak.q      B     0/0/16        Dd
+node215                 intel-e5-2650  16    2   16   16  0.09   63.0G  771.5M   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   gpu-int.q            IP    0/0/16        
+   gpu.q                BP    0/0/16        
+   short-offpeak.q      B     0/0/16        Dd
+node216                 intel-e5-2650  16    2   16   16  0.03   63.0G  761.8M   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   gpu-int.q            IP    0/0/16        
+   gpu.q                BP    0/0/16        
+   short-offpeak.q      B     0/0/16        Dd
+node219                 intel-e5-2660  20    2   20   20  0.00  378.4G    2.8G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   insigneo-imsb.q      BIP   0/0/20        
+   insigneo.q           BIP   0/0/16        
+node220                 intel-e5-2660  20    2   20   20  0.07  378.4G    2.8G   16.0G     0.0
+   admin.q              BIP   0/0/1         
+   insigneo-imsb.q      BIP   0/0/20        
+   insigneo.q           BIP   0/0/16        

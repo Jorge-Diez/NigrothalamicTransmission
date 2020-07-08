@@ -6,7 +6,8 @@
 
 
 echo "TASK ID is $1"
+echo "Host node is $HOSTNAME"
 
 module load apps/matlab/2016b/binary
 
-matlab -nodisplay -r "TCmodel_arrayjob_big_parallel($i, 960)"
+matlab -nodisplay -r "TCmodel_arrayjob_big_parallel($1, 960)"

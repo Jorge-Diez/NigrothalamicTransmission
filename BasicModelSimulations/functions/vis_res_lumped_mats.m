@@ -20,7 +20,6 @@ function [outputres] = vis_res_lumped_mats(res_path, amp_dist_name)
         rebound_spk = [rebound_spk;temp_stuc(filename_ind).temp_rebound_spk];
         clear temp_stuc
     end
-
     G_SNr = sort(unique(NT_GS_JV_TF(1,:)));
 
     corr_val = unique(NT_GS_JV_TF(2,:));
@@ -51,6 +50,8 @@ function [outputres] = vis_res_lumped_mats(res_path, amp_dist_name)
     h = colorbar();
     colormap('jet');
     imagesc(corr_val,G_SNr,OVR)
+    set(gca,'ytick',G_SNr)
+    set(gca,'xtick',corr_val)
     caxis([0 1]);
     set(gca,'FontSize',14)
     box off
@@ -60,6 +61,7 @@ function [outputres] = vis_res_lumped_mats(res_path, amp_dist_name)
     temp_ax.TickDirection = 'out';
     temp_ax.Label.String = 'Transmission Quality, TQ';
     temp_ax.FontSize = 12;
+    
 
     % box off
 
