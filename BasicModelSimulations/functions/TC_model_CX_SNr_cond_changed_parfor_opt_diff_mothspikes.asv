@@ -147,9 +147,6 @@ for tr_ind = 1:num_trials
     %binary representation of spiketimes
     all_spikes = struct();
     
-    %to try and see why cluster gives back different results 
-    mem_v_traces(tr_ind).rng = rng;
-    
     for i = 1:length(FG_SNR)
         [spike_times] = MIP_imp_v4_beta(deg_of_jit,FG_SNR(i),F_SNr(i),...
                                                     T(T<=mov_onset));
