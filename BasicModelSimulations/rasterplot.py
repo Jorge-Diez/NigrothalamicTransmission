@@ -308,59 +308,89 @@ plt.ylabel('Nr_repetitions')
 plt.savefig(RESULTS_FOLDER + "\\" + "Amplitude_distribution_bins_pauses",bbox_inches='tight')
 
 
-"""
-counts = []
-print("Calculating amplitude-probability distibution for pauses.....")
-iterations = len(np.arange(0,1000,bin))
-for progress,i in enumerate(np.arange(0,1000,bin)):
-    counts.append(len(list(x for x in all_inverted_spikes if i <= x <= i+bin)))
-    progressbar(progress+1, iterations, 50)
-    
-
-bars_bins, bar_bins_counts = np.unique(np.sort(counts), return_counts = True)
-#delete cases for 0
-bars_bins = np.delete(bars_bins, 0)
-bar_bins_counts = np.delete(bar_bins_counts, 0)
-probs_bins = bar_bins_counts/bar_bins_counts.sum()
-plt.figure(7, figsize=(19,10))
-plt.title("Amplitude distribution of pauses for bins of " + str(bin) + " ms for " + exp_name)
-plt.xlabel('Amplitude')
-plt.ylabel('Probability')
-plt.bar(np.arange(len(bars_bins)),probs_bins)
-plt.xticks(np.arange(len(bars_bins)), bars_bins, fontsize=7)
-plt.savefig(RESULTS_FOLDER + "\\" + "Amplitude_distribution_bins_pauses",bbox_inches='tight')
-"""
 
 
 
 
 ############################################################################################################
 ############################################################################################################
-#POPULATION FIRING RATE
+# FIRING RATES
+
+nr_neurons = int(input("Indicate how many neurons are in group with freq. increase: "))
 
 
-firing_rate_bin = int(input("\nselect bin for population firing rate : "))
-firing_rate = []
 
 
+
+firing_rate_bin = int(input("select bin for population firing rate : "))
+all_firing_rate = []
+baseline_firing_rate = []
+freqinc_firing_rate = []
+
+#im aware i can add baseline and freqinc im just incredibly paranoid from not sleeping and i dont trust anything 
 for i in np.arange(0,1000,firing_rate_bin):
-    spike_bits_slice = spike_bits[:,i*100:(i+firing_rate_bin)*100]
-    nr_spikes = np.count_nonzero(spike_bits_slice)
-    firing_rate.append(nr_spikes) # NOT IN HZ!
+    all_spike_bits_slice = spike_bits[:,i*100:(i+firing_rate_bin)*100]
+    baseline_spike_bits_slice = spike_bits[0:30-nr_neurons,i*100:(i+firing_rate_bin)*100]
+    freqinc_spike_bits_slice = spike_bits[30-nr_neurons:30,i*100:(i+firing_rate_bin)*100]
     
     
-firing_rate_np =  np.asarray(firing_rate, dtype=np.float32)    
-#conversion to hz
-firing_rate = firing_rate_np * (1000/firing_rate_bin)
+    all_nr_spikes = np.count_nonzero(all_spike_bits_slice)
+    baseline_nr_spikes = np.count_nonzero(baseline_spike_bits_slice)
+    freqinc_nr_spikes = np.count_nonzero(freqinc_spike_bits_slice)
     
-gauss_filtered = gaussian_filter1d(firing_rate, sigma = 1, order = 0) #linear gaussian filter
+    # NOT IN HZ!
+    all_firing_rate.append(all_nr_spikes)
+    baseline_firing_rate.append(baseline_nr_spikes) 
+    freqinc_firing_rate.append(freqinc_nr_spikes) 
+
+    
+  
+    
+
+
+#transform to numpy so that we can convert to Hz and normalize
+    
+all_firing_rate_np =  np.asarray(all_firing_rate, dtype=np.float32)   
+baseline_firing_rate_np =  np.asarray(baseline_firing_rate, dtype=np.float32)    
+freqinc_firing_rate_np =  np.asarray(freqinc_firing_rate, dtype=np.float32)    
+ 
+
+#conversion to hz and normalize
+all_firing_rate = (all_firing_rate_np * (1000/firing_rate_bin)) / 30
+baseline_firing_rate = (baseline_firing_rate_np * (1000/firing_rate_bin)) / 30-nr_neurons
+freqinc_firing_rate = (freqinc_firing_rate_np * (1000/firing_rate_bin)) / nr_neurons
+
+
+kernel_std = int(input("Selectstd for gaussian kernel : "))    
+kernel_width = int(input("Select width for gaussian kernel : "))
+
+    
+gauss_filter = signal.gaussian(kernel_width, std=kernel_std)
+gauss_filter = gauss_filter / np.sum(gauss_filter)
+
+all_convolved_firing_rate = np.convolve( all_firing_rate , gauss_filter, mode='same'  )
+baseline_convolved_firing_rate = np.convolve( baseline_firing_rate , gauss_filter, mode='same'  )
+freqinc_convolved_firing_rate = np.convolve( freqinc_firing_rate , gauss_filter, mode='same'  )
 
 
 
-firing_rate_filtered_savgol = savgol_filter(firing_rate, 21, 3) #savgol filter
+fig, axs = plt.subplots(3, sharex=True, sharey=True, num=8, figsize = (19,10))
+fig.suptitle('Firing Rates for ' + exp_name , fontsize=20)
+axs[0].plot(np.arange(0,1000,firing_rate_bin) , all_convolved_firing_rate)
+axs[1].plot(np.arange(0,1000,firing_rate_bin) , baseline_convolved_firing_rate)
+axs[2].plot(np.arange(0,1000,firing_rate_bin) , freqinc_convolved_firing_rate)
+
+
+axs[0].set_title("Firing rate of all neurons")
+axs[1].set_title("Firing rate of baseline neurons")
+axs[2].set_title("Firing rate of freqinc neurons")
+
+fig.text(0.08, 0.5, 'Firing rate (Hz)', ha='center', va='center', rotation='vertical', fontsize=20 )
+plt.xlabel('Time (ms)', fontsize=20)
+
 
 plt.figure(8, figsize=(10,8))
-plt.plot( np.arange(0,1000,firing_rate_bin) , firing_rate_filtered_savgol )
+plt.plot( np.arange(0,1000,firing_rate_bin) , all_convolved_firing_rate )
 plt.title("Population firing rate for bins of: "+ str(firing_rate_bin) + " ms for " + exp_name)
 plt.xlabel('Time (ms)')
 plt.ylabel('Firing rate (Hz)')
@@ -377,7 +407,6 @@ plt.savefig(RESULTS_FOLDER + "\\" + "Population firing rate",bbox_inches='tight'
 # CORRELATION MATRIX
 # GENERAL CASE
 
-nr_neurons = int(input("Indicate how many neurons are in group with freq. increase: "))
 
 
 corr_matrix = np.corrcoef(spike_bits)
@@ -387,6 +416,11 @@ upper_mask[np.diag_indices(upper_mask.shape[0])] = 1
 
 upper_corr_matrix = np.ma.array(corr_matrix, mask=upper_mask)
 
+#following calculations made for means
+zero_mask = np.ma.array(corr_matrix, mask=upper_mask, fill_value=0 )
+masked_zeroed_corr_matrix = zero_mask.filled()
+#calculate means
+full_mean= np.sum(masked_zeroed_corr_matrix)/ np.count_nonzero(masked_zeroed_corr_matrix)
 
 
 plt.figure(9, figsize=(10,8))
@@ -395,9 +429,18 @@ plt.plot(  [0,30] , [30-nr_neurons-0.5,30-nr_neurons-0.5], 'k'   )
 plt.plot(  [30-nr_neurons-0.5,30-nr_neurons-0.5] , [-0.5,30] , 'k'  )
 
 plt.colorbar()
-plt.title("Correlation matrix of spiketrains for " + exp_name)
+plt.title("Correlation matrix of spiketrains for " + exp_name + "\n" + "Mean of baseline freq: " + str(full_mean))
 
 plt.savefig(RESULTS_FOLDER + "\\" + "Correlation_Matrix",bbox_inches='tight')
+
+
+
+
+
+
+
+
+
 
 
 # CORRELATION MATRIXES FOR OTHER GROUPS
@@ -424,6 +467,9 @@ plt.colorbar()
 plt.title("Correlation matrix of baseline frequency spiketrains for " + exp_name + "\n" + "Mean of baseline freq: " + str(baseline_group_mean))
 
 plt.savefig(RESULTS_FOLDER + "\\" + "Correlation_Matrix_baseline",bbox_inches='tight')
+
+
+
 
 
 
