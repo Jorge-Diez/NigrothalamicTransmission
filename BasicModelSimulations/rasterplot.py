@@ -5,9 +5,7 @@ import scipy.io as sio
 import numpy as np
 import os
 import warnings
-from scipy.ndimage import gaussian_filter1d
 from scipy import signal
-from scipy.signal import savgol_filter
 
 def progressbar(acc, total, total_bar):
     """ simple progressbar """
@@ -141,7 +139,7 @@ hist, bins = np.histogram(all_spikes, t_vec)
 plt.figure(2, figsize=(10,8))
 plt.hist(hist[hist != 0], range(31), ec='black')
 locs, labels = plt.yticks()
-plt.title("Amplitude distribution for " + exp_name)
+plt.title("Amplitude distribution of step size for " + exp_name)
 plt.xlabel('Amplitude')
 plt.ylabel('Nr of repetitions')
 plt.savefig(RESULTS_FOLDER + "\\" + "Amplitude distribution",bbox_inches='tight')
@@ -167,7 +165,7 @@ bars_full[bars] = bars_counts
 probs_full = bars_full/bars_full.sum()
 
 plt.figure(3, figsize=(10,8))
-plt.title("Amplitude-Frequency distribution for " + exp_name )
+plt.title("Amplitude-Frequency distribution of step size for " + exp_name )
 
 plt.bar(np.arange(len(bars_full)),probs_full)
 plt.xlabel('Amplitude')
@@ -214,7 +212,7 @@ plt.hist(hist[hist != 0], range(max_bin+1), ec='black')
 locs, labels = plt.yticks()
 plt.title("Amplitude distribution for bins of " + str(bin) + " ms for " + exp_name)
 plt.xlabel('Amplitude')
-plt.ylabel('Nr of repetitions')
+plt.ylabel('Counts')
 plt.savefig(RESULTS_FOLDER + "\\" + "Amplitude_distribution_bins",bbox_inches='tight')
 
 
@@ -252,60 +250,48 @@ plt.savefig(RESULTS_FOLDER + "\\" + "Amplitude-Frequency distribution bins",bbox
 
 ############################################################################################################
 ############################################################################################################
-#INVERSE AMPLITUDE DISTRIBUTION (PAUSES)
+#PAUSE AMPLITUDE DISTRIBUTION
 
-
-inverted_spike_bits = 1 - spike_bits
 #changing bits to actual times when there was no firing (inverse of firing)
-all_inverted_spikes = (np.nonzero(inverted_spike_bits[0,:])[0])/100
-for skptr in range(1,len(inverted_spike_bits)):
-      all_inverted_spikes = np.concatenate((all_inverted_spikes,
-                                            (np.nonzero(inverted_spike_bits[skptr,:])[0])/100), axis=None )
+inverted_spike_bits = 1 - spike_bits
+
+all_pauses =  np.zeros(inverted_spike_bits.shape[1])
+
+#logical and to get all pauses in a single vector
+for i in range(inverted_spike_bits.shape[1]):
+    if (all(inverted_spike_bits[:,i])):
+        all_pauses[i] = 1
 
 
+#count how many steps are in each pause
+consec_pauses = []
 
-np.sort(all_inverted_spikes)
-t_vec = np.arange(0,1000.01,0.01)
-hist, bins = np.histogram(all_inverted_spikes, t_vec)
+temp_counter = 0
+for i in all_pauses:
+    if (i):
+        temp_counter += 1
+    else:
+        consec_pauses.append(temp_counter)
+        temp_counter = 0
 
+#save last set
+consec_pauses.append(temp_counter)       
+consec_pauses = np.asarray(consec_pauses, dtype=np.float32)
+consec_pauses = consec_pauses[consec_pauses != 0]
+
+#convert pauses to time in ms, because they are pauses in 0.01ms steps
+consec_pauses = consec_pauses/100
 
 
 
 plt.figure(6, figsize=(10,8))
-plt.hist(hist[hist != 0], range(30), ec='black')
-locs, labels = plt.yticks()
+plt.hist(consec_pauses, 20, ec='black')
 plt.title("Amplitude distribution of pauses for " + exp_name)
-plt.xlabel('Amplitude')
-plt.ylabel('Nr of repetitions')
-plt.savefig(RESULTS_FOLDER + "\\" + "Amplitude distribution pauses without n = 30",bbox_inches='tight')
+plt.xlabel('Pauses in ms')
+plt.ylabel('Counts')
+plt.savefig(RESULTS_FOLDER + "\\" + "Amplitude distribution pauses",bbox_inches='tight')
 
 
-
-
-############################################################################################################
-############################################################################################################
-#BINNED INVERSE AMPLITUDE DISTRIBUTION (PAUSES)
-
-bin = float(input("select bin for amplitude-probability distribution of pauses: "))
-
-
-
-
-t_vec = np.arange(0,1000+bin,bin)
-hist, bins = np.histogram(all_inverted_spikes, t_vec)
-
-min_bin = min(hist)
-max_bin = max(hist)
-
-
-
-plt.figure(7, figsize=(10,8))
-plt.hist(hist[hist != 0], range(min_bin,max_bin), ec='black')
-locs, labels = plt.yticks()
-plt.title("Amplitude distribution of pauses for bins of " + str(bin) + " ms for " + exp_name)
-plt.xlabel('Amplitude')
-plt.ylabel('Nr_repetitions')
-plt.savefig(RESULTS_FOLDER + "\\" + "Amplitude_distribution_bins_pauses",bbox_inches='tight')
 
 
 
@@ -361,7 +347,7 @@ baseline_firing_rate = (baseline_firing_rate_np * (1000/firing_rate_bin)) / 30-n
 freqinc_firing_rate = (freqinc_firing_rate_np * (1000/firing_rate_bin)) / nr_neurons
 
 
-kernel_std = int(input("Selectstd for gaussian kernel : "))    
+kernel_std = int(input("Select stdev for gaussian kernel : "))    
 kernel_width = int(input("Select width for gaussian kernel : "))
 
     
@@ -385,17 +371,9 @@ axs[0].set_title("Firing rate of all neurons")
 axs[1].set_title("Firing rate of baseline neurons")
 axs[2].set_title("Firing rate of freqinc neurons")
 
-fig.text(0.08, 0.5, 'Firing rate (Hz)', ha='center', va='center', rotation='vertical', fontsize=20 )
-plt.xlabel('Time (ms)', fontsize=20)
-
-
-plt.figure(8, figsize=(10,8))
-plt.plot( np.arange(0,1000,firing_rate_bin) , all_convolved_firing_rate )
-plt.title("Population firing rate for bins of: "+ str(firing_rate_bin) + " ms for " + exp_name)
-plt.xlabel('Time (ms)')
-plt.ylabel('Firing rate (Hz)')
-plt.savefig(RESULTS_FOLDER + "\\" + "Population firing rate",bbox_inches='tight')
-
+fig.text(0.08, 0.5, 'Firing rate (Hz)', ha='center', va='center', rotation='vertical', fontsize=18 )
+plt.xlabel('Time (ms)', fontsize=18)
+plt.savefig(RESULTS_FOLDER + "\\" + "Populations firing rate",bbox_inches='tight')
 
 
 
