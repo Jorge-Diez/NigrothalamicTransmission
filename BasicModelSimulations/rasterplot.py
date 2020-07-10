@@ -6,6 +6,7 @@ import numpy as np
 import os
 import warnings
 from scipy.ndimage import gaussian_filter1d
+from scipy import signal
 from scipy.signal import savgol_filter
 
 def progressbar(acc, total, total_bar):
@@ -348,14 +349,15 @@ for i in np.arange(0,1000,firing_rate_bin):
     firing_rate.append(nr_spikes) # NOT IN HZ!
     
     
-firing_rate_np = npa = np.asarray(firing_rate, dtype=np.float32)    
+firing_rate_np =  np.asarray(firing_rate, dtype=np.float32)    
 #conversion to hz
 firing_rate = firing_rate_np * (1000/firing_rate_bin)
     
 gauss_filtered = gaussian_filter1d(firing_rate, sigma = 1, order = 0) #linear gaussian filter
 
 
-firing_rate_filtered_savgol = savgol_filter(firing_rate, 31, 3) #savgol filter
+
+firing_rate_filtered_savgol = savgol_filter(firing_rate, 21, 3) #savgol filter
 
 plt.figure(8, figsize=(10,8))
 plt.plot( np.arange(0,1000,firing_rate_bin) , firing_rate_filtered_savgol )
