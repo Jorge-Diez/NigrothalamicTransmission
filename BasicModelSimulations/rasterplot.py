@@ -109,7 +109,14 @@ for i in range (len(all_spikes)-1):
         
         #add pause to total
         total_pause_count += all_spikes[i+1] - all_spikes[i]
-    
+
+
+#adding last pause (if there is such)
+#simulation ends at 1000ms so we check if last spike has a significant difference with respect to that
+if (  (1000 - all_spikes[len(all_spikes)-1]) >= minpause  ):
+    rect_length = (1000 - all_spikes[len(all_spikes)-1]) - 2.5
+    rect_pause = plt.Rectangle((all_spikes[len(all_spikes)-1]+2.5, spike_count+0.5),rect_length, 0.5, color='r')
+    ax.add_patch(rect_pause)    
 
 #add graph information
 plt.title('Spike raster plot with synchronous pauses of >= ' + str(minpause) + 'ms for  ' + exp_name + "\n"
@@ -306,18 +313,18 @@ nr_neurons = int(input("Indicate how many neurons are in group with freq. increa
 
 
 
+firing_rate_bin = float(input("select bin in ms for population firing rate : "))
+jumps = int(100000 / len(np.arange(0,1000,firing_rate_bin)))  #used later  
 
-
-firing_rate_bin = int(input("select bin for population firing rate : "))
 all_firing_rate = []
 baseline_firing_rate = []
 freqinc_firing_rate = []
 
 #im aware i can add baseline and freqinc im just incredibly paranoid from not sleeping and i dont trust anything 
-for i in np.arange(0,1000,firing_rate_bin):
-    all_spike_bits_slice = spike_bits[:,i*100:(i+firing_rate_bin)*100]
-    baseline_spike_bits_slice = spike_bits[0:30-nr_neurons,i*100:(i+firing_rate_bin)*100]
-    freqinc_spike_bits_slice = spike_bits[30-nr_neurons:30,i*100:(i+firing_rate_bin)*100]
+for i in range(len(np.arange(0,1000,firing_rate_bin))-1):
+    all_spike_bits_slice = spike_bits[:,i*jumps:(i+1)*jumps]
+    baseline_spike_bits_slice = spike_bits[0:30-nr_neurons,i*jumps:(i+1)*jumps]
+    freqinc_spike_bits_slice = spike_bits[30-nr_neurons:30,i*jumps:(i+1)*jumps]
     
     
     all_nr_spikes = np.count_nonzero(all_spike_bits_slice)
@@ -330,7 +337,23 @@ for i in np.arange(0,1000,firing_rate_bin):
     freqinc_firing_rate.append(freqinc_nr_spikes) 
 
     
-  
+#since time goes from 0-1000 (1000 included, we need to take into account last case
+
+i += 1
+all_spike_bits_slice = spike_bits[:,i*jumps:spike_bits.shape[1]-1]
+baseline_spike_bits_slice = spike_bits[0:30-nr_neurons,spike_bits.shape[1]-1]
+freqinc_spike_bits_slice = spike_bits[30-nr_neurons:30,spike_bits.shape[1]-1]
+    
+    
+all_nr_spikes = np.count_nonzero(all_spike_bits_slice)
+baseline_nr_spikes = np.count_nonzero(baseline_spike_bits_slice)
+freqinc_nr_spikes = np.count_nonzero(freqinc_spike_bits_slice)
+    
+# NOT IN HZ!
+all_firing_rate.append(all_nr_spikes)
+baseline_firing_rate.append(baseline_nr_spikes) 
+freqinc_firing_rate.append(freqinc_nr_spikes)
+ 
     
 
 
@@ -361,11 +384,10 @@ freqinc_convolved_firing_rate = np.convolve( freqinc_firing_rate , gauss_filter,
 
 
 fig, axs = plt.subplots(3, sharex=True, sharey=True, num=8, figsize = (19,10))
-fig.suptitle('Firing Rates for ' + exp_name , fontsize=20)
+fig.suptitle('Firing Rates for ' + exp_name + " with bins of: " + str(firing_rate_bin) + " ms" +  "\n Gaussian Kernel with std = " + str(kernel_std) + " and kernel width = " + str(kernel_width) , fontsize=18)
 axs[0].plot(np.arange(0,1000,firing_rate_bin) , all_convolved_firing_rate)
 axs[1].plot(np.arange(0,1000,firing_rate_bin) , baseline_convolved_firing_rate)
 axs[2].plot(np.arange(0,1000,firing_rate_bin) , freqinc_convolved_firing_rate)
-
 
 axs[0].set_title("Firing rate of all neurons")
 axs[1].set_title("Firing rate of baseline neurons")
@@ -383,11 +405,29 @@ plt.savefig(RESULTS_FOLDER + "\\" + "Populations firing rate",bbox_inches='tight
 ############################################################################################################
 ############################################################################################################
 # CORRELATION MATRIX
-# GENERAL CASE
 
 
+corr_bin = float(input("select bin in ms for correlation matrix : "))
+jumps = int(100000 / len(np.arange(0,1000,corr_bin)))  #used later  
 
-corr_matrix = np.corrcoef(spike_bits)
+spike_bits_binned = np.zeros( (30, len(np.arange(0,1000,corr_bin))))
+
+for i in range(len(np.arange(0,1000,corr_bin))-1):
+    all_spike_bits_slice = spike_bits[:,i*jumps:(i+1)*jumps]
+    sliced_spike_bits = np.sum(all_spike_bits_slice, axis=1)
+    
+    spike_bits_binned[: ,i ] = sliced_spike_bits
+    
+    
+    
+ #since time goes from 0-1000 (1000 included, we add the last row to the last bin)
+i += 1
+all_spike_bits_slice = spike_bits[:,i*jumps:spike_bits.shape[1]-1]
+sliced_spike_bits = np.sum(all_spike_bits_slice, axis=1)
+spike_bits_binned[: ,i ] = sliced_spike_bits
+
+
+corr_matrix = np.corrcoef(spike_bits_binned)
 upper_mask =  np.tri(corr_matrix.shape[0], k=-1)
 upper_mask[np.diag_indices(upper_mask.shape[0])] = 1
 
@@ -407,7 +447,7 @@ plt.plot(  [0,30] , [30-nr_neurons-0.5,30-nr_neurons-0.5], 'k'   )
 plt.plot(  [30-nr_neurons-0.5,30-nr_neurons-0.5] , [-0.5,30] , 'k'  )
 
 plt.colorbar()
-plt.title("Correlation matrix of spiketrains for " + exp_name + "\n" + "Mean of baseline freq: " + str(full_mean))
+plt.title("Correlation matrix of spiketrains for " + exp_name + " with bins of " + str(corr_bin) + " ms" + "\n" + "Mean of baseline freq: " + str(full_mean))
 
 plt.savefig(RESULTS_FOLDER + "\\" + "Correlation_Matrix",bbox_inches='tight')
 
@@ -426,7 +466,7 @@ plt.savefig(RESULTS_FOLDER + "\\" + "Correlation_Matrix",bbox_inches='tight')
 #BASELINE
 
 
-corr_matrix = np.corrcoef(spike_bits[0:30-nr_neurons])
+corr_matrix = np.corrcoef(spike_bits_binned[0:30-nr_neurons])
 upper_mask =  np.tri(corr_matrix.shape[0], k=-1)
 upper_mask[np.diag_indices(upper_mask.shape[0])] = 1
 upper_corr_matrix = np.ma.array(corr_matrix, mask=upper_mask)
@@ -442,7 +482,7 @@ baseline_group_mean= np.sum(masked_zeroed_corr_matrix)/ np.count_nonzero(masked_
 plt.figure(10, figsize=(10,8))
 plt.matshow(upper_corr_matrix, fignum=10)
 plt.colorbar()
-plt.title("Correlation matrix of baseline frequency spiketrains for " + exp_name + "\n" + "Mean of baseline freq: " + str(baseline_group_mean))
+plt.title("Correlation matrix of baseline frequency spiketrains for " + exp_name + " with bins of " + str(corr_bin) + " ms" + "\n" + "Mean of baseline freq: " + str(baseline_group_mean))
 
 plt.savefig(RESULTS_FOLDER + "\\" + "Correlation_Matrix_baseline",bbox_inches='tight')
 
@@ -452,13 +492,9 @@ plt.savefig(RESULTS_FOLDER + "\\" + "Correlation_Matrix_baseline",bbox_inches='t
 
 
 
-
-
-
-
 #FREQ INCREASE
 
-corr_matrix = np.corrcoef(spike_bits[30-nr_neurons:30])
+corr_matrix = np.corrcoef(spike_bits_binned[30-nr_neurons:30])
 upper_mask =  np.tri(corr_matrix.shape[0], k=-1)
 upper_mask[np.diag_indices(upper_mask.shape[0])] = 1
 upper_corr_matrix = np.ma.array(corr_matrix, mask=upper_mask)
@@ -474,9 +510,17 @@ freqinc_group_mean= np.sum(masked_zeroed_corr_matrix)/ np.count_nonzero(masked_z
 plt.figure(11, figsize=(10,8))
 plt.matshow(upper_corr_matrix, fignum=11)
 plt.colorbar()
-plt.title("Correlation matrix of frequency increase spiketrains for " + exp_name + "\n" + "Mean of freqinc: " + str(freqinc_group_mean))
+plt.title("Correlation matrix of frequency increase spiketrains for " + exp_name + " with bins of " + str(corr_bin) + " ms" + "\n" + "Mean of freqinc: " + str(freqinc_group_mean))
 
 plt.savefig(RESULTS_FOLDER + "\\" + "Correlation_Matrix_freqinc",bbox_inches='tight')
+
+
+
+
+
+
+
+
 
 
 

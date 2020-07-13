@@ -136,7 +136,7 @@ R2_vec = zeros(1,num_trials);
 %start of simulation of model neuron for each trial
 for tr_ind = 1:num_trials
     %constrain random number generator of matlab to give a certain spike train for each trial
-    rng(tr_ind)
+    rng(tr_ind, 'combRecursive')
     
     
     %disp(['S = ',num2str(S)])
@@ -149,8 +149,7 @@ for tr_ind = 1:num_trials
     %struct which will be saved into exported data
     all_spikes = struct();
     
-    %to try and see why cluster gives back different results 
-    mem_v_traces(tr_ind).rng = rng;
+    
     %generate spikes with highest firing rate and all N
     [spike_times] = MIP_imp_v4_beta(deg_of_jit,sum(FG_SNR),max(F_SNr),T(T<=mov_onset));
     
@@ -266,10 +265,9 @@ for tr_ind = 1:num_trials
     mem_v_traces(tr_ind).mov_reb = mov_rebound_spk;
     mem_v_traces(tr_ind).all_reb = all_rebound_spk;
     mem_v_traces(tr_ind).g_snr = g_snr;
-    mem_v_traces(tr_ind).mode = "spike_deletion";
+    mem_v_traces(tr_ind).mode = 'spike_deletion';
     mem_v_traces(tr_ind).F_SNr = F_SNr;
     mem_v_traces(tr_ind).FG_SNR = FG_SNR;
-    mem_v_traces(tr_ind).vthvalues = vth.signals.values;
 
     
     disp(['trial ', num2str(tr_ind), ' has finished'])

@@ -140,15 +140,13 @@ for tr_ind = 1:num_trials
     %disp(['S = ',num2str(S)])
 
     %specify random generator
-    rng(tr_ind) %constrain random number generator of matlab to give a certain spike train for each trial
+    rng(tr_ind, 'combRecursive')
     % results will be consistent
     jit_spk_times = [];
     %spiketrain is generated
     %binary representation of spiketimes
     all_spikes = struct();
     
-    %to try and see why cluster gives back different results 
-    mem_v_traces(tr_ind).rng = rng;
     
     for i = 1:length(FG_SNR)
         [spike_times] = MIP_imp_v4_beta(deg_of_jit,FG_SNR(i),F_SNr(i),...
@@ -242,10 +240,9 @@ for tr_ind = 1:num_trials
     mem_v_traces(tr_ind).mov_reb = mov_rebound_spk;
     mem_v_traces(tr_ind).all_reb = all_rebound_spk;
     mem_v_traces(tr_ind).g_snr = g_snr;
-    mem_v_traces(tr_ind).mode = "diff_moth";
+    mem_v_traces(tr_ind).mode = 'diff_moth';
     mem_v_traces(tr_ind).F_SNr = F_SNr;
     mem_v_traces(tr_ind).FG_SNR = FG_SNR;
-    mem_v_traces(tr_ind).vthvalues = vth.signals.values;
     
     disp(['trial ', num2str(tr_ind), ' has finished'])
 
