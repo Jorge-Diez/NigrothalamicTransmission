@@ -79,6 +79,12 @@ plt.savefig(RESULTS_FOLDER + "\\" + "Spiketrains",bbox_inches='tight')
 
 
 
+    
+    
+
+
+
+
 
 
 
@@ -123,8 +129,13 @@ plt.title('Spike raster plot with synchronous pauses of >= ' + str(minpause) + '
           + "Total time in ms paused: " + str(total_pause_count) )
 
 plt.xlabel('Time (ms)')
-plt.ylabel('Neurons')
+plt.ylabel('Spike train #')
 plt.savefig(RESULTS_FOLDER + "\\" + "Spiketrains_sync_pauses",bbox_inches='tight')
+
+
+
+
+
 
 
 
@@ -457,6 +468,33 @@ plt.savefig(RESULTS_FOLDER + "\\" + "Correlation_Matrix",bbox_inches='tight')
 
 
 
+#CORRELATION MATRIX BETWEEN THE TWO DIFFERENT GROUPS
+ 
+masked_zeroed_corr_matrix = masked_zeroed_corr_matrix[0:30-nr_neurons, 30-nr_neurons:30]
+
+
+
+both_groups_mean= np.sum(masked_zeroed_corr_matrix)/ np.count_nonzero(masked_zeroed_corr_matrix)
+
+
+#plot and save
+plt.figure(10, figsize=(10,8))
+plt.matshow(upper_corr_matrix[0:30-nr_neurons, 30-nr_neurons:30], fignum=10)
+plt.colorbar()
+plt.title("Correlation matrix between groups for " + exp_name + " with bins of " + str(corr_bin) + " ms" + "\n" + "Mean of baseline freq: " + str(both_groups_mean))
+plt.xlabel('Freq inc group')
+plt.ylabel('Baseline group')
+plt.savefig(RESULTS_FOLDER + "\\" + "Correlation_Matrix_betweengroups",bbox_inches='tight')
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -479,8 +517,8 @@ baseline_group_mean= np.sum(masked_zeroed_corr_matrix)/ np.count_nonzero(masked_
 
 
 #plot and save
-plt.figure(10, figsize=(10,8))
-plt.matshow(upper_corr_matrix, fignum=10)
+plt.figure(11, figsize=(10,8))
+plt.matshow(upper_corr_matrix, fignum=11)
 plt.colorbar()
 plt.title("Correlation matrix of baseline frequency spiketrains for " + exp_name + " with bins of " + str(corr_bin) + " ms" + "\n" + "Mean of baseline freq: " + str(baseline_group_mean))
 
@@ -507,22 +545,119 @@ freqinc_group_mean= np.sum(masked_zeroed_corr_matrix)/ np.count_nonzero(masked_z
 
 
 #plot and save
-plt.figure(11, figsize=(10,8))
-plt.matshow(upper_corr_matrix, fignum=11)
+plt.figure(12, figsize=(10,8))
+plt.matshow(upper_corr_matrix, fignum=12)
 plt.colorbar()
 plt.title("Correlation matrix of frequency increase spiketrains for " + exp_name + " with bins of " + str(corr_bin) + " ms" + "\n" + "Mean of freqinc: " + str(freqinc_group_mean))
 
 plt.savefig(RESULTS_FOLDER + "\\" + "Correlation_Matrix_freqinc",bbox_inches='tight')
 
 
+vth_checker = int(input("Enter 1 if you wish to plot membrane potential from thalamocortical (TC) neuron : "))
 
 
 
+if (vth_checker):
+    vth = spiketrainsv2[10]
+    T = np.arange(0,1500.01,0.01)
+    fig = plt.figure(13, figsize=(10,8))
+    #we omit first two millisecond 
+    plt.plot(T[200:len(T)], vth[200:len(vth)])
+    fig.canvas.draw()
+    yleft, yright = plt.ylim()
+    plt.axvline( x=1000, color='r', linestyle='--')
+    ax = plt.gca()
+    labels = np.array([int(item._x) for item in ax.get_xticklabels()])
+    ax.set_xticklabels(labels-1000)
+    plt.title("Thalamocortical Membrane potential  " + exp_name)
+    plt.xlabel('Time from movement (ms) ')
+    plt.ylabel('Voltage (mV)')
+    plt.savefig(RESULTS_FOLDER + "\\" + "TC membrane potential",bbox_inches='tight')
+    
+    
+    
+    
+    
+    
+    t_before = int(input("Indicate in ms beginning of sim time  : "))
+    t_after = int(input("Indicate in ms end of sim time  : "))
+    
+    fig = plt.figure(14, figsize=(19,10))
+    plt.subplot(211)
+    plt.plot(T[t_before*100:t_after*100], vth[t_before*100:t_after*100])
+    fig.canvas.draw()
+    plt.axvline( x=1000, color='r', linestyle='--')
+    xleft, xright = plt.xlim()
+    yleft, yright = plt.ylim()
+    plt.ylabel('Voltage (mV)')
+    ax = plt.gca()
+    labels = np.array([int(item._x) for item in ax.get_xticklabels()])
+    ax.set_xticklabels(labels-1000)
+    #repeat process again
+    
+    plt.subplot(212)
+    
+    spike_count = 0
+    all_spikes_grouped = []
+    tot_amount_spikes = 0
+    plt.title("Thalamocortical Membrane Potential")
+    
+    for i in range(all_spiketrains.size):
+        data = all_spiketrains[i][0] #had to do this because of data bugs, contains group of spiketrains
+        neurons, spikes = data.shape
+        all_spikes_grouped.append(data.flatten())
+        tot_amount_spikes += (data.flatten()).size
+        for neu in range(neurons):
+            #draw the vertical lines
+            plt.plot([data[neu],data[neu]],[spike_count,spike_count+1], 'b')
+            spike_count += 1
+        
+    
+    
+    
+    
+    all_spikes = np.sort(all_spikes)
+    minpause = float(input("select min pause in ms to show in rasterplot: "))
+    total_pause_count = 0 #coutns how many ms of total pauses
+    ax = plt.gca()
+    
+    for i in range (len(all_spikes)-1):
+     
+        if (all_spikes[i+1] - all_spikes[i] >= minpause):
+        
+            """
+            #plot the vertical lines between the pause points
+            plt.plot( [all_spikes[i], all_spikes[i]], [0, spike_count  ], 'r--')
+            plt.plot( [all_spikes[i+1], all_spikes[i+1]], [0, spike_count  ], 'r--')
+            """
+            
+            #plot horizontal lines at the top 
+            #plt.plot( [all_spikes[i], all_spikes[i+1]], [0, 0  ], 'r', linewidth=7.0)
+            rect_length = (all_spikes[i+1] - all_spikes[i]) - 2.5
+            rect_pause = plt.Rectangle((all_spikes[i]+2.5, spike_count+0.5),rect_length, 0.5, color='r')
+            ax.add_patch(rect_pause)
+            #plt.plot( [all_spikes[i]+2, all_spikes[i+1]-2], [spike_count+0.5, spike_count+0.5  ], 'r')
+            
+            #add pause to total
+            total_pause_count += all_spikes[i+1] - all_spikes[i]
+            
+        #adding last pause (if there is such)
+#simulation ends at 1000ms so we check if last spike has a significant difference with respect to that
+    if (  (1000 - all_spikes[len(all_spikes)-1]) >= minpause  ):
+        rect_length = (1000 - all_spikes[len(all_spikes)-1]) - 2.5
+        rect_pause = plt.Rectangle((all_spikes[len(all_spikes)-1]+2.5, spike_count+0.5),rect_length, 0.5, color='r')
+        ax.add_patch(rect_pause)    
 
+    
+    plt.axvline( x=1000, color='r', linestyle='--') 
+    ax.set_xlim([xleft,xright])
+    ax.set_xticklabels(labels-1000)
+    plt.title("SNr input to TC")
+    plt.xlabel('Time from movement (ms) ')
+    plt.ylabel('Spike train #')
+    plt.savefig(RESULTS_FOLDER + "\\" + "Spiketrains_with_membrane_potential",bbox_inches='tight')
 
-
-
-
+    
 
 
 
