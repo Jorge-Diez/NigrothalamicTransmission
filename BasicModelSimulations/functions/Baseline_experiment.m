@@ -85,8 +85,8 @@ function [dir_name] = Baseline_experiment
 
     corr_vals = 0.3:0.1:1;   %values of correlation among inhibitory inputs
 
-    NT_GS_JV_TF_all = combvec(G_SNr,corr_vals); %matrix of all possible combinations of conductances and corr values
-    ALL_EXPERIMENTS = combvec(NT_GS_JV_TF_all, FREQ_NR_COMB);
+    NT_GS_JV_TF = combvec(G_SNr,corr_vals); %matrix of all possible combinations of conductances and corr values
+    ALL_EXPERIMENTS = combvec(NT_GS_JV_TF, FREQ_NR_COMB);
     %use number of threads available as MAX
     
     
@@ -157,7 +157,7 @@ function [dir_name] = Baseline_experiment
     
     save([dir_name_cp '-baseline50_neur30_corr30to100-' ],...
         'rebound_spk','all_reb_spk','G_SNr',...
-        'num_trials','ALL_EXPERIMENTS','F_SNr','FG_SNR', 'jit_val')
+        'num_trials','NT_GS_JV_TF','F_SNr','FG_SNR', 'jit_val')
     
     
     

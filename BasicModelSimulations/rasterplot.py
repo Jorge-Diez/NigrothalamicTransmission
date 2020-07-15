@@ -24,6 +24,8 @@ warnings.filterwarnings("ignore") #due to matplotlib depreciation warnings
 folder_results = input("please enter the directory where the results are located:")
 main_basic_exp_folder = os.path.join(pwd, folder_results) #get main experiment folder
 corr = input("please indicate correlation: ")
+trial = int(input("please enter trial number: "))
+
 neural_data = sio.loadmat(main_basic_exp_folder + '\\voltage-traces-and-inputs\\' + corr + '-70')["mem_v_traces"]
 RESULTS_FOLDER = "SPIKETRAIN_GRAPHIC"
 if not os.path.exists(RESULTS_FOLDER):
@@ -35,8 +37,8 @@ if not os.path.exists(RESULTS_FOLDER):
 
 
 
-spiketrains = neural_data[0] # grab the main structure mem_v_traces, each index is a trial 
-spiketrainsv2 = spiketrains[0]
+spiketrains = neural_data[0] # grab the main structure mem_v_traces
+spiketrainsv2 = spiketrains[trial-1] #each index here is a trial
 all_spiketrains = spiketrainsv2[1].flatten()
 
 
@@ -553,6 +555,24 @@ plt.title("Correlation matrix of frequency increase spiketrains for " + exp_name
 plt.savefig(RESULTS_FOLDER + "\\" + "Correlation_Matrix_freqinc",bbox_inches='tight')
 
 
+
+
+
+
+
+
+
+############################################################################################################
+############################################################################################################
+# VTH 
+
+
+
+
+
+
+
+
 vth_checker = int(input("Enter 1 if you wish to plot membrane potential from thalamocortical (TC) neuron : "))
 
 
@@ -560,7 +580,7 @@ vth_checker = int(input("Enter 1 if you wish to plot membrane potential from tha
 if (vth_checker):
     vth = spiketrainsv2[10]
     T = np.arange(0,1500.01,0.01)
-    fig = plt.figure(13, figsize=(10,8))
+    fig = plt.figure(13, figsize=(17,8))
     #we omit first two millisecond 
     plt.plot(T[200:len(T)], vth[200:len(vth)])
     fig.canvas.draw()
@@ -589,6 +609,7 @@ if (vth_checker):
     plt.axvline( x=1000, color='r', linestyle='--')
     xleft, xright = plt.xlim()
     yleft, yright = plt.ylim()
+    plt.title("Thalamocortical Membrane potential")
     plt.ylabel('Voltage (mV)')
     ax = plt.gca()
     labels = np.array([int(item._x) for item in ax.get_xticklabels()])
@@ -659,6 +680,55 @@ if (vth_checker):
 
     
 
+
+
+
+############################################################################################################
+############################################################################################################
+# ISI AND ISI CV 
+
+
+isi_stdev = np.zeros( (30) )
+isi_mean = np.zeros( (30) )
+spike_count = 0
+
+for i in range(all_spiketrains.size):
+    data = all_spiketrains[i][0] #had to do this because of data bugs, contains group of spiketrains
+    neurons, spikes = data.shape
+    for neu in range(neurons):
+        ordered_spikes = np.sort( data[neu]  )
+        isi = np.diff(ordered_spikes)
+        isi_stdev[spike_count] = np.std(isi)
+        isi_mean[spike_count] = np.mean(isi)
+        spike_count += 1
+
+
+
+CV = isi_stdev / isi_mean
+CV_baseline = CV[0:30-nr_neurons]
+CV_freqinc = CV[30-nr_neurons:30]
+
+CV_baseline_mean = np.mean(CV_baseline)
+CV_freqinc_mean = np.mean(CV_freqinc)
+CV_both_groups = np.mean(CV)
+
+
+
+CV_to_plot = [CV_baseline_mean, CV_freqinc_mean, CV_both_groups]
+CV_labels = ["Baseline", "Freq Increase", "All neurons"]
+CV_err = [np.std(CV_baseline), np.std(CV_freqinc), np.std(CV)]
+
+
+plt.figure(16, figsize=(10,9))
+plt.title("ISI CV Means")
+plt.bar(range(3), CV_to_plot, tick_label=CV_labels, width=0.6, edgecolor='k', yerr=CV_err)
+
+ax = plt.gca()
+
+
+yleft, yright = plt.ylim()
+ax.set_ylim([yleft,yright*1.3])
+plt.savefig(RESULTS_FOLDER + "\\" + "ISI_CV",bbox_inches='tight')
 
 
 plt.show()

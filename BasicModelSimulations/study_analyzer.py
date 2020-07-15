@@ -37,7 +37,7 @@ for i in all_folder_results:
     
 
 #getting the corresponding directory for the basic experiment with 50 hz firing rate for all neurons
-basic_exp_folder = "baseline 50hz 30 neurons"
+basic_exp_folder = "baseline_100trials"
 main_basic_exp_folder = os.path.join(pwd, basic_exp_folder)
 
 
