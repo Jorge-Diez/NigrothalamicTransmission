@@ -60,6 +60,9 @@ for i in range(all_spiketrains.size):
     neurons, spikes = data.shape
     all_spikes_grouped.append(data.flatten())
     tot_amount_spikes += (data.flatten()).size
+    if (neurons > 30): #done because with diffmoth spikes with 1 spiketrain have this bug
+            neurons, spikes = spikes, neurons
+        
     for neu in range(neurons):
         #draw the vertical lines
         plt.plot([data[neu],data[neu]],[spike_count,spike_count+1], 'b')
@@ -460,7 +463,7 @@ plt.plot(  [0,30] , [30-nr_neurons-0.5,30-nr_neurons-0.5], 'k'   )
 plt.plot(  [30-nr_neurons-0.5,30-nr_neurons-0.5] , [-0.5,30] , 'k'  )
 
 plt.colorbar()
-plt.title("Correlation matrix of spiketrains for " + exp_name + " with bins of " + str(corr_bin) + " ms" + "\n" + "Mean of baseline freq: " + str(full_mean))
+plt.title("Correlation matrix of spiketrains for " + exp_name + " with bins of " + str(corr_bin) + " ms" + "\n" + "Mean of all spiketrains: " + str(full_mean))
 
 plt.savefig(RESULTS_FOLDER + "\\" + "Correlation_Matrix",bbox_inches='tight')
 
@@ -483,7 +486,7 @@ both_groups_mean= np.sum(masked_zeroed_corr_matrix)/ np.count_nonzero(masked_zer
 plt.figure(10, figsize=(10,8))
 plt.matshow(upper_corr_matrix[0:30-nr_neurons, 30-nr_neurons:30], fignum=10)
 plt.colorbar()
-plt.title("Correlation matrix between groups for " + exp_name + " with bins of " + str(corr_bin) + " ms" + "\n" + "Mean of baseline freq: " + str(both_groups_mean))
+plt.title("Correlation matrix between groups for " + exp_name + " with bins of " + str(corr_bin) + " ms" + "\n" + "Mean between both groups: " + str(both_groups_mean))
 plt.xlabel('Freq inc group')
 plt.ylabel('Baseline group')
 plt.savefig(RESULTS_FOLDER + "\\" + "Correlation_Matrix_betweengroups",bbox_inches='tight')
@@ -692,6 +695,9 @@ spike_count = 0
 for i in range(all_spiketrains.size):
     data = all_spiketrains[i][0] #had to do this because of data bugs, contains group of spiketrains
     neurons, spikes = data.shape
+    if (neurons > 30): #done because with diffmoth spikes with 1 spiketrain have this bug
+            neurons, spikes = spikes, neurons
+        
     for neu in range(neurons):
         ordered_spikes = np.sort( data[neu]  )
         isi = np.diff(ordered_spikes)

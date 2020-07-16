@@ -419,7 +419,36 @@ for i,j in zip(corrs,corr_all_ovr):
     ax.grid(color='k', which='minor')
     
     plt.savefig(RESULTS_FOLDER_CORR_TQ + "\\" + "CORR_VALUE" + str(i) ,bbox_inches='tight')
-    plt.close()   
+    plt.close()
+    
+    
+    ### NOW IN 3D
+    
+    
+    fig = plt.figure(figsize=(19,10))
+
+    X = np.arange(0, nr_experiments)
+    Y = np.arange(0, 30)
+    
+    xx,yy = np.meshgrid(X,Y)
+    ax = plt.axes(projection='3d')
+    ax.view_init(elev=15., azim=220)
+    
+    
+    surf = ax.plot_surface(xx, yy, j, cmap='jet', linewidth=0, antialiased=False, vmin = 0, vmax = 1)
+    plt.title("TQ values for correlation of " + str(i/100), fontsize = 20)
+    plt.xlabel("Frequency increase to ", fontsize = 16)
+    plt.ylabel("Nr_neurons_freq_inc", fontsize = 16)
+    ax.set_zlabel("TQ", fontsize = 16)
+    
+    fig.colorbar(surf, shrink = 1)
+    
+    plt.yticks( np.arange(0,30,3), np.arange(1,31,3))    
+    plt.xticks( np.arange(0,nr_experiments,4), np.arange(51,51+nr_experiments,4))   
+    
+    plt.savefig(RESULTS_FOLDER_CORR_TQ + "\\" + "CORR_VALUE_3D" + str(i) ,bbox_inches='tight')
+    plt.close()
+        
 
 
 

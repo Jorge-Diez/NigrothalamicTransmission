@@ -177,7 +177,7 @@ for tr_ind = 1:num_trials
         
         %save neurons with highest frequency 
         stimulated_spikes = spike_times(30-FG_SNR(end)+1:sum(FG_SNR),:);
-        all_spikes(3).spikes = stimulated_spikes;
+        all_spikes(numel(FG_SNR)).spikes = stimulated_spikes;
         %transform spikes for simulink
         jit_spk_times = vertcat( jit_spk_times, (reshape(stimulated_spikes,numel(stimulated_spikes),1)));        
     else
@@ -270,7 +270,6 @@ for tr_ind = 1:num_trials
     mem_v_traces(tr_ind).mode = 'spike_deletion';
     mem_v_traces(tr_ind).F_SNr = F_SNr;
     mem_v_traces(tr_ind).FG_SNR = FG_SNR;
-    mem_v_traces(tr_ind).vth = vth.signals.values;
     
     disp(['trial ', num2str(tr_ind), ' has finished'])
 end
