@@ -159,23 +159,25 @@ for tr_ind = 1:num_trials
     %MILLISECONDS AND THAT ONLY 2 GROUPS OF NEURONS EXIST (BASELINE AND
     %HIGHER FREQUENCY)
     if (numel(F_SNr) > 1)
-        base_spikes = zeros(FG_SNR(1), F_SNr(1));
-        %go over each neuron and delete randomly
-        base_freq = F_SNr(1);
-        for i = 1:FG_SNR(1)
-            %we will keep only the number of spikes that we need
-            positions_keep = randperm(F_SNr(2), base_freq);
-            base_spikes(i,:) = spike_times(i, positions_keep);
+        for i = 1:numel(F_SNr)-1
+            freq = F_SNr(i);
+            spikes = zeros(FG_SNR(i), freq);
+            
+            for j = 1:FG_SNR(i)
+                positions_keep = randperm(max(F_SNr), freq);
+                spikes(j,:) = spike_times(j, positions_keep);
+            end
+            
+            all_spikes(i).spikes = spikes;
+            jit_spk_times = vertcat( jit_spk_times, (reshape(spikes,numel(spikes),1)));
+            
         end
         
-        %save first "group" of base freq
-        all_spikes(1).spikes = base_spikes;
-        jit_spk_times = vertcat( jit_spk_times, (reshape(base_spikes,numel(base_spikes),1)));
         
         
-        %save neurons with higher frequency 
-        stimulated_spikes = spike_times(FG_SNR(1)+1:sum(FG_SNR),:);
-        all_spikes(2).spikes = stimulated_spikes;
+        %save neurons with highest frequency 
+        stimulated_spikes = spike_times(30-FG_SNR(end)+1:sum(FG_SNR),:);
+        all_spikes(3).spikes = stimulated_spikes;
         %transform spikes for simulink
         jit_spk_times = vertcat( jit_spk_times, (reshape(stimulated_spikes,numel(stimulated_spikes),1)));        
     else
