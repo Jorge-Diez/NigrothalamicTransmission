@@ -2,7 +2,7 @@ addpath(pwd)
 
 root_dir = input("please introduce path of experiments: ", 's');
 cd(root_dir);
-nr_neurons = 30;
+nr_neurons = 28;
 
 D = dir;
 

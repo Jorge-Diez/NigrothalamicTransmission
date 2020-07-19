@@ -1,0 +1,9 @@
+{Error using TC_model_CX_SNr_cond_changed_parfor_opt_2neurons (line 204)
+Unable to read MAT-file
+/home/pcp19jd/nigro_arrayjobs/slprj/_sfprj/EMLReport/emlReportAccessInfo.mat.
+Not a binary MAT-file. Try load -ASCII to read as text.
+
+Error in TCmodel_arrayjob_2neuroapart_big_parallel (line 72)
+parfor exp = 1:size(NT_GS_JV_TF,2)
+
+} 
