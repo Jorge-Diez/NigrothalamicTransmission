@@ -473,93 +473,99 @@ plt.savefig(RESULTS_FOLDER + "\\" + "Correlation_Matrix",bbox_inches='tight')
 
 
 
-#CORRELATION MATRIX BETWEEN THE TWO DIFFERENT GROUPS
+
+
+
+
+
+if (nr_neurons != 1):
+    
+    
+    
+    
+    
+    #CORRELATION MATRIX BETWEEN THE TWO DIFFERENT GROUPS
  
-masked_zeroed_corr_matrix = masked_zeroed_corr_matrix[0:30-nr_neurons, 30-nr_neurons:30]
+    masked_zeroed_corr_matrix = masked_zeroed_corr_matrix[0:30-nr_neurons, 30-nr_neurons:30]
+    
+    
+    
+    both_groups_mean= np.sum(masked_zeroed_corr_matrix)/ np.count_nonzero(masked_zeroed_corr_matrix)
+    
+    
+    #plot and save
+    plt.figure(10, figsize=(10,8))
+    plt.matshow(upper_corr_matrix[0:30-nr_neurons, 30-nr_neurons:30], fignum=10)
+    plt.colorbar()
+    plt.title("Correlation matrix between groups for " + exp_name + " with bins of " + str(corr_bin) + " ms" + "\n" + "Mean between both groups: " + str(both_groups_mean))
+    plt.xlabel('Freq inc group')
+    plt.ylabel('Baseline group')
+    plt.savefig(RESULTS_FOLDER + "\\" + "Correlation_Matrix_betweengroups",bbox_inches='tight')
+    
+    
+    
 
 
 
-both_groups_mean= np.sum(masked_zeroed_corr_matrix)/ np.count_nonzero(masked_zeroed_corr_matrix)
-
-
-#plot and save
-plt.figure(10, figsize=(10,8))
-plt.matshow(upper_corr_matrix[0:30-nr_neurons, 30-nr_neurons:30], fignum=10)
-plt.colorbar()
-plt.title("Correlation matrix between groups for " + exp_name + " with bins of " + str(corr_bin) + " ms" + "\n" + "Mean between both groups: " + str(both_groups_mean))
-plt.xlabel('Freq inc group')
-plt.ylabel('Baseline group')
-plt.savefig(RESULTS_FOLDER + "\\" + "Correlation_Matrix_betweengroups",bbox_inches='tight')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# CORRELATION MATRIXES FOR OTHER GROUPS
-
-#BASELINE
-
-
-corr_matrix = np.corrcoef(spike_bits_binned[0:30-nr_neurons])
-upper_mask =  np.tri(corr_matrix.shape[0], k=-1)
-upper_mask[np.diag_indices(upper_mask.shape[0])] = 1
-upper_corr_matrix = np.ma.array(corr_matrix, mask=upper_mask)
-
-#following calculations made for means
-zero_mask = np.ma.array(corr_matrix, mask=upper_mask, fill_value=0 )
-masked_zeroed_corr_matrix = zero_mask.filled()
-#calculate means
-baseline_group_mean= np.sum(masked_zeroed_corr_matrix)/ np.count_nonzero(masked_zeroed_corr_matrix)
-
-
-#plot and save
-plt.figure(11, figsize=(10,8))
-plt.matshow(upper_corr_matrix, fignum=11)
-plt.colorbar()
-plt.title("Correlation matrix of baseline frequency spiketrains for " + exp_name + " with bins of " + str(corr_bin) + " ms" + "\n" + "Mean of baseline freq: " + str(baseline_group_mean))
-
-plt.savefig(RESULTS_FOLDER + "\\" + "Correlation_Matrix_baseline",bbox_inches='tight')
-
-
-
-
-
-
-
-#FREQ INCREASE
-
-corr_matrix = np.corrcoef(spike_bits_binned[30-nr_neurons:30])
-upper_mask =  np.tri(corr_matrix.shape[0], k=-1)
-upper_mask[np.diag_indices(upper_mask.shape[0])] = 1
-upper_corr_matrix = np.ma.array(corr_matrix, mask=upper_mask)
-
-#following calculations made for means
-zero_mask = np.ma.array(corr_matrix, mask=upper_mask, fill_value=0 )
-masked_zeroed_corr_matrix = zero_mask.filled()
-#calculate means
-freqinc_group_mean= np.sum(masked_zeroed_corr_matrix)/ np.count_nonzero(masked_zeroed_corr_matrix)
-
-
-#plot and save
-plt.figure(12, figsize=(10,8))
-plt.matshow(upper_corr_matrix, fignum=12)
-plt.colorbar()
-plt.title("Correlation matrix of frequency increase spiketrains for " + exp_name + " with bins of " + str(corr_bin) + " ms" + "\n" + "Mean of freqinc: " + str(freqinc_group_mean))
-
-plt.savefig(RESULTS_FOLDER + "\\" + "Correlation_Matrix_freqinc",bbox_inches='tight')
-
-
-
-
+    
+    
+    
+    # CORRELATION MATRIXES FOR OTHER GROUPS
+    
+    #BASELINE
+    
+    
+    corr_matrix = np.corrcoef(spike_bits_binned[0:30-nr_neurons])
+    upper_mask =  np.tri(corr_matrix.shape[0], k=-1)
+    upper_mask[np.diag_indices(upper_mask.shape[0])] = 1
+    upper_corr_matrix = np.ma.array(corr_matrix, mask=upper_mask)
+    
+    #following calculations made for means
+    zero_mask = np.ma.array(corr_matrix, mask=upper_mask, fill_value=0 )
+    masked_zeroed_corr_matrix = zero_mask.filled()
+    #calculate means
+    baseline_group_mean= np.sum(masked_zeroed_corr_matrix)/ np.count_nonzero(masked_zeroed_corr_matrix)
+    
+    
+    #plot and save
+    plt.figure(11, figsize=(10,8))
+    plt.matshow(upper_corr_matrix, fignum=11)
+    plt.colorbar()
+    plt.title("Correlation matrix of baseline frequency spiketrains for " + exp_name + " with bins of " + str(corr_bin) + " ms" + "\n" + "Mean of baseline freq: " + str(baseline_group_mean))
+    
+    plt.savefig(RESULTS_FOLDER + "\\" + "Correlation_Matrix_baseline",bbox_inches='tight')
+    
+    
+    
+    
+    
+    
+    
+    #FREQ INCREASE
+    
+    corr_matrix = np.corrcoef(spike_bits_binned[30-nr_neurons:30])
+    upper_mask =  np.tri(corr_matrix.shape[0], k=-1)
+    upper_mask[np.diag_indices(upper_mask.shape[0])] = 1
+    upper_corr_matrix = np.ma.array(corr_matrix, mask=upper_mask)
+    
+    #following calculations made for means
+    zero_mask = np.ma.array(corr_matrix, mask=upper_mask, fill_value=0 )
+    masked_zeroed_corr_matrix = zero_mask.filled()
+    #calculate means
+    freqinc_group_mean= np.sum(masked_zeroed_corr_matrix)/ np.count_nonzero(masked_zeroed_corr_matrix)
+    
+    
+    #plot and save
+    plt.figure(12, figsize=(10,8))
+    plt.matshow(upper_corr_matrix, fignum=12)
+    plt.colorbar()
+    plt.title("Correlation matrix of frequency increase spiketrains for " + exp_name + " with bins of " + str(corr_bin) + " ms" + "\n" + "Mean of freqinc: " + str(freqinc_group_mean))
+    
+    plt.savefig(RESULTS_FOLDER + "\\" + "Correlation_Matrix_freqinc",bbox_inches='tight')
+    
+    
+    
+    
 
 
 
