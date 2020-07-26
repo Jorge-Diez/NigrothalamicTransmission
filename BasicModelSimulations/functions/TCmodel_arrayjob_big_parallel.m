@@ -9,7 +9,7 @@ function [dir_name] = TCmodel_arrayjob_big_parallel(job_id, num_jobs)
 
 
 %% Parameter creation and sim mode
-sim_mode = 1;
+sim_mode = 2;
 
 
 F_SNr = 51:1:90; %firing rate increase
@@ -74,7 +74,7 @@ parfor exp = 1:size(NT_GS_JV_TF,2)
     
     SPK = [];
     
-    exppath = ['CLUSTERTRY/FREQINCTO_',num2str(freq_increase(exp))];
+    exppath = ['LIGHTNING_DELET/FREQINCTO_',num2str(freq_increase(exp))];
     freq_experiment = fullfile(pwd, exppath);
     if exist(freq_experiment,'dir') ~= 7
         mkdir(freq_experiment)
@@ -126,7 +126,7 @@ end
 for i = 1:length(dir_name_list)
     
     
-    exppath = ['CLUSTERTRY/FREQINCTO_',num2str(freq_increase(i))];
+    exppath = ['LIGHTNING_DELET/FREQINCTO_',num2str(freq_increase(i))];
     freq_experiment = fullfile(pwd, exppath);
 
     

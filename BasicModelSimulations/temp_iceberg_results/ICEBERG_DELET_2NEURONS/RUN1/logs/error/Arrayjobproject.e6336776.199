@@ -1,7 +1,0 @@
-{Error using TC_model_CX_SNr_cond_changed_parfor_opt_2neurons (line 204)
-Reference to non-existent field 'maxChecksumFiles'.
-
-Error in TCmodel_arrayjob_2neuroapart_big_parallel (line 72)
-parfor exp = 1:size(NT_GS_JV_TF,2)
-
-} 

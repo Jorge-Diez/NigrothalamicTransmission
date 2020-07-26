@@ -270,7 +270,8 @@ for tr_ind = 1:num_trials
     mem_v_traces(tr_ind).mode = 'spike_deletion';
     mem_v_traces(tr_ind).F_SNr = F_SNr;
     mem_v_traces(tr_ind).FG_SNR = FG_SNR;
-    
+    mem_v_traces(tr_ind).vth = vth.signals.values;
+
     disp(['trial ', num2str(tr_ind), ' has finished'])
 end
 

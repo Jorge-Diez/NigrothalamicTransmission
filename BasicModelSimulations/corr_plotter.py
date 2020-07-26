@@ -112,7 +112,7 @@ if (root_folder_check):
     
     
         fig = plt.figure(figsize=(19,10))
-        plt.imshow(j, cmap='jet', vmin = 0, vmax = 1, aspect='auto')
+        plt.imshow(j, cmap='jet', aspect='auto')
         cbar = plt.colorbar()
         
         ax = plt.axes()
@@ -148,7 +148,7 @@ if (root_folder_check):
         ax.view_init(elev=15., azim=220)
         
         
-        surf = ax.plot_surface(xx, yy, j, cmap='jet', linewidth=0, antialiased=False, vmin = 0, vmax = 1)
+        surf = ax.plot_surface(xx, yy, j, cmap='jet', linewidth=0, antialiased=False)
         plt.title("Correlation difference values for correlation of " + str(i/100), fontsize = 20)
         plt.xlabel("Frequency increase to ", fontsize = 16)
         plt.ylabel("Nr_neurons_freq_inc", fontsize = 16)
@@ -173,7 +173,7 @@ if (root_folder_check):
     
     
         fig = plt.figure(figsize=(19,10))
-        plt.imshow(j, cmap='jet', vmin = 0, vmax = 100, aspect='auto')
+        plt.imshow(j, cmap='jet', aspect='auto')
         cbar = plt.colorbar()
         
         ax = plt.axes()
@@ -209,7 +209,7 @@ if (root_folder_check):
         ax.view_init(elev=15., azim=220)
         
         
-        surf = ax.plot_surface(xx, yy, j, cmap='jet', linewidth=0, antialiased=False, vmin = 0, vmax = 100)
+        surf = ax.plot_surface(xx, yy, j, cmap='jet', linewidth=0, antialiased=False)
         plt.title("Correlation percentage difference values for correlation of " + str(i/100), fontsize = 20)
         plt.xlabel("Frequency increase to ", fontsize = 16)
         plt.ylabel("Nr_neurons_freq_inc", fontsize = 16)
@@ -255,6 +255,37 @@ plt.savefig(RESULTS_FOLDER + "\\" + "CORR_FOR_FREQ" + str(freq_plot) +  "_" + me
 
 
 
+plt.figure(2, figsize=(10,9))
+for i in range(len(ALL_CORRPERC_MAT_LIST)):
+    
+    all_data = ALL_CORRPERC_MAT_LIST[i]
+    corr_data = all_data[:,freq_index]
+    
+    plt.plot(corr_data)
+
+
+
+
+plt.title(" Correlation Difference in % for Frequency:  " + str(freq_plot) + " with " + method  + " method", fontsize = 20)
+plt.xlabel("Nr_neurons_freq_inc ", fontsize = 16)
+plt.ylabel("Correlation Difference in %", fontsize = 16)
+plt.legend(labels)
+plt.savefig(RESULTS_FOLDER + "\\" + "CORRPERC_FOR_FREQ" + str(freq_plot) +  "_" + method ,bbox_inches='tight')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 corr_values = [0.3, 0.4, 0.5, 0.6, 0.7, 0.8 , 0.9, 1]
 corr = float(input("Enter intended correlation : "))
@@ -262,7 +293,8 @@ nr_neurons = int(input("Enter number of neurons : "))
 neuron_index = nr_neurons-1 #so we can plot easily
 corr_index = corr_values.index(corr)
 
-plt.figure(2, figsize=(10,9))
+plt.figure(3, figsize=(10,9))
+
 
 
 all_nr_neurons = [5, 10, 15, 20, 25]
@@ -282,8 +314,27 @@ plt.xticks( np.arange(0,nr_experiments,4), np.arange(51,51+nr_experiments,4))
 xleft, xright = plt.xlim()
 plt.plot( [xleft, xright], [corr, corr  ], 'r--')
 plt.legend(labels)
+plt.savefig(RESULTS_FOLDER + "\\" + "CORR_FOR_INTENDED_CORR" + str(int(corr*100)) +  "_" + method ,bbox_inches='tight')
 
-plt.savefig(RESULTS_FOLDER + "\\" + "CORR_FOR_NR_NEURONS" + str(nr_neurons) +  "_" + method ,bbox_inches='tight')
+
+plt.figure(4, figsize=(10,9))
+
+for i,nr_neurons in enumerate(all_nr_neurons):
+    neuron_index = nr_neurons-1 #so we can plot easily
+    all_data = ALL_CORRPERC_MAT_LIST[corr_index]
+    corr_data = all_data[neuron_index,:]
+    plt.plot(corr_data)
+    
+    
+plt.title("Correlation Difference in % for Nr_neurons:  " + str(nr_neurons) + " with " + method  + " method", fontsize = 20)
+plt.xlabel("Freq Increase to ", fontsize = 16)
+plt.ylabel("Correlation Difference in %", fontsize = 16)
+plt.xticks( np.arange(0,nr_experiments,4), np.arange(51,51+nr_experiments,4))   
+plt.legend(labels)
+plt.savefig(RESULTS_FOLDER + "\\" + "CORRPERC_FOR_INTENDED_CORR" + str(int(corr*100)) +  "_" + method ,bbox_inches='tight')
+
+
+
 
 
 

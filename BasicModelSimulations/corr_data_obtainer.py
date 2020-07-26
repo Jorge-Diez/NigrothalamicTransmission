@@ -328,7 +328,7 @@ for i, experiment_name in enumerate(os.listdir(root_folder)):
                 
                 
                 
-                diff_from_intented_corr = abs((corr/100) - full_mean_corr)
+                diff_from_intented_corr = (corr/100) - full_mean_corr
                 percentage_variation = diff_from_intented_corr / (corr/100) * 100
                 
                 CORR_MATRIX = ALL_CORR_MAT_LIST[c]

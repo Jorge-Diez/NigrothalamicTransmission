@@ -83,7 +83,7 @@ function [dir_name] = Baseline_experiment
 
     %% Loading data
 
-    corr_vals = 0.3:0.1:1;   %values of correlation among inhibitory inputs
+    corr_vals = 0:0.1:1;   %values of correlation among inhibitory inputs
 
     NT_GS_JV_TF = combvec(G_SNr,corr_vals); %matrix of all possible combinations of conductances and corr values
     ALL_EXPERIMENTS = combvec(NT_GS_JV_TF, FREQ_NR_COMB);
@@ -109,7 +109,7 @@ function [dir_name] = Baseline_experiment
 
     SPK = [];
     
-    exppath = ['baseline 50hz 30 neurons'];
+    exppath = ['FULL_BASELINE_VTH_10TRIALS'];
     dir_name = fullfile(pwd, exppath);
         if exist(dir_name,'dir') ~= 7
             mkdir(dir_name)
@@ -122,7 +122,7 @@ function [dir_name] = Baseline_experiment
 
   
     
-    for S = 1:size(ALL_EXPERIMENTS,2)   % Loop over experimental trials
+    parfor S = 1:size(ALL_EXPERIMENTS,2)   % Loop over experimental trials
         %disp(['jobnum = ',num2str(job_id), ', S = ',num2str(S)])
         switch sim_mode %for now we only have sim mode 1 and 2
             
