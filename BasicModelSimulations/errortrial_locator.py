@@ -32,5 +32,5 @@ for i,file in enumerate (natsorted(os.listdir(error_folder))):
         f.write("#$ -e /home/$USER/logs/error\n")
         f.write("#$ -t "+ error_experiment+"\n")
         f.write("module load apps/matlab/2016b\n")
-        f.write("matlab -nodisplay -r \"TCmodel_arrayjob_2neuroapart_big_parallel($SGE_TASK_ID, 896)\"")
+        f.write("matlab -nodisplay -r \"TCmodel_arrayjob_specifyneuroapart_big_parallel(26, $SGE_TASK_ID, 832)\"")
         f.close()
