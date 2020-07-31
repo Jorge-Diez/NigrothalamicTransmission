@@ -66,7 +66,7 @@ all_reb_spk = zeros(9600/num_jobs,num_trials); %Result vector, (check how its do
 
 dir_name_list = strings(1, 9600/num_jobs );
 
-parfor exp = 1:size(NT_GS_JV_TF,2)
+for exp = 1:size(NT_GS_JV_TF,2)
     R2 = zeros(size(NT_GS_JV_TF,2),num_trials); %used to store the correlation values
     
     

@@ -474,7 +474,7 @@ plt.savefig(RESULTS_FOLDER + "\\" + "Correlation_Matrix",bbox_inches='tight')
 
 
 
-"""
+
 
 
 
@@ -567,7 +567,7 @@ if (nr_neurons != 1):
     
     
 
-"""
+
 
 
 
