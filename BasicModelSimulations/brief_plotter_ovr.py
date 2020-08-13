@@ -11,9 +11,8 @@ from mpl_toolkits import mplot3d
 
 
 
-corr_val = np.arange(0,1.1,0.1)
-OVR = [ 1.0000  ,  1.0000  ,  1.0000  ,  0.8000  ,  0.6167  ,  0.5750  ,  0.3867 ,  0.2833  ,  0.2950 ,   0.1933,
-    0.2400]
+corr_val = np.arange(0.3 , 1.1 ,0.1)
+OVR = [ 0.8683   ,  0.6683  ,  0.5220  ,  0.3538 , 0.2888    ,  0.2451  , 0.2104 ,  0.1722]
 
 
 
@@ -22,8 +21,8 @@ plt.plot(corr_val, OVR, 'o-')
 plt.xticks(corr_val)
 ax = plt.gca()
 yleft, yright = plt.ylim()
-ax.set_ylim([0,yright])
-plt.title("Transmission Quality for 30 SNr neurons, 50 Hz",  fontsize = 20)
+ax.set_ylim([0,1.06])
+plt.title("Transmission Quality for no DBS",  fontsize = 20)
 plt.xlabel("Correlation", fontsize = 16)
 plt.ylabel("Transmission Quality", fontsize = 16)
-plt.savefig("tq_baseline" ,bbox_inches='tight')
+plt.savefig("tq_c1_nodbs_100trials" ,bbox_inches='tight')

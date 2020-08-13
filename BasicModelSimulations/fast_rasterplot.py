@@ -455,7 +455,7 @@ zero_mask = np.ma.array(corr_matrix, mask=upper_mask, fill_value=0 )
 masked_zeroed_corr_matrix = zero_mask.filled()
 #calculate means
 full_mean= np.sum(masked_zeroed_corr_matrix)/ np.count_nonzero(masked_zeroed_corr_matrix)
-
+full_mean = full_mean.round(decimals=4)
 
 plt.figure(9, figsize=(10,8))
 plt.matshow(upper_corr_matrix, fignum=9)
@@ -463,8 +463,9 @@ plt.plot(  [0,30] , [30-nr_neurons-0.5,30-nr_neurons-0.5], 'k'   )
 plt.plot(  [30-nr_neurons-0.5,30-nr_neurons-0.5] , [-0.5,30] , 'k'  )
 
 plt.colorbar()
-plt.title("Correlation matrix of spiketrains for " + exp_name + " with bins of " + str(corr_bin) + " ms" + "\n" + "Mean of all spiketrains: " + str(full_mean))
-
+plt.title("Correlation matrix of spiketrains for " + exp_name + " with bins of " + str(corr_bin) + " ms" + "\n" + "Mean of all spiketrains: " + str(full_mean), fontsize=18)
+plt.xlabel('Spike train #', fontsize=14)
+plt.ylabel('Spike train #', fontsize=14)
 plt.savefig(RESULTS_FOLDER + "\\" + "Correlation_Matrix",bbox_inches='tight')
 
 
@@ -615,8 +616,8 @@ if (vth_checker):
     plt.axvline( x=1000, color='r', linestyle='--')
     xleft, xright = plt.xlim()
     yleft, yright = plt.ylim()
-    plt.title("Thalamocortical Membrane Potential for correlation: " + str(int(corr)/100))
-    plt.ylabel('Voltage (mV)')
+    plt.title("Thalamocortical Membrane Potential", fontsize=18)
+    plt.ylabel('Voltage (mV)', fontsize=14)
     ax = plt.gca()
     labels = np.array([int(item._x) for item in ax.get_xticklabels()])
     ax.set_xticklabels(labels-1000)
@@ -627,7 +628,7 @@ if (vth_checker):
     spike_count = 0
     all_spikes_grouped = []
     tot_amount_spikes = 0
-    plt.title("Thalamocortical Membrane Potential")
+    plt.title("Thalamocortical Membrane Potential", fontsize=18)
     
     for i in range(all_spiketrains.size):
         data = all_spiketrains[i][0] #had to do this because of data bugs, contains group of spiketrains
@@ -679,9 +680,10 @@ if (vth_checker):
     plt.axvline( x=1000, color='r', linestyle='--') 
     ax.set_xlim([xleft,xright])
     ax.set_xticklabels(labels-1000)
-    plt.title("SNr input to TC")
-    plt.xlabel('Time from movement (ms) ')
-    plt.ylabel('Spike train #')
+    plt.title('Spike raster plot for 12 neurons at 80 Hz with correlation of 0.8', fontsize=18 )
+
+    plt.xlabel('Time from movement (ms)', fontsize=14)
+    plt.ylabel('Spike train #', fontsize=14)
     plt.savefig(RESULTS_FOLDER + "\\" + "Spiketrains_with_membrane_potential",bbox_inches='tight')
 
     

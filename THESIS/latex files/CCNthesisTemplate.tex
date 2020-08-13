@@ -1,0 +1,108 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{enumerate}
+\usepackage{times}
+\usepackage{color} 
+\usepackage{parskip}
+\usepackage{afterpage}
+\usepackage{setspace} 
+\usepackage[modulo]{lineno}
+
+\setcounter{tocdepth}{3}
+\usepackage{graphicx}
+\usepackage{comment}
+\usepackage{textcomp}
+\usepackage{natbib}
+
+\usepackage[labelfont=bf,labelsep=period,justification=justified]{caption}
+
+\doublespacing
+\topmargin 0.0cm
+\oddsidemargin 0.5cm
+\evensidemargin 0.5cm
+\textwidth 16cm 
+\textheight 21cm
+\makeatletter
+\makeatother
+\date{}
+\pagestyle{myheadings}
+\pagenumbering{gobble}
+\bibliographystyle{apalike} 
+
+\begin{document}
+\includegraphics[width=0.5\textwidth,clip=true,trim=0cm 0cm 0cm 0cm]{Figures/TUOSlogo.png}
+\vspace{10em}
+\begin{center}
+{\huge
+Title of Dissertation \vspace{6em}
+}
+\end{center}
+\begin{flushleft}
+Degree: MSc Cognitive \& Computational Neuroscience \vspace{1em}\\
+Department: Department of Psychology, The University of Sheffield, Sheffield, United Kingdom\vspace{1em}\\
+Registration number: 0123456\vspace{1em}\\
+Supervisor(s): Professor Albert Einstein \& Dr Charles Darwin \vspace{1em}\\
+Date of submission: MM/YYYY\vspace{5em}\\
+\end{flushleft}
+\newpage{}
+
+\section*{Abstract}
+ 
+This template represents a suggestion about the formatting and organisation of an MSc thesis. You do not have to use this template, and you are welcome to write your thesis in e.g., microsoft word if you prefer. If you prefer to use alternative software then you can use the PDF generated here as a guide for the style, e.g., 10-12 point times font, double line spacing, table of contents etc.The thesis should be organised as agreed with your supervisor, who may well prefer that have separate chapters, or multiple Methods and Results sections etc. If you are at all unsure about this then consult with your supervisor. Note that to build the PDF you will need to run both the latex and bibtex typesetting routines, and the first time you build it you may need to run the latex typesetting command a further couple of times so that the updated bibtex is used. Please consult with the course director if you have any trouble with this template, or if you need any guidance on using it. The abstract should fit on one page, e.g., around 300 words.
+ 
+\newpage{}
+
+\tableofcontents
+
+\newpage{}
+
+\clearpage
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+\section{Introduction}
+\linenumbers
+
+Here is the Introduction text.
+
+Here is one way of doing citations where the author's name is part of the sentence, for example the classic book of \cite{Kauffman1995}, and here is where the citation appears at the end in parentheses instead \citep{Waddington1942}. Sometimes it is handy to use also this format (see also \citealp{Waddington1942}). And here is where I am referring to Figure \ref{fig1}. 
+
+\afterpage{
+\begin{figure}
+\begin{center}
+\includegraphics[width=1.0\textwidth,clip=true,trim=0cm 0cm 0cm 0cm]{Figures/Fig1.pdf}\caption{\emph{Title of Figure}. Caption of figure. If you are going to label the panels use bold font size 10-12 arial, and then refer to each in the caption as follows. \textbf{A} Description of the first panel of the figure. \textbf{B} Description of the second panel of the figure. And so on. Make sure that all axes are labelled clearly, and try to use large text for the lettering as in this example to make your plots instantly understandable.}\label{fig1}
+\end{center}
+\end{figure}
+\clearpage}
+
+\newpage{}
+\section{Methods}
+
+Here is a methods section. This could alternatively be titled as `Models' if you prefer.
+
+\subsection{Subsection heading}
+
+Here is a subsection of the Methods, with an equation included as an example;
+
+\begin{equation}
+\log(y)=mx+c
+\end{equation}
+
+where $y$ is something.
+
+
+\newpage{}
+\section{Results}
+
+You are likely to want to use sub-headings for the results section too.
+
+
+\newpage{}
+\section{Discussion}
+
+Discussion text. A separate conclusions section is optional.
+
+\newpage{}
+\bibliography{references}
+
+\end{document}

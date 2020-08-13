@@ -1,0 +1,102 @@
+INTRODUCTION
+	+ BACKGROUND
+		- Explain PD and how correlation is seen in this
+		- Mention different papers that I have and say how each paper says a different thing: increases/decreases in firing rate, burst rates, etc.
+		- Introduce humphies and say how he finds "network effect" and heterogenity with simulation methods
+		- end with hahn and say he did this with monkeys and importance of how changes observed on data didnt mean improvement in monkeys. He says that this means "physiological changes"
+		All these papers do not tke into account evolution of and possible changes in correlation or decorrelation, this brings us to our research question
+		- impact of correlation in basal ganglia output and its changes during dbs is not taken into acocunt, and study from my 2 supervisors says that correlation plays an important role in PD since it affects the basal ganglia output, which regulates movement
+			--> explain briefly what do we mean by correlation exactly (show simple 2 neuron rasterplot). 
+			--> explain basal ganglia output rebound spikes (volitional and non volitional spikes) and show 2 figures from presentation
+				+ Introduce concept of TQ here
+
+	+ PLAN OF INVESTIGATION
+		- Research question along these lines: What is the impact of deep brain stimulation on the correlation of the basal ganglia output? Need to specifiy that we are looking at how it was before and how it is during DBS. 
+			---- Possible objectives: 
+				*studying how the correlation changes during DBS
+				*studying the interplay of firing rate and correlation
+				*studying different "scenarios" in DBS and how they affect correlation   
+				*studying how the transmission quality is affected by correlation.   
+		- Achieve these objectievs by performing many simulations where paremeters are freq and corr, studying data by looking at how correlation and tq change, visualize data, analyze data with differente techniques, maybe this is enough and later specify how there will be two groups
+		- A-priori hypotheses???? : Firing rate increase should theoretically increase TQ, since more spikes mean less time for rebound spikes, and less correlation should mean more TQ, since less groupings, but specific functioning of this and interplay of both is what we are interested in?? maybe i should not say something like that
+
+
+MATERIALS AND METHODS
+	- specify snr and mthal
+
+	- HH model of thalamus, 30 input SNr. model on matlab. Experiments where frequency is increased from 51 to 90 hz, number of neurons affected goes from 1 to 30. correlation goes from 0.3 to 1, since up to 0.3 its already 1 on baseline, so correlation showed is for people who are not healthy
+
+	- Explain how correlation is simulated by showing an image with arrows and such like in the presentation
+
+	- sa that gnsr is set bcause mohammadrez found out it is not important
+
+	- Explain how we are going to also simulate de-correlation by having the different mother spike trains. again show possible plot. Then aftger this show the 2 images shown in the presentation to prove this. Say how we will focus intot his with the analysis
+
+	- Mention iecberg supercomputer with .sge abd .sh and how after that TQ and rasterplot/data analysys/ correlation is opbtained with python scripts. Show possibly another example of different firing rates /correlation matrix or ISI CVs?  Say that this was also used to look for anormalities
+
+	- remember analysus with python and how we will look at correlation amtrix and everything and ISI CV and shit
+
+
+
+RESULTS
+	- DE-CORRELATION SEEMS TO PLAY ROLE IN TQ 
+	- explain how big graphs are made by showing a single tq plot and how that equates to a "square" in big study. this graph is helpful because otherwise we would have to look at many independt graphs, as long as we trake into consideration that this is a sum its ok
+	
+	- start by showing how in experiments DIFFMOTH along freq row and say how even though correlation stays the same more or less, freq increases becauyse more spikes -> less chance of spiking. Then across a column we see a interesting change, how it goes up and then down as in an inverted u way, when we look at actual corr value we see that this is because corr is decreasing and then increasing. this is because having a combination of 2 with 15-15 neurons gives the minimum decorrelation, so the extremes are the actual intended corr values and the other not. ---> CORR OS PLAYTING ROLE
+
+	- but then lets look at deletion method which does NOT have groups of decorrelated neurons to check. When we look frequency wise we can see that there is increase in TQ and when we look at correlation we see that it is decreasing. More experiments would be needed but this again shows how even if there is/isnt correlation change the tq increases with higher frequency. maybe if this correlation has a steeper decrease the tq increases even more.  When we look across nr neurons we see that there is no significant tq change, and when we look at correlation chanegs we see changes, but linear changes and they INCREASE, so maybe what can be inferred is that there seems to be some sort of non-linear relationship between tq and correlation when firing rate is not taken into account
+
+	- SCATTERPLOT WITH TQ?
+
+	- missing here big phrase. maybe something about both the interplay of firing rate and correlation is important, but again correlation is not mentioned.
+
+
+DISCUSSION
+	- explain in more detail hahn paper and say how different changes do not xplain how some animals get better. If they also took into account correlation it could help explain. show c1 experiment and show how they both show changes in firing rate and everything but ultimately how the TQ is very different and the only difference between both is the correlation 
+
+	- This gives us further reason to gather more detailed data and analyze the data further to ascertain this.
+
+	- new line of experiments maybe where we try to actively decorrelate spiketrains with stimulation and the possible try these techniques on animal models?
+
+	-> should i discuss here how diffmoth method seems too "optimistic" but at the same time deletion method too "pessimistic" and how a combination between the two  could be. combuinations are still endless, groups, incrase, decrease, etc. More should be donde on this.   SHOULD I SHOW HERE EXAMPLE WITH 2.3.4.5.10 NEURONS AND SAY HOW POSSIBLE FUTURE CORRELATION? 
+
+
+
+
+
+
+
+
+- Use actal figure from mohammads papers
+- MOVE SPECIFIC GENERATION OF CORRELATED TO RESULTS. ni mehiod say that there are differnt methods to create spiketrains. maybe tefhnical aspects of how they were created
+corr for intented corr90 do it across 
+
+change jet co varydis. adjunt range of tq mean
+
+
+
+
+
+THINGS TO ASK:
+	- IS INTRODUCTION OK??????
+
+
+
+
+THINGS TO MENTION IN DISCUSSION
+
+	
+
+
+	-MAYBE TO SALSO SAY IN ABSRTACT: HOW THE BENEFIT OF DBS CAN BE EXPLAIND BY THE DECORRELATION - RESTORATION OF HELATHY CORRELATION - LOSS OF PATHOLOICAL CORRELATION
+
+TO DO THINGS
+	- SECTION 3.3 AÑADIR CAMBIOS EN CORRELACION 
+	- CHANGE TO   "DURING DBS" para que digas cosas en ese estilo
+	- MAYBE SEE HOW DBS IS EXPLAINED IN TINTRODUCTION, MAYBE USE NINI ET AL PAPER (cite from hauptamnn dbs ) FOR INTRODUCTION IF NECESSAY
+	- look at other 2 papers again to be sure they dont mention correlation and also mention it along with hahn in discussion for people who do not take into account and use them as examples
+	- CHANGE FIGURES SPECIALLY TICKS
+	- MAYBE CHANGE HOW YOU SAY DECORRELATION AND SAY SOMETHIGN ALONG LINES OF: DECORRELATION BEFORE AND AFTER DBS AND HOW IT WAS CHANGED BECAUSE OF DBS
+	- HAUPTMANN PAPER DISCUSSION SAYS POSSIBLE RELATIONS FOR CORRELATION LIKE MICOCIRCUITS THAT COULD BE ADDED TO INTRODUCTION
+	- MAYBE ADD THIS IN INTRODUCTION: - tried two different spiketrain creatiosn, in one correlation disrupted tranmission and the other didnt. we found that relevant correlaion pattern might be a mixture, and with a mixture it shows similar impact 
+	- leete la story de dbs para asegurarte que lo que dices es verdad

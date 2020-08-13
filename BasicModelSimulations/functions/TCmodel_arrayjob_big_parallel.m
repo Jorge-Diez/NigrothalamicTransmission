@@ -66,7 +66,7 @@ all_reb_spk = zeros(9600/num_jobs,num_trials); %Result vector, (check how its do
 
 dir_name_list = strings(1, 9600/num_jobs );
 
-for exp = 1:size(NT_GS_JV_TF,2)
+parfor exp = 1:size(NT_GS_JV_TF,2)
     R2 = zeros(size(NT_GS_JV_TF,2),num_trials); %used to store the correlation values
     
     
@@ -74,7 +74,7 @@ for exp = 1:size(NT_GS_JV_TF,2)
     
     SPK = [];
     
-    exppath = ['LIGHTNING_DELET/FREQINCTO_',num2str(freq_increase(exp))];
+    exppath = ['DELET_THESIS/FREQINCTO_',num2str(freq_increase(exp))];
     freq_experiment = fullfile(pwd, exppath);
     if exist(freq_experiment,'dir') ~= 7
         mkdir(freq_experiment)
@@ -126,7 +126,7 @@ end
 for i = 1:length(dir_name_list)
     
     
-    exppath = ['LIGHTNING_DELET/FREQINCTO_',num2str(freq_increase(i))];
+    exppath = ['DELET_THESIS/FREQINCTO_',num2str(freq_increase(i))];
     freq_experiment = fullfile(pwd, exppath);
 
     

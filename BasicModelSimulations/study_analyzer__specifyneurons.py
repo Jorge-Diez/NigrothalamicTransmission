@@ -22,10 +22,10 @@ warnings.filterwarnings("ignore") #due to matplotlib depreciation warnings
 
 
 #folder where our results will be located
-RESULTS_FOLDER = "graphic_results"
-RESULTS_FOLDER_TQ = "graphic_results\\TQ_VALUES"
-RESULTS_FOLDER_TQ_DIFF = "graphic_results\\TQ_DIFF"
-RESULTS_FOLDER_CORR_TQ = "graphic_results\\TQ_CORR"
+RESULTS_FOLDER = "graphic_results_thesis_10trials"
+RESULTS_FOLDER_TQ = "graphic_results_thesis_10trials\\TQ_VALUES"
+RESULTS_FOLDER_TQ_DIFF = "graphic_results_thesis_10trials\\TQ_DIFF"
+RESULTS_FOLDER_CORR_TQ = "graphic_results_thesis_10trials\\TQ_CORR"
 
 all_folder_results = [RESULTS_FOLDER, RESULTS_FOLDER_TQ, RESULTS_FOLDER_TQ_DIFF, RESULTS_FOLDER_CORR_TQ ]
 
@@ -48,7 +48,7 @@ OG_OVR = mat_try ["OVR"]
 
 fig = plt.figure(figsize=(10,8))
                  
-plt.imshow(OG_OVR, cmap='jet', extent=[0.3,1,0,1], vmin = 0, vmax = 1)
+plt.imshow(OG_OVR, cmap='viridis', extent=[0.3,1,0,1], vmin = 0, vmax = 1)
 cbar = plt.colorbar()
 
 print("TQ OF BASELINE IS: {}".format(OG_OVR))
@@ -193,13 +193,13 @@ for i in range (nr_experiments):
     # PLOT THE TQ VALUES FIRST
     ###############################################################################
     fig = plt.figure(figsize=(19,10))    
-    plt.imshow(OVR_RESULTS, cmap='jet', vmin = 0, vmax = 1, aspect='auto')
+    plt.imshow(OVR_RESULTS, cmap='viridis', vmin = 0, vmax = 1, aspect='auto')
     cbar = plt.colorbar()
     
     ax = plt.axes()
     plt.title(experiment_name, fontsize = 20)
     plt.xlabel("Correlation Coefficient", fontsize = 16)
-    plt.ylabel("Nr_neurons_freq_inc", fontsize = 16)
+    plt.ylabel("Number of decorrelated neurons", fontsize = 17)
     cbar.set_label('Tranmission Quality', fontsize = 20)
     
     #changing ticks
@@ -223,13 +223,13 @@ for i in range (nr_experiments):
     
     
     fig = plt.figure(figsize=(19,10))
-    plt.imshow(OVR_RESULTS_DIFFERENCE, cmap='jet', vmin = tq_diff_min, vmax = tq_diff_max, aspect='auto')
+    plt.imshow(OVR_RESULTS_DIFFERENCE, cmap='viridis', vmin = tq_diff_min, vmax = tq_diff_max, aspect='auto')
     cbar = plt.colorbar()
     
     ax = plt.axes()
     plt.title(experiment_name, fontsize = 20)
     plt.xlabel("Correlation Coefficient", fontsize = 16)
-    plt.ylabel("Nr_neurons_freq_inc", fontsize = 16)
+    plt.ylabel("Number of decorrelated neurons", fontsize = 17)
     cbar.set_label('Differences with respect to baseline', fontsize = 20)
     
     plt.yticks( np.arange(0,nr_neurons,1), np.arange(1,nr_neurons+1,1))    
@@ -267,13 +267,13 @@ x_values = np.arange(51,51+nr_experiments).astype(str)
 
 
 fig = plt.figure(figsize=(19,10))
-plt.imshow(ALL_MEAN_OVR, cmap='jet', vmin = 0, vmax = 1, aspect='auto')
+plt.imshow(ALL_MEAN_OVR, cmap='viridis', aspect='auto')
 cbar = plt.colorbar()
 
 ax = plt.axes()
-plt.title("TQ mean over nr_neurons", fontsize = 20)
-plt.xlabel("Frequency increase to ", fontsize = 16)
-plt.ylabel("Nr_neurons_freq_inc", fontsize = 16)
+plt.title("TQ mean for 3 fixed decorrelated neurons", fontsize = 20)
+plt.xlabel("Frequency increase to (Hz)", fontsize = 16)
+plt.ylabel("Number of neurons affected by DBS", fontsize = 17)
 cbar.set_label('TQ mean', fontsize = 20)
 
 plt.yticks( np.arange(0,nr_neurons,1), np.arange(1,nr_neurons+1,1))    
@@ -303,10 +303,10 @@ ax = plt.axes(projection='3d')
 ax.view_init(elev=15., azim=220)
 
 
-surf = ax.plot_surface(xx, yy, ALL_MEAN_OVR, cmap='jet', linewidth=0, antialiased=False, vmin = 0, vmax = 1)
-plt.title("TQ mean over nr_neurons", fontsize = 20)
-ax.set_xlabel("Frequency increase to ", fontsize = 16)
-ax.set_ylabel("Nr_neurons_freq_inc", fontsize = 16)
+surf = ax.plot_surface(xx, yy, ALL_MEAN_OVR, cmap='viridis', linewidth=0, antialiased=False, vmin = 0, vmax = 1)
+plt.title("TQ mean for 3 fixed decorrelated neurons", fontsize = 20)
+ax.set_xlabel("Frequency increase to (Hz)", fontsize = 16)
+ax.set_ylabel("Number of neurons affected by DBS", fontsize = 17)
 ax.set_zlabel("TQ mean", fontsize = 16)
 
 fig.colorbar(surf, shrink = 1)
@@ -338,14 +338,14 @@ x_values = np.arange(51,51+nr_experiments).astype(str)
 
 
 fig = plt.figure(figsize=(19,10))
-plt.imshow(ALL_MEAN_OVR_DIFFERENCE, cmap='jet', vmin = 0, vmax = 1, aspect='auto')
+plt.imshow(ALL_MEAN_OVR_DIFFERENCE, cmap='viridis', aspect='auto')
 cbar = plt.colorbar()
 
 ax = plt.axes()
-plt.title("TQ difference mean over nr_neurons", fontsize = 20)
-plt.xlabel("Frequency increase to ", fontsize = 16)
-plt.ylabel("Nr_neurons_freq_inc", fontsize = 16)
-cbar.set_label('Difference with respect to baseline', fontsize = 20)
+plt.title("TQ difference mean for 3 fixed decorrelated neurons", fontsize = 20)
+plt.xlabel("Frequency increase to (Hz)", fontsize = 16)
+plt.ylabel("Number of neurons affected by DBS", fontsize = 17)
+cbar.set_label('TQ Difference with respect to baseline', fontsize = 20)
 
 plt.yticks( np.arange(0,nr_neurons,1), np.arange(1,nr_neurons+1,1))    
 plt.xticks( np.arange(0,nr_experiments,1), x_values) 
@@ -374,11 +374,11 @@ ax = plt.axes(projection='3d')
 ax.view_init(elev=15., azim=220)
 
 
-surf = ax.plot_surface(xx, yy, ALL_MEAN_OVR_DIFFERENCE, cmap='jet', linewidth=0, antialiased=False, vmin = 0, vmax = 1)
-plt.title("TQ difference mean over nr_neurons", fontsize = 20)
-ax.set_xlabel("Frequency increase to ", fontsize = 16)
-ax.set_ylabel("Nr_neurons_freq_inc", fontsize = 16)
-ax.set_zlabel("Difference with respect to baseline", fontsize = 16)
+surf = ax.plot_surface(xx, yy, ALL_MEAN_OVR_DIFFERENCE, cmap='viridis', linewidth=0, antialiased=False, vmin = 0, vmax = 1)
+plt.title("TQ difference mean for 3 fixed decorrelated neurons", fontsize = 20)
+ax.set_xlabel("Frequency increase to (Hz)", fontsize = 16)
+ax.set_ylabel("Number of neurons affected by DBS", fontsize = 17)
+ax.set_zlabel("TQ Difference with respect to baseline", fontsize = 16)
 
 fig.colorbar(surf, shrink = 1)
 
@@ -403,13 +403,13 @@ for i,j in zip(corrs,corr_all_ovr):
 
 
     fig = plt.figure(figsize=(19,10))
-    plt.imshow(j, cmap='jet', vmin = 0, vmax = 1, aspect='auto')
+    plt.imshow(j, cmap='viridis', vmin = 0, vmax = 1, aspect='auto')
     cbar = plt.colorbar()
     
     ax = plt.axes()
     plt.title("TQ values for correlation of " + str(i/100), fontsize = 20)
-    plt.xlabel("Frequency increase to ", fontsize = 16)
-    plt.ylabel("Nr_neurons_freq_inc", fontsize = 16)
+    plt.xlabel("Frequency increase to (Hz)", fontsize = 16)
+    plt.ylabel("Number of neurons affected by DBS", fontsize = 17)
     cbar.set_label('TQ', fontsize = 20)
     
     plt.yticks( np.arange(0,nr_neurons,1), np.arange(1,nr_neurons+1,1))    
@@ -439,10 +439,10 @@ for i,j in zip(corrs,corr_all_ovr):
     ax.view_init(elev=15., azim=220)
     
     
-    surf = ax.plot_surface(xx, yy, j, cmap='jet', linewidth=0, antialiased=False, vmin = 0, vmax = 1)
+    surf = ax.plot_surface(xx, yy, j, cmap='viridis', linewidth=0, antialiased=False, vmin = 0, vmax = 1)
     plt.title("TQ values for correlation of " + str(i/100), fontsize = 20)
-    plt.xlabel("Frequency increase to ", fontsize = 16)
-    plt.ylabel("Nr_neurons_freq_inc", fontsize = 16)
+    plt.xlabel("Frequency increase to (Hz)", fontsize = 16)
+    plt.ylabel("Number of neurons affected by DBS", fontsize = 17)
     ax.set_zlabel("TQ", fontsize = 16)
     
     fig.colorbar(surf, shrink = 1)

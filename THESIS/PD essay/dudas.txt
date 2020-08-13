@@ -1,0 +1,101 @@
+should we not focus on genetic factors if its sporadic¿
+
+
+possible cause? secondary to toxins or infection that patient had along his life
+
+- alpha-synoclein deposition, lewy bodies
+
+
+disease starts 10-15 years before symptoms actually appear (neuron death)
+
+
+-MPTP (synthetic opiate) caused outbreak in California. by making the drug, one or few uses after that they get parkinsons 
+(not actualy parkinsons watch out)
+-Rotenone can cause parkinsons disease, used to kill fish or something
+-Too much manganese can cause parkinsons
+-infectius? port-encephalitis pethargica
+-exercising helps with parkinsons, how is thhat? it slows progression and may help delay the onset
+
+
+- Parkinsons may lead to dementia. Careful of the lewy bodies, since they appear in other parts, like dementia
+
+
+referencias muy importantes en el sector 4 del paper de chinta2005
+tambien en lo de apoptosis
+parece que os lwei bodies son un signo de cell suffering
+necesrio saber bien que es alpha-synuclein, parecen ser de lo que estan compuetos los lewy bodies.
+
+gene mutation for alpha synuclein
+
+oxidative stress is what seems to eventually kill the neurons
+mythocondrial disfunction, is this another cause? it seems that the oxidative stress causes the disfunction which kills the neuron
+
+apart from lewi bodies, dendritic atrophy is also a sign of cell suffering.
+
+we have a peper where they suggest that apoptosis and autophagy may also play a role in cell death 
+
+so, it seems like oxidative stress,decreased activity of mitochondrial respiratory chain and decreased capacity to buffer intracellular calcium have been observed, but their cause is uknown
+
+paper sobre dopaminergic neurons good to cite if necesario
+
+una mutacion en al alfa synuclein provocan que aparezan lewy bodies en familiar PD, pEROOO por alguna razon, los lewy bodies que aparecen en el sporadic tambien contienen alfa synuclein. como narices es eso? porque tienene alfa synucien? hay algo que provoque que eso mute y empieze a crear lewy bodies? paper de alga synuclien in lwewy bodies y aggregatio of .... hablan de esto. ese ultimo paper hasta dice que el wild type alfa synucleain forma parte de la pathogenesis del sporadic PC. todo esto en parrafo de discussion, tambien dijeron que no habia beta synuclein y como el alfa synuclein hace cosas importantes y que si se jode puede provocar muerte celular
+
+
+
+role of oxidative stress in PD muy bueno, deja claro cosas y tiene la primera referencia que parece ser muy buena. indica que el oxidative stress es muy importante y que suele ser factor determinante de PD. interesante como dice que da quinone puede provocar cambios a la alfa synuclein, podria ser que produce los lewy bodies???madremia el da quinone ese provoca destruccion masive por lo vistso, hasta mythochonrdial disfuntion. importante posible link entre el paper de apoptosis y el primer parrado donde habla de mitchondrial dysfuntion y dice que provoca apoptosus. tambien itnersante parte de neuroinflammation y como el microglia jode aun mas y provoca mas estres oxidativo. paper mu chulo. Decia que en si dopamina da estres  y que cuando el balance se joda a tomar por culo todo.
+
+
+Role of mitochondria in the etiology and pathogenesis of Parkinson' s disease. dice que oxidative stress es un factor pero que es secundario y que el electros transport + ATP synthesis (respiratory failure) es mas importante. importante que menciona diferencia de donde afecta mas parkinson en cntienentes primer parrafo. segundo parrafo menciona posibles causes pero sin referencia. este papaer menciona MPTP y da referencias, dice que es clave saber porque paso para explicar lo de ahora. origin de mythochondrial hypopthess despues del caso de MPTP. mira el 3.1 como dice qe en table 3 hay causas para problemas en complex 1 activity. ulitmo parrafo de 3.3 dice igual porque KGDHC se jode. 3.4 dificil asociar los problema que dice este paper a mutaciones, en realidad no porque la edad provoca deletions o como se diga. 4.2 mira como dice que primero mythochondrial problem y luego oxidative stress. 5.1 interesante habla de toxins, 5.2 basicamente dice que environmental factors hay relacion pero cual ?? leetelo porque no parece que diga eso en verdad, tambient ener en cuenta 5.3 genetic predisposition
+
+Genetic Insights into Sporadic Parkinson's Disease Pathogenesis dice como es dificil de separar PD familiar del esporadico, y como entonces si sabemos como funciona el PD familiar, es decir, sabemos como las mutaciones geneticas provocan el PD, podemos ver el origen molecular del esporadico. Primer apartado mira como dice que ambas acaban en accumulation and aggregation of alfa synuclien y como suele estar undolded. menciona lewy boides despues y como se ve en PD. tambien como es dificil ver porque le pasas lo mismo al alfa synculein cuando no hay mutaciones. ultimo parrafo menciona como peticidas y herbiciads aumentan produccion de alfa synuclein, referencias 42-44. de LRRK2 ultima àrte que dice que esta en LB a veces, posible interplay con alfa synuclein. Parkin mutation makes up for a LOT of familial and sporadic PD. Parkin y PINk se encargan de "limpiar" mitocondrias jodidas, si no puede, se acumulan e igual joden todo. este articulo menciona el deficit del complex I del paper d antes para que veas que puede estar relacionado. penultimo parrafo dice que puede mutar el parkin, y que segun edad se jode, y que hasta oxidative stress puede joderlo. DJ1 es familial parece, solo importa primeras lineas. Los mazo genes de despues no tienen link directo pero se pueden usar como ejemplo. Siguiente caso dice que no se sabe de donde viene el PD, pero que todos de aucuerdo en estudiar genetica junto a lo otros estudios. despues interasante psible relacion neuroinflamacion, neuraglia que se queda ahi y jode mas que cura con posibles genes mtados. Concluding: parece que es causado por algo mas que una unica cosa y por eso es muy dificil, 
+
+
+
+
+
+
+
+
+What Causes Cell Death in Parkinson’s Disease?  Primera pagina vuelve a decir como papr de antes que mutaciones en alfa synuclein PARK LRRK2 provoca familiar y que el alfa synuclein esta en LB y como estar molecularly interreleatd. salta todo hasta apartado de sporadic PD porque habla de genes familiales, menciona y cita mytocondhrial dysfunction y mutaciones en dna mitocondrial. dice de pesticidoe y MPTB que son complex I inhibitors tambien menciona oxidative stress. mencion sobre SIRT2 igual, aunque no paree ser muy interesante, tambien SIRT1
+
+
+
+Alternative α-synuclein transcript usage as a convergent mechanism in Parkinson’s disease pathology. Primer parrafo resume bastante bien situacion del PD sobre causes de la muerte de las celulas. Basicamente estan mirando como una mutacion especifica del alfa syn es susceptible de ser parte de la patologia del PD, referencias 8-11 en el texto son la parte interesante sobre como puede estar jodiendo. Resto del paper metodos experimentales demasiado complicados como para entender pero basicamente estan viendo si determinadas mutaciones estan mas presnetes en PD en comparacion a otros (o eso creo lmao). Ultimo parrafo antes de discussion habla de como la mutaion esta puede provocar que se acumule alfa synuclein y pouede provocar mytchondrial dyscfuntion (tiene referencia). Discussion primer parrafo imprtante y despues vienen a decir que en realidad si que es factor pero no saben ni como ni porque, dan posibls ideas, pero ni siuqiera saben para que sirve de normal, mucho menos que jode si esta mutado
+
+
+
+Cardiolipin exposure on the outer mitochondrial membrane modulates α-synuclein. Paper un poco jodido de pillar, primeros parrafos son interesantes. parece que el cardiopilin en la membrana mitocondrial provoca que alfa syn actue de ciertas formas, parece que concretamente en como se foldea. ¿si se foldea es malo? esta claro que aberrant y misfolded jode, parece que si que si se fodea es malo. hcaen relacin entre eso y salid mitocondrial y hay relacion. Luego dice que si hay cardiopilin en mitocondria puede indicar que se est acumulando y que va a haber parkinson. importrante que sale antes de ninguna patologia mitocondrial (pagina 8). saltado a discussion despues de eso. cardiopilin plays a role in syn foldinf. paper uy lioso, parece que el alfa syn se transmite entre mitocondrias. parece que el cardiopilin refoldea y que en realidad hae bien pero no estoy seguro
+
+
+Parkinson’s Disease: Mechanisms and Models REVIEW. Primer parrafo dice primeras veces que x cosas fueron descubiertas, como la dopamina por ejemplo. rsto tambien, habla muy bien de que posibles causes hay y modelos usados. Final pagina 3 LB usados para identiricar pero no exclusivos, ni zorra en relacion con PD. primer parrafo etiology of PD dice modelo de toxinas fue por el MTPT y durante 20 century, luego vinieron genes, en realidad pueden ser ambos. Pathogenesys: misfolding/aggregation of proteins y mythondria fysfunction y oxidative stress, mira como menciona que oxidative damage a alfa synuclein puede provcoar que se misfoldee (cita) , igual es interesante proponer estudios de todo a la vez y no solo fijarse en cosas solas. misfolded proteins paracer ser que hace daño pero no se savbe como: porque se acmuula? porque aparecen LB y joden? ni zorra. que provoca misfolding de alfa synuclein en sporadic? citas sobre herbicides o pesticide, oxidative stress o genes? La edad es un facyor ademas cuanto mas viejo mas susceptible. en Mitochondrial Dysfunction and Oxidative Stress paper relevante al prinicpio, puede, comprobar con el otro paper. ROS papel importante comprobar en el otro paer sobre oxidative stress. Modelos de aniamles como usan neurotoxoins y toxinas (rotenone y MPTP) que provocan sindromes de PD pero no se sabe realacion, lo mejor es MPTP y se ha isado muchisimo y propuesto como base de mierdas (paper de oxidative stress). Hala una autentica barbaridad de MTPT, si te hace falta hablr mucho de el metete aqui si quieres.
+Modelos geneticos ambien interesantes. alfa synuclein es interesante porque LB estan compuestos primeriamente de synuclein. important_ apparenytly mutations in alfa synuclein have NOT been found in sporadic PD????? check  concluiones esta bien , dice 2 discovieres impotantes y despues menciona como ningun modelo animal es capaz de replicar muerte selectiva de neuronas domapnigergic
+
+
+
+Etiology and Pathogenesis of Parkinson’s Disease REVIEW. (de 2011 asi que es modernillo). referencias 3,4,5 parecen importantes. este review parece ser que dice que genetic predisposition es lo mas importante (9-11). este tio va al jodido grano, dice que no se tiene muy en cuenta la edad en los modeles y que es muy importante y solo s emiran hombres (con citas) importante porque ombres muoeren mas. Muy bien como habla de MPTP y como dice sus limitaciones, usaria este si tal. Lysosomes may be involved in PD because of autophagy (apopthosis?). este paper esta bien para usar. menciona tambien microglia (inflamacion serebral)
+
+
+
+Review: Sporadic Parkinson’s disease: development and distribution of a-synuclein pathology (2016).  Primer parrafo, cuando se foldea el synuclein y se crean aggregates: se pueden over trans synaptically de celula a celula jodiendo, esto se corresonde con el otro paper. en realida este paper no habla de las celulas dopamingergic, simplemente de alfa synuclein, esta bien imrarselo por encima para las partes donde dice que se agrega pero el resto del paper habla de otras partes del sistema nervioso despues. 
+
+
+
+
+
+	POSIBLE ESTUDIO: VER DONDE SE SUCEDEN LOS CASOS DE PD, HACER ESTUDIO DE VER QUE COMIAN / BEBIAN / EJERCICO QUE HACIAN / SI HABIAN ESTADO EXPUESTOS A CAUSAS COMO INFECCIONES / PESTICIDAS / ETC.  HACER DATA SCIENCE SOBRE LOS MAZO PAPERS QUE HABRA AL RSPECTO
+
+	POSIBLIDAD DE DECIR QUE ESTUDIOS GENETICOS TIENEN QUE CENTRARSE EN VAIOS FACTORES A LAV EZ EN LUGAR DE SOLO UNO.
+
+	IMPORTANTE DIFERENCIA ENTRE FAMILIAR Y SPORADIC PD, ES POSIBLE QUE EN SPORADIC PD HAYA MUTACIONES EN GENES
+
+
+
+
+	PROPONER: MODELOS IN SILICO, COMO EL HBP ONDE SE PUDEN HACER BUENOS MODELOS
+
+
+
+
+
+- interplay de esas cosas parece importante, deberia de enfocarse mas al interplay y no a cada cosa por separado
+

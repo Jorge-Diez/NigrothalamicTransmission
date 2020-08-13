@@ -8,7 +8,7 @@ import pickle
 import warnings
 from natsort import natsorted
 from mpl_toolkits import mplot3d
-
+from pylab import *
 
 
 root_folder = input("please enter name of the root folder: ")
@@ -253,8 +253,19 @@ method = input("Enter method of simulation: ")
 freq_plot = int(input("Enter frequency : "))
 freq_index = freq_plot-51 #so we can plot easily
 
-labels = ["Corr. Incr. to 0.3", "Corr. Incr. to 0.4", "Corr. Incr. to 0.5", "Corr. Incr. to 0.6",
-          "Corr. Incr. to 0.7", "Corr. Incr. to 0.8", "Corr. Incr. to 0.9", "Corr. Incr. to 1",]
+labels = ["Corr. parameter = 0.3", "Corr. parameter = 0.4", "Corr. parameter = 0.5", "Corr. parameter = 0.6",
+          "Corr. parameter = 0.7", "Corr. parameter = 0.8", "Corr. parameter = 0.9", "Corr. parameter = 1",]
+
+colors_viridis = ['#FDE725FF', '#95D840FF', '#3CBB75FF', '#1F968BFF', '#2D708EFF', '#404788FF', '#482677FF', '#440154FF']
+colors_coolwarm = ['#FF0000', '#FF6600', '#FFFF00', '#66CC00', '#006600', '#009999', '#003399', '#330066']
+colors_plasma = []
+
+colormap_ = cm.get_cmap('plasma', 8)    # PiYG
+
+for i in range(colormap_.N):
+    rgb = colormap_(i)[:3] # will return rgba, we take only first 3 so we get rgb
+    colors_plasma.append(matplotlib.colors.rgb2hex(rgb))
+
 
 plt.figure(1, figsize=(10,9))
 for i in range(len(ALL_CORR_MAT_LIST)):
@@ -262,15 +273,15 @@ for i in range(len(ALL_CORR_MAT_LIST)):
     all_data = ALL_CORR_MAT_LIST[i]
     corr_data = all_data[:,freq_index]
     
-    plt.plot(corr_data)
+    plt.plot(corr_data, color=colors_plasma[i])
 
 
 
 
-plt.title("Actual Correlation values for Frequency:  " + str(freq_plot) + " with " + method  + " method", fontsize = 20)
-plt.xlabel("Nr_neurons_freq_inc ", fontsize = 16)
-plt.ylabel("Actual correlation value", fontsize = 16)
-plt.legend(labels)
+plt.title("Actual Correlation values for Frequency:  " + str(freq_plot), fontsize = 20)
+plt.xlabel("Number of neurons affected by DBS ", fontsize = 16)
+plt.ylabel("Obtained correlation value", fontsize = 16)
+plt.legend(labels ,fontsize = 12)
 plt.savefig(RESULTS_FOLDER + "\\" + "CORR_FOR_FREQ" + str(freq_plot) +  "_" + method ,bbox_inches='tight')
 
 
@@ -283,15 +294,15 @@ for i in range(len(ALL_CORRPERC_MAT_LIST)):
     all_data = ALL_CORRPERC_MAT_LIST[i]
     corr_data = all_data[:,freq_index]
     
-    plt.plot(corr_data)
+    plt.plot(corr_data, color=colors_plasma[i])
 
 
 
 
-plt.title(" Correlation Difference in % for Frequency:  " + str(freq_plot) + " with " + method  + " method", fontsize = 20)
-plt.xlabel("Nr_neurons_freq_inc ", fontsize = 16)
+plt.title(" Correlation Difference in % for Frequency:  " + str(freq_plot), fontsize = 20)
+plt.xlabel("Number of neurons affected by DBS ", fontsize = 16)
 plt.ylabel("Correlation Difference in %", fontsize = 16)
-plt.legend(labels)
+plt.legend(labels, fontsize = 13)
 plt.savefig(RESULTS_FOLDER + "\\" + "CORRPERC_FOR_FREQ" + str(freq_plot) +  "_" + method ,bbox_inches='tight')
 
 
@@ -304,6 +315,13 @@ plt.savefig(RESULTS_FOLDER + "\\" + "CORRPERC_FOR_FREQ" + str(freq_plot) +  "_" 
 
 
 
+colors_plasma = []
+
+colormap_ = cm.get_cmap('viridis', 5)    # PiYG
+
+for i in range(colormap_.N):
+    rgb = colormap_(i)[:3] # will return rgba, we take only first 3 so we get rgb
+    colors_plasma.append(matplotlib.colors.rgb2hex(rgb))
 
 
 
@@ -318,22 +336,22 @@ plt.figure(3, figsize=(10,9))
 
 
 all_nr_neurons = [5, 10, 15, 20, 25]
-labels = ["5 neurons", "10 neurons", "15 neurons", "20 neurons", "25 neurons"] 
+labels = ["5 affected neurons", "10 affected neurons", "15 affected neurons", "20 affected neurons", "25 affected neurons"] 
 
 for i,nr_neurons in enumerate(all_nr_neurons):
     neuron_index = nr_neurons-1 #so we can plot easily
     all_data = ALL_CORR_MAT_LIST[corr_index]
     corr_data = all_data[neuron_index,:]
-    plt.plot(corr_data)
+    plt.plot(corr_data, color=colors_plasma[i])
     
     
-plt.title("Actual Correlation values for intended correlation:  " + str(corr) + " with " + method  + " method", fontsize = 20)
-plt.xlabel("Freq Increase to ", fontsize = 16)
-plt.ylabel("Actual correlation value", fontsize = 16)
+plt.title("Actual Correlation values for intended correlation:  " + str(corr), fontsize = 20)
+plt.xlabel("Frequency Increase to (Hz)", fontsize = 16)
+plt.ylabel("Obtained correlation value", fontsize = 16)
 plt.xticks( np.arange(0,nr_experiments,4), np.arange(51,51+nr_experiments,4))   
 xleft, xright = plt.xlim()
 plt.plot( [xleft, xright], [corr, corr  ], 'r--')
-plt.legend(labels)
+plt.legend(labels, fontsize = 13)
 plt.savefig(RESULTS_FOLDER + "\\" + "CORR_FOR_INTENDED_CORR" + str(int(corr*100)) +  "_" + method ,bbox_inches='tight')
 
 
@@ -343,14 +361,14 @@ for i,nr_neurons in enumerate(all_nr_neurons):
     neuron_index = nr_neurons-1 #so we can plot easily
     all_data = ALL_CORRPERC_MAT_LIST[corr_index]
     corr_data = all_data[neuron_index,:]
-    plt.plot(corr_data)
+    plt.plot(corr_data, color=colors_plasma[i])
     
     
-plt.title("Correlation Difference in % for intended correlation:  " + str(corr) + " with " + method  + " method", fontsize = 20)
-plt.xlabel("Freq Increase to ", fontsize = 16)
+plt.title("Correlation Difference in % for intended correlation:  " + str(corr), fontsize = 20)
+plt.xlabel("Frequency Increase to (Hz)", fontsize = 16)
 plt.ylabel("Correlation Difference in %", fontsize = 16)
 plt.xticks( np.arange(0,nr_experiments,4), np.arange(51,51+nr_experiments,4))   
-plt.legend(labels)
+plt.legend(labels, fontsize = 13)
 plt.savefig(RESULTS_FOLDER + "\\" + "CORRPERC_FOR_INTENDED_CORR" + str(int(corr*100)) +  "_" + method ,bbox_inches='tight')
 
 
